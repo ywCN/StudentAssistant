@@ -6,7 +6,8 @@ import pandas as pd
 # soup = bs.BeautifulSoup(sauce, 'lxml')  # lxml is parser
 sauce = urllib.request.urlopen('https://pythonprogramming.net/sitemap.xml').read()
 soup = bs.BeautifulSoup(sauce, 'xml')
-print(soup)
+for url in soup.find_all('loc'):
+    print(url.text)
 #
 # # <tr> table rows
 # # <th> table header
