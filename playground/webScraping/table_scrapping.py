@@ -4,7 +4,7 @@ import pandas as pd
 
 # sauce = urllib.request.urlopen('https://pythonprogramming.net/parsememcparseface/').read()
 # soup = bs.BeautifulSoup(sauce, 'lxml')  # lxml is parser
-sauce = urllib.request.urlopen('https://pythonprogramming.net/sitemap.xml').read()
+sauce = urllib.request.urlopen('https://pythonprogramming.net/sitemap.xml').read()  # do not add / at end
 soup = bs.BeautifulSoup(sauce, 'xml')
 for url in soup.find_all('loc'):
     print(url.text)
@@ -27,4 +27,3 @@ for url in soup.find_all('loc'):
 # dfs = pd.read_html('https://pythonprogramming.net/parsememcparseface/', header=0)  # make first row the header
 # for df in dfs:
 #     print(df)
-
