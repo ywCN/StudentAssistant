@@ -1,4 +1,5 @@
-
+import requests
+import sys
 # https://mystevens.stevens.edu/sso/webselfservices.php
 # https://mystevens.stevens.edu/sso/web4student.php
 
@@ -26,7 +27,7 @@ time.sleep(5)
 driver.find_element_by_id('Course Sections').click()
 # driver.find_element_by_id('formMenu:linknotes1').click()
 # driver.find_element_by_id('_id137Pluto_108_u1240l1n228_50520_:tabledip:0:_id158Pluto_108_u1240l1n228_50520_').click()
-select = Select(driver.find_element_by_name('Subject'))  # 应该没用
+select = Select(driver.find_element_by_name('Subject'))
 select.select_by_visible_text('Biomedical Engineering')
 driver.find_element_by_id('submitbutton').submit()
 # Select and print an interesting element by its ID
