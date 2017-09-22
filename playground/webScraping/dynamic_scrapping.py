@@ -29,7 +29,9 @@ def main():
     js_test = soup.find('p', class_='jstest')
     print(js_test.text)
 
-if __name__ == '__main__': main()
+
+if __name__ == '__main__':
+    main()
 
 #  pretend we are a client or browser so we can run JS
 
