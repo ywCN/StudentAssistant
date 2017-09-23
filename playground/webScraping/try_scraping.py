@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 import getpass  # this does not work well for some reasons
 import time
 from selenium.webdriver.common.action_chains import ActionChains
@@ -51,12 +52,17 @@ def do_things():
     get_raw_majors(driver.page_source)
     majors = parse_raw_major()
     # driver.find_element_by_xpath('//select[option/@value="%s"]' % majors[0]).click()
-    driver.find_element_by_xpath('//select[option/@value="BME"]').click()
+
+    # driver.find_element_by_xpath('//select[option/@value="BME"]').click()
+
+
+    select = Select(driver.find_element_by_xpath('//select[option/@value="BME"]'))
+    select.select_by_visible_text("Biology")
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
-    # print(driver.page_source)
-    get_raw_courses(driver.page_source)
+    print(driver.page_source)
+    # get_raw_courses(driver.page_source)
     # majors = driver.find_elements_by_xpath()
     # print(majors)
 
