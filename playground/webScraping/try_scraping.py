@@ -1,14 +1,12 @@
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+import getpass
 import time
 from selenium.webdriver.common.action_chains import ActionChains
 import bs4 as bs
-import urllib.request
-import pandas as pd
 
 def get_user_password():
     user = input("user name:")
-    password = input("password:")
+    password = getpass.getpass("password:")
     return user, password
 
 def do_things():
@@ -48,6 +46,17 @@ def do_things():
     # driver.find_element_by_id('submitbutton').submit()
     # page = driver.find_element_by_id('option value')
     # print(page.text)
+
+
+def parse(html):
+    soup = bs.BeautifulSoup(html, 'lxml')
+    table = soup.table
+    table_rows = table.find_all('tr')
+
+    for tr in table_rows:
+        td = tr.find_all('td')
+        row = [i.text for i in td]
+        print(row)
 
 
 do_things()
