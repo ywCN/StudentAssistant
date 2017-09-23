@@ -55,9 +55,8 @@ def do_things():
 
     # driver.find_element_by_xpath('//select[option/@value="BME"]').click()
 
-
     select = Select(driver.find_element_by_xpath('//select[option/@value="BME"]'))
-    select.select_by_visible_text("Biology")
+    select.select_by_visible_text("%s" % majors["BME"])
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
@@ -77,11 +76,11 @@ def get_raw_majors(source):
 def parse_raw_major():
     target = "</option><option value="
     file = open('majors_raw.txt')
-    majors = []
+    majors = {}
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            majors.append(words[1])
+            majors[words[1]] = words[2][1:]
             # print(words[1], words[2][1:])
     return majors
 
