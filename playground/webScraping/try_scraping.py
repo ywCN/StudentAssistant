@@ -56,7 +56,8 @@ def do_things():
     # driver.find_element_by_xpath('//select[option/@value="BME"]').click()
     major_id = "CS"
     select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
-    select.select_by_visible_text("%s" % majors[major_id])
+    # select.select_by_visible_text("%s" % majors[major_id])  # works
+    select.select_by_value(major_id)
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
@@ -66,14 +67,14 @@ def do_things():
     # print(majors)
     courses = parse_raw_courses(major_id)
     # print(courses)
-    course_id = "CS  -334"
-    print(driver.page_source)
+    course_id = "CS  -570"
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
-    select1.select_by_visible_text("%s" % courses[course_id])
-    # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')
+    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work
+    select1.select_by_value(course_id)
+    # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')  # does not work
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
-    print(driver.page_source)
+    # print(driver.page_source)
 
 
 def get_raw_majors(source):
@@ -112,24 +113,10 @@ def parse_raw_courses(major):
             # print(words[1], "|", words[2][1:])
     return courses
 
+
+def parse_tables(source):
+    pass
+    #TODO: use panda to parse tables?
+
+
 do_things()
-# parse_raw_courses("CS")
-
-# Service selection
-# Here I had to select my school among others
-
-
-# select = Select(driver.find_element_by_name('user_idp'))
-# select.select_by_visible_text('ENSICAEN')
-# driver.find_element_by_id('IdPList').submit()
-
-# Login page (https://cas.ensicaen.fr/cas/login?service=https%3A%2F%2Fshibboleth.ensicaen.fr%2Fidp%2FAuthn%2FRemoteUser)
-# Fill the login form and submit it
-
-# Now connected to the home page
-# Click on 3 links in order to reach the page I want to scrape
-
-# driver.find_element_by_id('formMenu:linknotes1').click()
-# driver.find_element_by_id('_id137Pluto_108_u1240l1n228_50520_:tabledip:0:_id158Pluto_108_u1240l1n228_50520_').click()
-
-# Select and print an interesting element by its ID
