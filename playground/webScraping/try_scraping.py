@@ -66,11 +66,11 @@ def do_things():
     # print(majors)
     courses = parse_raw_courses(major_id)
     # print(courses)
-    # course_id = "CS -570"
-    # select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
-    # select1.select_by_visible_text("%s" % courses[course_id])
-    # driver.find_element_by_name("submitbutton").submit()
-    # time.sleep(2)
+    course_id = "CS  -570"
+    select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
+    select1.select_by_visible_text("%s" % courses[course_id])
+    driver.find_element_by_name("submitbutton").submit()
+    time.sleep(2)
     print(driver.page_source)
 
 
@@ -106,11 +106,12 @@ def parse_raw_courses(major):
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            courses[words[1]] = words[2][1:]
-            # print(words[1], words[2][1:])
+            courses[words[1]] = words[2][len(words[1]) + 2:]
+            # print(words[1], "|", words[2][len(words[1]) + 2:])
     return courses
 
 do_things()
+# parse_raw_courses("CS")
 
 # Service selection
 # Here I had to select my school among others
