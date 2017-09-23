@@ -106,8 +106,8 @@ def parse_raw_courses(major):
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            courses[words[1]] = words[2][len(words[1]) + 2:]
-            # print(words[1], "|", words[2][len(words[1]) + 2:])
+            courses[words[1]] = words[2][1:]
+            # print(words[1], "|", words[2][1:])
     return courses
 
 do_things()
