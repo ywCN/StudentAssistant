@@ -1,10 +1,5 @@
-import requests
-import sys
-# https://mystevens.stevens.edu/sso/webselfservices.php
-# https://mystevens.stevens.edu/sso/web4student.php
-
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select # for <SELECT> HTML form
+from selenium.webdriver.support.ui import Select
 import time
 driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
 
@@ -18,13 +13,13 @@ time.sleep(5)
 
 # Login page (https://cas.ensicaen.fr/cas/login?service=https%3A%2F%2Fshibboleth.ensicaen.fr%2Fidp%2FAuthn%2FRemoteUser)
 # Fill the login form and submit it
-driver.find_element_by_id("user").send_keys("")
-driver.find_element_by_id("password").send_keys("")
-driver.find_element_by_id('submit').submit()
+driver.find_element_by_name("j_username").send_keys("")
+driver.find_element_by_name("j_password").send_keys("")
+driver.find_element_by_name('submit').submit()
 time.sleep(5)
 # Now connected to the home page
 # Click on 3 links in order to reach the page I want to scrape
-driver.find_element_by_id('Course Sections').click()
+driver.find_element_by_class_name().click()
 # driver.find_element_by_id('formMenu:linknotes1').click()
 # driver.find_element_by_id('_id137Pluto_108_u1240l1n228_50520_:tabledip:0:_id158Pluto_108_u1240l1n228_50520_').click()
 select = Select(driver.find_element_by_name('Subject'))
