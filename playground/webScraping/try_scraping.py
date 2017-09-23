@@ -2,7 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import time
 from selenium.webdriver.common.action_chains import ActionChains
-
+import bs4 as bs
+import urllib.request
+import pandas as pd
 
 def get_user_password():
     user = input("user name:")
@@ -31,7 +33,16 @@ def do_things():
     hover3 = ActionChains(driver).click(hover2_element)
     hover3.perform()
     time.sleep(5)
-    # driver.find_element_by_class_name().click()
+    majors = driver.find_elements_by_xpath("//select[option]")
+    # print(type(classes))  # it is a list
+    majors[0].click()  # test one object in the list
+    driver.find_element_by_name('submitbutton').submit()
+    time.sleep(5)
+    courses = driver.find_elements_by_xpath("//select[option]")
+    courses[0].click()
+    driver.find_element_by_name('submitbutton').submit()
+    time.sleep(5)
+    print("no problem!")
     # select = Select(driver.find_element_by_name('Subject'))
     # select.select_by_visible_text('Biomedical Engineering')
     # driver.find_element_by_id('submitbutton').submit()
