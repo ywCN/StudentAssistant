@@ -33,44 +33,44 @@ def do_things():
     hover3 = ActionChains(driver).click(hover2_element)
     hover3.perform()
     time.sleep(2)
-    majors = driver.find_elements_by_xpath("//select[option]")
-    # print(type(classes))  # it is a list
-    majors[0].click()  # test one object in the list
-    driver.find_element_by_name('submitbutton').submit()
-    time.sleep(2)
-    courses = driver.find_elements_by_xpath("//select[option]")
-    courses[0].click()
-    driver.find_element_by_name('submitbutton').submit()
-    time.sleep(2)
+    # # majors = driver.find_elements_by_xpath("//select[option]")
+    # majors = driver.find_elements_by_xpath("//select[option/@value]")
+    # # print(type(classes))  # it is a list
+    # # print(majors[0])
+    # # print(majors[1])
+    # majors[0].click() # test one object in the list
+    # driver.find_element_by_name('submitbutton').submit()
+    # time.sleep(2)
+    # courses = driver.find_elements_by_xpath("//select[option]")
+    # courses[0].click()
+    # driver.find_element_by_name('submitbutton').submit()
+    # time.sleep(2)
     # print("no problem!")
-    # parse(driver.page_source)
-    page = driver.find_elements_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
-    for p in page:
-        print(p.text)  # no output
+    get_majors(driver.page_source)
+    # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
+    # print(driver.page_source)
+    # majors = driver.find_elements_by_xpath()
+    # print(majors)
+
+def get_majors(source):
+    # print(source)
+    f = open('majors_raw.txt', 'w+')
+    f.write(source)
+    f.close()
+
+def parse_raw_major():
+    target = "</option><option value="
+    file = open('majors_raw.txt')
+    for line in file:
+        if target in line:
+            words = line.strip().split("\"")
+            print(words[1], words[2][1:])
 
 
-# def parse(html):
-    # soup = bs.BeautifulSoup(html, 'lxml')
-    # for table in soup.find_all('table'):
-    #     for subtable in table.find_all('table'):
-    #         for row in subtable:
-    #             print(row)
 
-    # table = soup.table
-    # table_rows = table.find_all('tr')
-    # print(table_rows)
-    # for tr in table_rows:
-    #     td = tr.find_all('td')
-    #     row = [i.text for i in td]
-    #     print(row)
-    #
-    # print("-----------------------------------------------------------------------------------------")
-    # dfs = pd.read_html(html, header=0)  # make first row the header
-    # for df in dfs:
-    #     print(df)
+# do_things()
+parse_raw_major()
 
-
-do_things()
 # Service selection
 # Here I had to select my school among others
 
