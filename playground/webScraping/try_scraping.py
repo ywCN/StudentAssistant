@@ -50,11 +50,13 @@ def do_things():
     # print("no problem!")
     get_raw_majors(driver.page_source)
     majors = parse_raw_major()
-    driver.find_element_by_xpath('//div[option/@value="%s"]' % majors[0]).click()
+    # driver.find_element_by_xpath('//select[option/@value="%s"]' % majors[0]).click()
+    driver.find_element_by_xpath('//select[option/@value="BME"]').click()
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
-    print(driver.page_source)
+    # print(driver.page_source)
+    get_raw_courses(driver.page_source)
     # majors = driver.find_elements_by_xpath()
     # print(majors)
 
@@ -77,8 +79,14 @@ def parse_raw_major():
             # print(words[1], words[2][1:])
     return majors
 
-# do_things()
-parse_raw_major()
+
+def get_raw_courses(source):
+    f = open('courses_raw.txt', 'w+')
+    f.write(source)
+    f.close()
+
+
+do_things()
 
 # Service selection
 # Here I had to select my school among others
