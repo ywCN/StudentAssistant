@@ -48,14 +48,18 @@ def do_things():
     # driver.find_element_by_name('submitbutton').submit()
     # time.sleep(2)
     # print("no problem!")
-    get_majors(driver.page_source)
+    get_raw_majors(driver.page_source)
+    majors = parse_raw_major()
+    driver.find_element_by_xpath('//div[option/@value="%s"]' % majors[0]).click()
+    driver.find_element_by_name("submitbutton").submit()
+    time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
-    # print(driver.page_source)
+    print(driver.page_source)
     # majors = driver.find_elements_by_xpath()
     # print(majors)
 
 
-def get_majors(source):
+def get_raw_majors(source):
     # print(source)
     f = open('majors_raw.txt', 'w+')
     f.write(source)
@@ -65,12 +69,13 @@ def get_majors(source):
 def parse_raw_major():
     target = "</option><option value="
     file = open('majors_raw.txt')
+    majors = []
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            print(words[1], words[2][1:])
-            # TODO: put words[1] in a dict, words[2] is not useful ATM
-
+            majors.append(words[1])
+            # print(words[1], words[2][1:])
+    return majors
 
 # do_things()
 parse_raw_major()
