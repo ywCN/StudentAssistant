@@ -5,11 +5,13 @@ from selenium.webdriver.common.action_chains import ActionChains
 import bs4 as bs
 import pandas as pd
 
+
 def get_user_password():
     user = input("Enter the User Name:")
     password = input("Enter the Password:")
     # print("got password")
     return user, password
+
 
 def do_things():
     info = get_user_password()
@@ -52,11 +54,13 @@ def do_things():
     # majors = driver.find_elements_by_xpath()
     # print(majors)
 
+
 def get_majors(source):
     # print(source)
     f = open('majors_raw.txt', 'w+')
     f.write(source)
     f.close()
+
 
 def parse_raw_major():
     target = "</option><option value="
@@ -65,7 +69,7 @@ def parse_raw_major():
         if target in line:
             words = line.strip().split("\"")
             print(words[1], words[2][1:])
-
+            # TODO: put words[1] in a dict, words[2] is not useful ATM
 
 
 # do_things()
@@ -89,4 +93,3 @@ parse_raw_major()
 # driver.find_element_by_id('_id137Pluto_108_u1240l1n228_50520_:tabledip:0:_id158Pluto_108_u1240l1n228_50520_').click()
 
 # Select and print an interesting element by its ID
-
