@@ -54,17 +54,24 @@ def do_things():
     # driver.find_element_by_xpath('//select[option/@value="%s"]' % majors[0]).click()
 
     # driver.find_element_by_xpath('//select[option/@value="BME"]').click()
-
-    select = Select(driver.find_element_by_xpath('//select[option/@value="BME"]'))
-    major = "BME"
-    select.select_by_visible_text("%s" % majors[major])
+    major_id = "CS"
+    select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
+    select.select_by_visible_text("%s" % majors[major_id])
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
     # print(driver.page_source)
-    get_raw_courses(driver.page_source, major)
+    get_raw_courses(driver.page_source, major_id)
     # majors = driver.find_elements_by_xpath()
     # print(majors)
+    courses = parse_raw_courses(major_id)
+    # print(courses)
+    # course_id = "CS -570"
+    # select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
+    # select1.select_by_visible_text("%s" % courses[course_id])
+    # driver.find_element_by_name("submitbutton").submit()
+    # time.sleep(2)
+    print(driver.page_source)
 
 
 def get_raw_majors(source):
@@ -75,7 +82,7 @@ def get_raw_majors(source):
 
 
 def parse_raw_major():
-    target = "</option><option value="
+    target = "<option value="
     file = open('majors_raw.txt')
     majors = {}
     for line in file:
@@ -91,16 +98,17 @@ def get_raw_courses(source, major):
     f.write(source)
     f.close()
 
-def parse_raw_major():
-    target = "</option><option value="
-    file = open('majors_raw.txt')
-    majors = {}
+
+def parse_raw_courses(major):
+    target = "<option value="
+    file = open('%s_raw.txt' % major)
+    courses = {}
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            majors[words[1]] = words[2][1:]
+            courses[words[1]] = words[2][1:]
             # print(words[1], words[2][1:])
-    return majors
+    return courses
 
 do_things()
 
