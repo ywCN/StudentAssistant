@@ -44,11 +44,12 @@ def do_things():
     time.sleep(2)
     # print("no problem!")
     # parse(driver.page_source)
-    page = driver.find_elements_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter
-    print(page.text)
+    page = driver.find_elements_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
+    for p in page:
+        print(p.text)  # no output
 
 
-def parse(html):
+# def parse(html):
     # soup = bs.BeautifulSoup(html, 'lxml')
     # for table in soup.find_all('table'):
     #     for subtable in table.find_all('table'):
