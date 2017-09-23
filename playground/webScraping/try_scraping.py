@@ -66,9 +66,11 @@ def do_things():
     # print(majors)
     courses = parse_raw_courses(major_id)
     # print(courses)
-    course_id = "CS  -570"
+    course_id = "CS  -334"
+    print(driver.page_source)
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
     select1.select_by_visible_text("%s" % courses[course_id])
+    # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     print(driver.page_source)
