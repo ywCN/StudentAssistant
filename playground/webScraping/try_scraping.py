@@ -20,8 +20,9 @@ class ScrapStevensCourses:
 
     def get_login_info(self):
         user = input("Enter the User Name:")
-        password = input("Enter the Password:")
-        # print("got password")
+        # password = input("Enter the Password:") # uncomment this line if you are using IDE
+        password = getpass.getpass()  # uncomment this line if you are using terminal
+        print("got password")
         return user, password
 
     def go_to_courses_description_page(self, course_id):
