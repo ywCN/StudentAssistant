@@ -37,6 +37,9 @@ def do_things():
         for course in courses:
             go_to_courses_description_page(driver, course)
             parse_tables(driver.page_source)
+            driver.back()
+
+        driver.back()
 
     driver.quit()
 
