@@ -4,6 +4,11 @@ import getpass  # this does not work well for some reasons, should make this wor
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
 
+'''
+This version is not stable. It may fail because of instability of connection.
+Will be improved later.
+'''
+
 
 def get_login_info():
     user = input("Enter the User Name:")
@@ -19,17 +24,16 @@ def do_things():
 
     login(driver)
 
-    go_to_major_page(driver)
+    go_to_majors_page(driver)
     get_raw_majors(driver.page_source)
-    majors = parse_raw_major()  # will be used to loop keys and values in dict
+    majors = parse_raw_majors()  # will be used to loop keys and values in dict
 
     major_id = "CS"  # later this will become the each in for each loop
-    select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
-    # select.select_by_visible_text("%s" % majors[major_id])  # works but not stable
-    select.select_by_value(major_id)
-    driver.find_element_by_name("submitbutton").submit()
+
+    go_to_courses_page(driver, major_id)
     get_raw_courses(driver.page_source, major_id)
     courses = parse_raw_courses(major_id)  # will be used to loop keys in dict
+
     course_id = "CS  -570"  # later this will become the each in for each loop
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
     select1.select_by_value(course_id)
@@ -40,7 +44,17 @@ def do_things():
     driver.quit()
 
 
-def go_to_major_page(driver):
+# def go_to_courses_description_page(driver, major_id):
+
+
+def go_to_courses_page(driver, major_id):
+    select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
+    # select.select_by_visible_text("%s" % majors[major_id])  # works but not stable
+    select.select_by_value(major_id)
+    driver.find_element_by_name("submitbutton").submit()
+
+
+def go_to_majors_page(driver):
     hover1_element = driver.find_element_by_id("menuHeading5")
     hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
     ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
@@ -60,7 +74,7 @@ def get_raw_majors(source):
     f.close()
 
 
-def parse_raw_major():
+def parse_raw_majors():
     target = "<option value="
     file = open('majors_raw.txt')
     majors = {}
