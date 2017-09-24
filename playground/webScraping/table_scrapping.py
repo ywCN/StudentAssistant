@@ -23,7 +23,7 @@ for tr in table_rows:
     row = [i.text for i in td]
     print(row)
 
-# # dfs = pd.read_html('https://pythonprogramming.net/parsememcparseface/')  # parse all tables it can find
-# dfs = pd.read_html('https://pythonprogramming.net/parsememcparseface/', header=0)  # make first row the header
-# for df in dfs:
-#     print(df)
+# dfs = pd.read_html('https://pythonprogramming.net/parsememcparseface/')  # parse all tables it can find
+dfs = pd.read_html('https://pythonprogramming.net/parsememcparseface/', header=0)  # make first row the header
+for df in dfs:
+    print(df)
