@@ -27,8 +27,9 @@ def do_things():
 
     go_to_majors_page(driver)
     get_raw_majors(driver.page_source)
-    majors = parse_raw_majors()  # will be used to loop keys and values in dict
+    majors = parse_raw_majors()
     go_to_courses_page(driver, majors[0])
+    print(driver.page_source)
     courses = parse_raw_courses(majors[0])
     go_to_courses_description_page(driver, courses[0])
     parse_tables(driver.page_source)
@@ -58,12 +59,14 @@ def go_to_courses_page(driver, major_id):
     select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
     select.select_by_value(major_id)
     driver.find_element_by_name("submitbutton").submit()
+    time.sleep(2)
 
 
 def go_to_majors_page(driver):
     hover1_element = driver.find_element_by_id("menuHeading5")
     hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
     ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
+    time.sleep(2)
 
 
 def login(driver):
