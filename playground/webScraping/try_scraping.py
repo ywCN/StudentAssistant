@@ -28,24 +28,22 @@ def do_things():
     go_to_majors_page(driver)
     get_raw_majors(driver.page_source)
     majors = parse_raw_majors()
-    go_to_courses_page(driver, majors[0])
-    get_raw_courses(driver.page_source, majors[0])
-    courses = parse_raw_courses(majors[0])
-    go_to_courses_description_page(driver, courses[0])
-    parse_tables(driver.page_source)
-    # print(majors)
-    # for major in majors:
-    #     print(major)
-    #     go_to_courses_page(driver, major)
-    #     get_raw_courses(driver.page_source, major)
-    #     courses = parse_raw_courses(major)
-    #     print(courses)
-    #
-    #     for course in courses:
-    #         go_to_courses_description_page(driver, course)
-    #         parse_tables(driver.page_source)
-    #
-    # driver.quit()
+    # go_to_courses_page(driver, majors[0])
+    # get_raw_courses(driver.page_source, majors[0])
+    # courses = parse_raw_courses(majors[0])
+    # go_to_courses_description_page(driver, courses[0])
+    # parse_tables(driver.page_source)
+
+    for major in majors:
+        go_to_courses_page(driver, major)
+        get_raw_courses(driver.page_source, major)
+        courses = parse_raw_courses(major)
+
+        for course in courses:
+            go_to_courses_description_page(driver, course)
+            parse_tables(driver.page_source)
+
+    driver.quit()
 
 
 def go_to_courses_description_page(driver, course_id):
