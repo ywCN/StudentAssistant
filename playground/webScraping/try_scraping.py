@@ -6,6 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
 
 
+
 def get_login_info():
     user = input("Enter the User Name:")
     password = input("Enter the Password:")
@@ -15,22 +16,20 @@ def get_login_info():
 
 def do_things():
     driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
+    driver.implicitly_wait(1)  # second
     driver.get("https://mystevens.stevens.edu/sso/web4student.php")
-    time.sleep(2)
+    # time.sleep(2)
     login(driver)
-    time.sleep(2)
+    # time.sleep(2)
     hover1_element = driver.find_element_by_id("menuHeading5")
     # print(hover1_element)
     hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
     # print(hover2_element)
-    hover1 = ActionChains(driver).move_to_element(hover1_element)
-    hover1.perform()
-    time.sleep(2)
-    hover2 = ActionChains(driver).move_to_element(hover2_element)
-    hover2.perform()
-    time.sleep(2)
-    hover3 = ActionChains(driver).click(hover2_element)
-    hover3.perform()
+    ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
+    # # time.sleep(2)
+    # ActionChains(driver).perform()
+    # # time.sleep(2)
+    # ActionChains(driver)..perform()
     time.sleep(2)
     # # majors = driver.find_elements_by_xpath("//select[option]")
     # majors = driver.find_elements_by_xpath("//select[option/@value]")
