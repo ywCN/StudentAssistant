@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+import time
 import getpass  # this does not work well for some reasons, should make this work later
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
@@ -27,32 +28,34 @@ def do_things():
     go_to_majors_page(driver)
     get_raw_majors(driver.page_source)
     majors = parse_raw_majors()  # will be used to loop keys and values in dict
-
-    major_id = "CS"  # later this will become the each in for each loop
-
-    go_to_courses_page(driver, major_id)
-    get_raw_courses(driver.page_source, major_id)
-    courses = parse_raw_courses(major_id)  # will be used to loop keys in dict
-
-    course_id = "CS  -570"  # later this will become the each in for each loop
-
-    go_to_courses_description_page(driver, course_id)
+    go_to_courses_page(driver, majors[0])
+    courses = parse_raw_courses(majors[0])
+    go_to_courses_description_page(driver, courses[0])
     parse_tables(driver.page_source)
-
-    driver.quit()
+    # print(majors)
+    # for major in majors:
+    #     print(major)
+    #     go_to_courses_page(driver, major)
+    #     get_raw_courses(driver.page_source, major)
+    #     courses = parse_raw_courses(major)
+    #     print(courses)
+    #
+    #     for course in courses:
+    #         go_to_courses_description_page(driver, course)
+    #         parse_tables(driver.page_source)
+    #
+    # driver.quit()
 
 
 def go_to_courses_description_page(driver, course_id):
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
     select1.select_by_value(course_id)
-    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work for course for some reason
-    # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')  # does not work
+
     driver.find_element_by_name("submitbutton").submit()
 
 
 def go_to_courses_page(driver, major_id):
     select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
-    # select.select_by_visible_text("%s" % majors[major_id])  # works but not stable
     select.select_by_value(major_id)
     driver.find_element_by_name("submitbutton").submit()
 
@@ -80,11 +83,13 @@ def get_raw_majors(source):
 def parse_raw_majors():
     target = "<option value="
     file = open('majors_raw.txt')
-    majors = {}
+    # majors = {}
+    majors = []
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            majors[words[1]] = words[2][1:]
+            majors.append(words[1])
+            # majors[words[1]] = words[2][1:]
             # print(words[1], words[2][1:])
     return majors
 
@@ -98,11 +103,13 @@ def get_raw_courses(source, major):
 def parse_raw_courses(major):
     target = "<option value="
     file = open('%s_raw.txt' % major)
-    courses = {}
+    # courses = {}
+    courses = []
     for line in file:
         if target in line:
             words = line.strip().split("\"")
-            courses[words[1]] = words[2][1:]
+            courses.append(words[1])
+            # courses[words[1]] = words[2][1:]
     return courses
 
 
@@ -113,6 +120,8 @@ def parse_tables(source):
     print(dfs[4])  # normally this is the table we need
     # for df in dfs:
     #     print(df)
+
+    # TODO: store and/or parse tables, save information in database
 
 
 do_things()
