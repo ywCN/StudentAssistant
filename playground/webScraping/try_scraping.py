@@ -29,7 +29,7 @@ def do_things():
     get_raw_majors(driver.page_source)
     majors = parse_raw_majors()
     go_to_courses_page(driver, majors[0])
-    get_raw_courses(driver, majors[0])
+    get_raw_courses(driver.page_source, majors[0])
     courses = parse_raw_courses(majors[0])
     go_to_courses_description_page(driver, courses[0])
     parse_tables(driver.page_source)
