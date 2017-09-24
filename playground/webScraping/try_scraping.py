@@ -26,50 +26,26 @@ def do_things():
     hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
     # print(hover2_element)
     ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
-    # # time.sleep(2)
-    # ActionChains(driver).perform()
-    # # time.sleep(2)
-    # ActionChains(driver)..perform()
+
     time.sleep(2)
-    # # majors = driver.find_elements_by_xpath("//select[option]")
-    # majors = driver.find_elements_by_xpath("//select[option/@value]")
-    # # print(type(classes))  # it is a list
-    # # print(majors[0])
-    # # print(majors[1])
-    # majors[0].click() # test one object in the list
-    # driver.find_element_by_name('submitbutton').submit()
-    # time.sleep(2)
-    # courses = driver.find_elements_by_xpath("//select[option]")
-    # courses[0].click()
-    # driver.find_element_by_name('submitbutton').submit()
-    # time.sleep(2)
-    # print("no problem!")
+
     get_raw_majors(driver.page_source)
     majors = parse_raw_major()
-    # driver.find_element_by_xpath('//select[option/@value="%s"]' % majors[0]).click()
 
-    # driver.find_element_by_xpath('//select[option/@value="BME"]').click()
     major_id = "CS"
     select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
     # select.select_by_visible_text("%s" % majors[major_id])  # works
     select.select_by_value(major_id)
     driver.find_element_by_name("submitbutton").submit()
-    time.sleep(2)
-    # page = driver.find_element_by_xpath("//tr[td/@class='dddefault']")  # dddefaultcenter should also be included
-    # print(driver.page_source)
     get_raw_courses(driver.page_source, major_id)
-    # majors = driver.find_elements_by_xpath()
-    # print(majors)
-    courses = parse_raw_courses(major_id)
+    courses = parse_raw_courses(major_id)  # not used, but a dict may be useful later
     # print(courses)
     course_id = "CS  -570"
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
-    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work
     select1.select_by_value(course_id)
+    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work
     # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')  # does not work
     driver.find_element_by_name("submitbutton").submit()
-    time.sleep(2)
-    # print(driver.page_source)
     parse_tables(driver.page_source)
     driver.quit()
 
