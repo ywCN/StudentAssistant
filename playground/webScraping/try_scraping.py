@@ -1,10 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import getpass  # this does not work well for some reasons, should make this work later
-import time
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
-
 
 
 def get_login_info():
@@ -18,36 +16,34 @@ def do_things():
     driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
     driver.implicitly_wait(1)  # second
     driver.get("https://mystevens.stevens.edu/sso/web4student.php")
-    # time.sleep(2)
+
     login(driver)
-    # time.sleep(2)
-    hover1_element = driver.find_element_by_id("menuHeading5")
-    # print(hover1_element)
-    hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
-    # print(hover2_element)
-    ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
 
-    time.sleep(2)
-
+    go_to_major_page(driver)
     get_raw_majors(driver.page_source)
-    majors = parse_raw_major()
+    majors = parse_raw_major()  # will be used to loop keys and values in dict
 
-    major_id = "CS"
+    major_id = "CS"  # later this will become the each in for each loop
     select = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
-    # select.select_by_visible_text("%s" % majors[major_id])  # works
+    # select.select_by_visible_text("%s" % majors[major_id])  # works but not stable
     select.select_by_value(major_id)
     driver.find_element_by_name("submitbutton").submit()
     get_raw_courses(driver.page_source, major_id)
-    courses = parse_raw_courses(major_id)  # not used, but a dict may be useful later
-    # print(courses)
-    course_id = "CS  -570"
+    courses = parse_raw_courses(major_id)  # will be used to loop keys in dict
+    course_id = "CS  -570"  # later this will become the each in for each loop
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
     select1.select_by_value(course_id)
-    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work
+    # select1.select_by_visible_text("%s" % courses[course_id])  # does not work for course for some reason
     # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')  # does not work
     driver.find_element_by_name("submitbutton").submit()
     parse_tables(driver.page_source)
     driver.quit()
+
+
+def go_to_major_page(driver):
+    hover1_element = driver.find_element_by_id("menuHeading5")
+    hover2_element = driver.find_element_by_xpath("//div[a/@title='Course Sections']")
+    ActionChains(driver).move_to_element(hover1_element).move_to_element(hover2_element).click(hover2_element).perform()
 
 
 def login(driver):
