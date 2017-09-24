@@ -1,13 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-import getpass  # this does not work well for some reasons
+import getpass  # this does not work well for some reasons, should make this work later
 import time
 from selenium.webdriver.common.action_chains import ActionChains
-import bs4 as bs
 import pandas as pd
 
 
-def get_user_password():
+def get_login_info():
     user = input("Enter the User Name:")
     password = input("Enter the Password:")
     # print("got password")
@@ -15,13 +14,10 @@ def get_user_password():
 
 
 def do_things():
-    info = get_user_password()
     driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
     driver.get("https://mystevens.stevens.edu/sso/web4student.php")
     time.sleep(2)
-    driver.find_element_by_name("j_username").send_keys(info[0])
-    driver.find_element_by_name("j_password").send_keys(info[1])
-    driver.find_element_by_name('submit').submit()
+    login(driver)
     time.sleep(2)
     hover1_element = driver.find_element_by_id("menuHeading5")
     # print(hover1_element)
@@ -76,6 +72,14 @@ def do_things():
     time.sleep(2)
     # print(driver.page_source)
     parse_tables(driver.page_source)
+    driver.quit()
+
+
+def login(driver):
+    info = get_login_info()
+    driver.find_element_by_name("j_username").send_keys(info[0])
+    driver.find_element_by_name("j_password").send_keys(info[1])
+    driver.find_element_by_name('submit').submit()
 
 
 def get_raw_majors(source):
@@ -111,24 +115,14 @@ def parse_raw_courses(major):
         if target in line:
             words = line.strip().split("\"")
             courses[words[1]] = words[2][1:]
-            # print(words[1], "|", words[2][1:])
     return courses
 
 
 def parse_tables(source):
-    # soup = bs.BeautifulSoup(source, 'lxml')
-    # table = soup.table
-    # table_rows = table.find_all('tr')
-    # for tr in table_rows:
-    #     td = tr.find_all('td')
-    #     row = [i.text for i in td]
-    #     print(row)
 
     dfs = pd.read_html(source)
     # print(type(dfs))  # <class 'list'>
-
     print(dfs[4])  # normally this is the table we need
-
     # for df in dfs:
     #     print(df)
 
