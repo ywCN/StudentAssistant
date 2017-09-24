@@ -75,6 +75,7 @@ def do_things():
     driver.find_element_by_name("submitbutton").submit()
     time.sleep(2)
     # print(driver.page_source)
+    parse_tables(driver.page_source)
 
 
 def get_raw_majors(source):
@@ -115,8 +116,17 @@ def parse_raw_courses(major):
 
 
 def parse_tables(source):
-    pass
-    #TODO: use panda to parse tables?
+    # soup = bs.BeautifulSoup(source, 'lxml')
+    # table = soup.table
+    # table_rows = table.find_all('tr')
+    # for tr in table_rows:
+    #     td = tr.find_all('td')
+    #     row = [i.text for i in td]
+    #     print(row)
+
+    dfs = pd.read_html(source)
+    for df in dfs:
+        print(df)
 
 
 do_things()
