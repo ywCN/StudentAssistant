@@ -35,16 +35,19 @@ def do_things():
     courses = parse_raw_courses(major_id)  # will be used to loop keys in dict
 
     course_id = "CS  -570"  # later this will become the each in for each loop
+
+    go_to_courses_description_page(driver, course_id)
+    parse_tables(driver.page_source)
+
+    driver.quit()
+
+
+def go_to_courses_description_page(driver, course_id):
     select1 = Select(driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
     select1.select_by_value(course_id)
     # select1.select_by_visible_text("%s" % courses[course_id])  # does not work for course for some reason
     # select1.select_by_visible_text('CS  -570 Intro Program/Data Struct/Algor')  # does not work
     driver.find_element_by_name("submitbutton").submit()
-    parse_tables(driver.page_source)
-    driver.quit()
-
-
-# def go_to_courses_description_page(driver, major_id):
 
 
 def go_to_courses_page(driver, major_id):
