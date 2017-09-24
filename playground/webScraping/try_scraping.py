@@ -125,8 +125,12 @@ def parse_tables(source):
     #     print(row)
 
     dfs = pd.read_html(source)
-    for df in dfs:
-        print(df)
+    # print(type(dfs))  # <class 'list'>
+
+    print(dfs[4])  # normally this is the table we need
+
+    # for df in dfs:
+    #     print(df)
 
 
 do_things()
