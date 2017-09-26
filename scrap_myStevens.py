@@ -115,6 +115,8 @@ class ScrapStevensCourses:
 
             self.driver.back()
 
+        #  TODO: Save table information into a file or mutiple files.
+
         self.driver.quit()
 
 
