@@ -5,7 +5,6 @@ import getpass  # this does not work in PyCharm
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
 from pandas import DataFrame
-import selenium.common.exceptions.NoSuchElementException as NE
 
 '''
 Install PhantomJS before running this.
@@ -131,12 +130,12 @@ class ScrapStevensCourses:
                         self.go_to_courses_description_page(course)
                         self.save_tables()
                         self.driver.back()  # due to the stability of connections, this may not success
-                    except NE:
+                    except:  # unable to import the exception, just use except
                         print("unable to find element")
                         self.driver.back()
 
                 self.driver.back()
-            except NE:
+            except:
                 print("unable to find element")
                 self.driver.back()
 
