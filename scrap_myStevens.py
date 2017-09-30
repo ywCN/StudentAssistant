@@ -143,6 +143,7 @@ class ScrapStevensCourses:
 
         self.driver.quit()
         self.raw_courses.close()
+        self.errors.close()
 
 # class SaveIntoDatabase:
 
