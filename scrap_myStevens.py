@@ -103,9 +103,9 @@ class ScrapStevensCourses:
         # print(type(line))
             self.raw_courses.write(line)
         except IndexError:
-            line = dfs[4].to_csv(sep=' ', index=False, header=False)
-            line = line.replace(u'\xa0', u' ')
-            self.errors.write(line)
+            for line in dfs:
+                line = line.replace(u'\xa0', u' ')
+                self.errors.write(line.to_csv(sep=' ', index=False, header=False))
 
         # print(dfs[4].to_csv())
         # for df in dfs:
