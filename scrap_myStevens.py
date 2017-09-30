@@ -4,6 +4,7 @@ import time
 import getpass  # this does not work in PyCharm
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
+from pandas import DataFrame
 
 '''
 Install PhantomJS before running this.
@@ -18,11 +19,12 @@ class ScrapStevensCourses:
         self.driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
         self.driver.implicitly_wait(1)  # second
         self.driver.get("https://mystevens.stevens.edu/sso/web4student.php")
+        self.raw_courses = open('all_courses_raw.txt', 'w+')
 
     def get_login_info(self):
         user = input("Enter the User Name:")
-        # password = input("Enter the Password:") # uncomment this line if you are using IDE
-        password = getpass.getpass()  # uncomment this line if you are using terminal
+        password = input("Enter the Password:") # uncomment this line if you are using IDE
+        # password = getpass.getpass()  # uncomment this line if you are using terminal
         print("got password")
         return user, password
 
@@ -88,17 +90,24 @@ class ScrapStevensCourses:
                 # courses[words[1]] = words[2][1:]
         return courses
 
-    def parse_tables(self):
+    def save_tables(self):
 
         dfs = pd.read_html(self.driver.page_source)
         # print(type(dfs))  # <class 'list'>
-        print(dfs[4])  # normally this is the table we need
+        # print(len(dfs[4]))  # normally this is the table we need
+        # print(len(dfs[4].to_csv()))
+        line = dfs[4].to_csv(sep=' ', index=False, header=False)
+        line = line.replace(u'\xa0', u' ')
+        # print(type(line))
+        self.raw_courses.write(line)
+        # print(dfs[4].to_csv())
         # for df in dfs:
         #     print(df)
 
         # TODO: store and/or parse tables, save information in database
 
-    def print_tables(self):  # should be renamed
+    def parse_tables(self):  # should be renamed
+
         self.login()
 
         self.go_to_majors_page()
@@ -110,7 +119,7 @@ class ScrapStevensCourses:
 
             for course in courses:
                 self.go_to_courses_description_page(course)
-                self.parse_tables()
+                self.save_tables()
                 self.driver.back()
 
             self.driver.back()
@@ -118,11 +127,14 @@ class ScrapStevensCourses:
         #  TODO: Save table information into a file or mutiple files.
 
         self.driver.quit()
+        self.raw_courses.close()
+
+# class SaveIntoDatabase:
 
 
 def main():
     demo = ScrapStevensCourses()
-    demo.print_tables()
+    demo.parse_tables()
 
 
 if __name__ == '__main__':
