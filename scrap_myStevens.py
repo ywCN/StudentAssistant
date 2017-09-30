@@ -5,6 +5,7 @@ import getpass  # this does not work in PyCharm
 from selenium.webdriver.common.action_chains import ActionChains
 import pandas as pd
 from pandas import DataFrame
+import selenium.common.exceptions.NoSuchElementException as NE
 
 '''
 Install PhantomJS before running this.
@@ -121,15 +122,21 @@ class ScrapStevensCourses:
         majors = self.parse_raw_majors()
 
         for major in majors:
-            self.go_to_courses_page(major)
-            courses = self.parse_raw_courses(major)
+            try:
+                self.go_to_courses_page(major)
+                courses = self.parse_raw_courses(major)
 
-            for course in courses:
-                self.go_to_courses_description_page(course)
-                self.save_tables()
+                for course in courses:
+                    try:
+                        self.go_to_courses_description_page(course)
+                        self.save_tables()
+                        self.driver.back()
+                    except NE:
+                        self.driver.back()
+
                 self.driver.back()
-
-            self.driver.back()
+            except NE:
+                self.driver.back()
 
         #  TODO: Save table information into a file or mutiple files.
 
