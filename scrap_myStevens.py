@@ -130,12 +130,14 @@ class ScrapStevensCourses:
                     try:
                         self.go_to_courses_description_page(course)
                         self.save_tables()
-                        self.driver.back()
+                        self.driver.back()  # due to the stability of connections, this may not success
                     except NE:
+                        print("unable to find element")
                         self.driver.back()
 
                 self.driver.back()
             except NE:
+                print("unable to find element")
                 self.driver.back()
 
         #  TODO: Save table information into a file or mutiple files.
