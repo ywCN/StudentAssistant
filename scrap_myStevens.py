@@ -20,6 +20,7 @@ class ScrapStevensCourses:
         self.driver.implicitly_wait(1)  # second
         self.driver.get("https://mystevens.stevens.edu/sso/web4student.php")
         self.raw_courses = open('all_courses_raw.txt', 'w+')
+        self.errors = open('errors.txt', 'w+')
 
     def get_login_info(self):
         user = input("Enter the User Name:")
@@ -96,10 +97,16 @@ class ScrapStevensCourses:
         # print(type(dfs))  # <class 'list'>
         # print(len(dfs[4]))  # normally this is the table we need
         # print(len(dfs[4].to_csv()))
-        line = dfs[4].to_csv(sep=' ', index=False, header=False)
-        line = line.replace(u'\xa0', u' ')
+        try:
+            line = dfs[4].to_csv(sep=' ', index=False, header=False)
+            line = line.replace(u'\xa0', u' ')
         # print(type(line))
-        self.raw_courses.write(line)
+            self.raw_courses.write(line)
+        except IndexError:
+            line = dfs[4].to_csv(sep=' ', index=False, header=False)
+            line = line.replace(u'\xa0', u' ')
+            self.errors.write(line)
+
         # print(dfs[4].to_csv())
         # for df in dfs:
         #     print(df)
