@@ -62,17 +62,22 @@ class Parse:
             #     print(t[4][1:])  # Instructor
             #     print(t[5])  # SessionAndDates
             #     print(t[6].strip())  # credit
-            if length == 9:  #TODO: change back to elif
-                print(t)
-                print(t[1])  # StatusSeatsAvailable
-                print(t[3])  # DaysTimeLocation
-                print(t[5])  # Instructor
-                if " STAFF " in t:
-                    print(t[4][1:-1])  # Instructor
-                print(t[7])  # SessionAndDates
-                print(t[8].strip())  # credit
-            elif length == 11:
-                pass
+            # elif length == 9:
+            #     print(t)
+            #     print(t[1])  # StatusSeatsAvailable
+            #     print(t[3])  # DaysTimeLocation
+            #     print(t[5])  # Instructor
+            #     if " STAFF " in t:
+            #         print(t[4][1:-1])  # Instructor
+            #     print(t[7])  # SessionAndDates
+            #     print(t[8].strip())  # credit
+            # elif length == 11:
+            #     print(t)
+            #     print(t[1])  # StatusSeatsAvailable
+            #     print(t[3])  # DaysTimeLocation
+            #     print(t[5])  # Instructor
+            #     print(t[7])  # SessionAndDates
+            #     print(t[9])  # credit
             # else: #TODO: uncomment this
             #     print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             # print(t[1])  # StatusSeatsAvailable
