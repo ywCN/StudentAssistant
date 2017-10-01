@@ -17,36 +17,21 @@ class Parse:
 
     def parse_line1(self, txt):
         """
-        SectionTitle, CallNumber
+        Parse first part of a line to get SectionTitle, CallNumber.
         :param txt: self.preprocessed
         :return: tuple
         """
-        course_name = call_number = "NA"
-        re1 = '(")'  # Any Single Character 1
-        re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
-        re3 = '(\\s+)'  # White Space 1
-        re4 = '(-)'  # Any Single Character 2
-        re5 = '(\\d+)'  # Integer Number 1
-        re6 = '(-)'  # Any Single Character 3
-        re7 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 2
-        re8 = '.*?'  # Non-greedy match on filler
-        re9 = '((?:[a-z][a-z0-9_]*))'
-        re10 = '(")'  # Any Single Character 4
-
-        rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, re.IGNORECASE | re.DOTALL)
-        m = rg.search(txt)
-        if m:
-            words = txt.split("\" \"")
-            course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -616-W0
-            print(course_name)
-            call_number = words[1][0:5]
-            print(call_number)  # this is the call number, like this: 10086
-            self.count_title_call_number += 1
+        words = txt.split("\" \"")
+        course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -616-W0
+        print(course_name)
+        call_number = words[1][0:5]
+        print(call_number)  # this is the call number, like this: 10086
+        self.count_title_call_number += 1
         return course_name, call_number
 
     def parse_line2(self, txt):
         """
-        status_seats_available, days_time_location, instructor, session_and_dates, credits
+        Parse second part of a line to get StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits.
         :param txt:
         :return: tuple
         """
@@ -238,6 +223,12 @@ class Parse:
         pass
 
     def populate_stage1(self, txt):
+        """
+        Get useful lines and save them into another file. This can be an optional process.
+        Later this function can be changed to a function return boolean telling if this line is valid.
+        :param txt:
+        :return:
+        """
         re1 = '(")'  # Any Single Character 1
         re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
         re3 = '(\\s+)'  # White Space 1
@@ -265,11 +256,11 @@ class Parse:
         for line in self.preprocessed:
             self.parse_line1(line)
             self.parse_line2(line)
+            print()
+            print()
 
-        # print(self.count_title_call_number)
         print()
-        print(self.count_title_call_number_control)
-        print(self.count_status)
+        print(self.count_title_call_number == self.count_title_call_number_control == self.count_status)  # no missing
 
     def get_course_dependency(self):
         pass
