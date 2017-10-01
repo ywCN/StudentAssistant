@@ -26,9 +26,23 @@ class Parse:
             print(course_name)
             self.count_course += 1
 
-        # TODO : parse dependencies from PDF file
+        # TODO: if m return result, return "NA" at the end
+        # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        # TODO: in order to populate the list
 
+    def get_course_dependency(self):
+        pass
+        # TODO: parse dependencies from PDF file using regex, dependencies have 2 or more types, 1 pre, 2 coreq
+        '''
+        A prerequisite is a requirement that must be met before you take a course, 
+        while a corequisite is a course that must be taken at the same time.
+        '''
 
+    def get_course_info(self):
+        pass
+        # TODO: pre populate a list with "NA"
+        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
+        # TODO:
 
     def print_course_name(self):
         for line in self.f:
