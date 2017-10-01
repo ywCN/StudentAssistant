@@ -52,9 +52,8 @@ class Parse:
         test = words[1]
         StatusSeatsAvailable = DaysTimeLocation = Instructor = SessionAndDates = Credits = "NA"
         if test.startswith('"Open'):
-
-            t = test.split('"')
-            length = len(t)  # only 3 cases: 7 9 11
+            # t = test.split('"')
+            # length = len(t)  # only 3 cases: 7 9 11
             # if length == 7: #TODO: uncomment this
             #     # print(t)
             #     print(t[1])  # StatusSeatsAvailable
@@ -82,7 +81,7 @@ class Parse:
             #     print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             # print(t[1])  # StatusSeatsAvailable
             # print(t[3])  # DaysTimeLocation
-
+            #
             # if test.endswith('"'):
             #     credit = t[-2]
             # else:
@@ -119,34 +118,47 @@ class Parse:
         #         print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
         #     self.count_status += 1
         # TODO: fill available variables
-        elif test.startswith('Closed'):
+        # elif test.startswith('Closed'):
+        #     t = test.split('"')
+        #     length = len(t)  # only 3 cases: 5 7 9
+        #     if length == 5:
+        #         print(t)
+        #         print(t[0])  # StatusSeatsAvailable
+        #         print(t[1])  # DaysTimeLocation
+        #         print(t[2][1:])  # Instructor
+        #         print(t[3])  # SessionAndDates
+        #         print(t[4].strip())  # credit
+        #     elif length == 7:
+        #         print(t)
+        #         print(t[0])  # StatusSeatsAvailable
+        #         print(t[1])  # DaysTimeLocation
+        #         print(t[3])  # Instructor
+        #         print(t[5])  # SessionAndDates
+        #         print(t[6])  # credit
+        #     elif length == 9:
+        #         print(t)
+        #         print(t[0])  # StatusSeatsAvailable
+        #         print(t[1])  # DaysTimeLocation
+        #         print(t[3])  # Instructor
+        #         print(t[5])  # SessionAndDates
+        #         print(t[7])  # credit
+        #     else:
+        #         print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+        #     self.count_status += 1
+        # TODO: fill available variables
+
+        elif test.startswith('Open '):
             t = test.split('"')
             length = len(t)  # only 3 cases: 5 7 9
-            # if length == 5:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[2][1:])  # Instructor
-            #     print(t[3])  # SessionAndDates
-            #     print(t[4].strip())  # credit
-            # elif length == 7:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[6])  # credit
-            # elif length == 9:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[7])  # credit
+            if length == 5:
+                pass
+            elif length == 7:
+                pass
+            elif length == 9:
+                pass
             # else:
             #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-            self.count_status += 1
-        elif test.startswith('Open '):
+
             self.count_status += 1
         # else:
         #     print("this line is not matched", test)
