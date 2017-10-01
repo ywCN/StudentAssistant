@@ -54,7 +54,7 @@ class Parse:
         if test.startswith('"Open'):
             t = test.split('"')
             length = len(t)  # only 3 cases: 7 9 11
-            if length == 7: #TODO: uncomment this
+            if length == 7:
                 StatusSeatsAvailable = t[1]
                 DaysTimeLocation = t[3]
                 Instructor = t[4][1:]
@@ -82,26 +82,20 @@ class Parse:
                 print(SessionAndDates)  # SessionAndDates
                 print(Credits)  # credit
             elif length == 11:
+                StatusSeatsAvailable = t[1]
+                DaysTimeLocation = t[3]
+                Instructor = t[5]
+                SessionAndDates = t[7]
+                Credits = t[9]
                 print(t)
-                print(t[1])  # StatusSeatsAvailable
-                print(t[3])  # DaysTimeLocation
-                print(t[5])  # Instructor
-                print(t[7])  # SessionAndDates
-                print(t[9])  # credit
-            # else: #TODO: uncomment this
-            #     print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
-            # print(t[1])  # StatusSeatsAvailable
-            # print(t[3])  # DaysTimeLocation
-            #
-            # if test.endswith('"'):
-            #     credit = t[-2]
-            # else:
-            #     credit = t[-1].strip()
-            #
-            # print(credit)
-            # print(t[4:])
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)  # Instructor
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            else:
+                print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             self.count_status += 1
-            # TODO: fill available variables
         elif test.startswith('Cancelled'):
             # t = test.split('"')
             # length = len(t)  # only 3 cases: 3 5 7
