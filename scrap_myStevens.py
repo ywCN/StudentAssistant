@@ -20,6 +20,8 @@ class ScrapStevensCourses:
         self.driver.get("https://mystevens.stevens.edu/sso/web4student.php")
         self.raw_courses = open('all_courses_raw.txt', 'w+')
         self.errors = open('errors.txt', 'w+')
+        # self.course_page_cache = ''
+        # self.major_page_cache = ''
 
     def get_login_info(self):
         user = input("Enter the User Name:")
@@ -114,26 +116,31 @@ class ScrapStevensCourses:
 
         for major in majors:
             self.go_to_courses_page(major)
+            # self.major_page_cache = self.driver.page_source
             courses = self.parse_raw_courses(major)
 
             for course in courses:
                 self.go_to_courses_description_page(course)
+                # self.course_page_cache = self.driver.page_source
                 self.save_tables()
                 self.driver.back()  # due to the stability of connections, this may not success
-                if not self.detect_back_status():
-                    self.driver.back()
+                # while self.back_not_success():
+                #     self.driver.back()
+                #     time.sleep(2)
 
             self.driver.back()
-            if not self.detect_back_status():
-                self.driver.back()
+            # while self.back_not_success():
+            #     self.driver.back()
+            #     time.sleep(2)
 
         self.driver.quit()
         self.raw_courses.close()
         self.errors.close()
 
-    def detect_back_status(self):
-        # TODO: check if page really goes back
-        return True
+    # def back_not_success(self):
+    #     if self.driver.page_source == self.course_page_cache:
+    #         return True
+    #     return False
 
 # class SaveIntoDatabase:
     # TODO : save information in database
