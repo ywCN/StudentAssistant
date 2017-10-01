@@ -44,57 +44,57 @@ class Parse:
             self.count_title_call_number += 1
         return course_name, call_number
 
-    def get_status_seats_available(self, txt):
+    def parse_line2(self, txt):
         """
-        StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        status_seats_available, days_time_location, instructor, session_and_dates, credits
         :param txt:
         :return: tuple
         """
         words = txt.split('cart" ')
         partition = words[1]  # contains StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
-        StatusSeatsAvailable = DaysTimeLocation = Instructor = SessionAndDates = Credits = "NA"
+        status_seats_available = days_time_location = instructor = session_and_dates = credit = "NA"
         if partition.startswith('"Open'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 7 9 11
             if length == 7:
-                StatusSeatsAvailable = t[1]
-                DaysTimeLocation = t[3]
-                Instructor = t[4][1:]
-                SessionAndDates = t[5]
-                Credits = t[6].strip()
+                status_seats_available = t[1]
+                days_time_location = t[3]
+                instructor = t[4][1:]
+                session_and_dates = t[5]
+                credit = t[6].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 9:
-                StatusSeatsAvailable = t[1]
-                DaysTimeLocation = t[3]
+                status_seats_available = t[1]
+                days_time_location = t[3]
                 if " STAFF " in t:
-                    Instructor = t[4][1:-1]
+                    instructor = t[4][1:-1]
                 else:
-                    Instructor = t[5]
-                SessionAndDates = t[7]
-                Credits = t[8].strip()
+                    instructor = t[5]
+                session_and_dates = t[7]
+                credit = t[8].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 11:
-                StatusSeatsAvailable = t[1]
-                DaysTimeLocation = t[3]
-                Instructor = t[5]
-                SessionAndDates = t[7]
-                Credits = t[9]
+                status_seats_available = t[1]
+                days_time_location = t[3]
+                instructor = t[5]
+                session_and_dates = t[7]
+                credit = t[9]
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             else:
                 print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             self.count_status += 1
@@ -102,37 +102,37 @@ class Parse:
             t = partition.split('"')
             length = len(t)  # only 3 cases: 3 5 7
             if length == 3:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1][len('CANCELLED '):]
-                Credits = t[2][-5:].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1][len('CANCELLED '):]
+                credit = t[2][-5:].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Credits)  # credit
-                # NO Instructor
-                # NO SessionAndDates
+                print(status_seats_available)
+                print(days_time_location)
+                print(credit)
+                # NO instructor
+                # NO session_and_dates
             elif length == 5:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1][len('CANCELLED '):]
-                SessionAndDates = t[3]
-                Credits = t[4][-5:].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1][len('CANCELLED '):]
+                session_and_dates = t[3]
+                credit = t[4][-5:].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
-                # NO Instructor
+                print(status_seats_available)
+                print(days_time_location)
+                print(session_and_dates)
+                print(credit)
+                # NO instructor
             elif length == 7:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1][len('CANCELLED '):]
-                SessionAndDates = t[3]
-                Credits = t[5].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1][len('CANCELLED '):]
+                session_and_dates = t[3]
+                credit = t[5].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
-                # NO Instructor
+                print(status_seats_available)
+                print(days_time_location)
+                print(session_and_dates)
+                print(credit)
+                # NO instructor
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
@@ -140,41 +140,41 @@ class Parse:
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
             if length == 5:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[2][1:]
-                SessionAndDates = t[3]
-                Credits = t[4].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[2][1:]
+                session_and_dates = t[3]
+                credit = t[4].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 7:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[3]
-                SessionAndDates = t[5]
-                Credits = t[6].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[3]
+                session_and_dates = t[5]
+                credit = t[6].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 9:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[3]
-                SessionAndDates = t[5]
-                Credits = t[7]
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[3]
+                session_and_dates = t[5]
+                credit = t[7]
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
@@ -182,48 +182,48 @@ class Parse:
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
             if length == 5:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[2][1:-1]
-                SessionAndDates = t[3]
-                Credits = t[4].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[2][1:-1]
+                session_and_dates = t[3]
+                credit = t[4].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 7:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[3]
-                SessionAndDates = t[5]
-                Credits = t[6].strip()
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[3]
+                session_and_dates = t[5]
+                credit = t[6].strip()
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             elif length == 9:
-                StatusSeatsAvailable = t[0]
-                DaysTimeLocation = t[1]
-                Instructor = t[3]
-                SessionAndDates = t[5]
-                Credits = t[7]
+                status_seats_available = t[0]
+                days_time_location = t[1]
+                instructor = t[3]
+                session_and_dates = t[5]
+                credit = t[7]
                 print(t)  # TODO: remove prints
-                print(StatusSeatsAvailable)  # StatusSeatsAvailable
-                print(DaysTimeLocation)  # DaysTimeLocation
-                print(Instructor)  # Instructor
-                print(SessionAndDates)  # SessionAndDates
-                print(Credits)  # credit
+                print(status_seats_available)
+                print(days_time_location)
+                print(instructor)
+                print(session_and_dates)
+                print(credit)
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             # TODO: fill available variables
             self.count_status += 1
         else:
             print("\n\n\nthis line is not matched", partition)
-        return StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        return status_seats_available, days_time_location, instructor, session_and_dates, credit
 
     def get_days_time_location(self):
         pass
@@ -263,8 +263,8 @@ class Parse:
         self.preprocessed = open(r'stage1.txt')
 
         for line in self.preprocessed:
-            # self.get_section_title_and_call_number(line)
-            self.get_status_seats_available(line)
+            self.parse_line1(line)
+            self.parse_line2(line)
 
         # print(self.count_title_call_number)
         print()
