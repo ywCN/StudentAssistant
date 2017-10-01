@@ -45,14 +45,38 @@ class Parse:
         # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         # TODO: in order to populate the list
 
-    def get_status_seats_available(self, txt):
+    def get_status_seats_available(self, txt):  # all if statements have covered all cases for status
         words = txt.split('cart" ')
-
-        # print(words[1])  # this is the part of StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        res = ''
+        # print(words[1])  # this part contains StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         test = words[1]
+        credit = "AAAAAAAAAWWWWWWGGGGGGGGGGGGGGGGGGGGG"
         if test.startswith('"Open'):
+            t = test.split('"')
+            # print(t[1])  # StatusSeatsAvailable
+            # print(t[3])  # DaysTimeLocation
+
+            # if test.endswith('"'):
+            #     credit = t[-2].strip()
+            # else:
+            #     credit = t[-1].strip()
+            #
+            # print(credit)
+            # print(t[4:])
             self.count_status += 1
         elif test.startswith('Cancelled'):
+            t = test.split('"')
+            # print(t[1])  # StatusSeatsAvailable
+            length = len(t)
+            if length == 3:
+                print(t)
+            # elif length == 5:
+            #     print(t)
+            # elif length == 7:
+            #     print(t)
+            # else:
+            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            # print(t[3])  # DaysTimeLocation
             self.count_status += 1
         elif test.startswith('Closed'):
             self.count_status += 1
