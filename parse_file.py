@@ -60,7 +60,7 @@ class Parse:
                 Instructor = t[4][1:]
                 SessionAndDates = t[5]
                 Credits = t[6].strip()
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)  # Instructor
@@ -75,7 +75,7 @@ class Parse:
                     Instructor = t[5]
                 SessionAndDates = t[7]
                 Credits = t[8].strip()
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)
@@ -87,7 +87,7 @@ class Parse:
                 Instructor = t[5]
                 SessionAndDates = t[7]
                 Credits = t[9]
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)  # Instructor
@@ -103,7 +103,7 @@ class Parse:
                 StatusSeatsAvailable = t[0]
                 DaysTimeLocation = t[1][len('CANCELLED '):]
                 Credits = t[2][-5:].strip()
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Credits)  # credit
@@ -114,7 +114,7 @@ class Parse:
                 DaysTimeLocation = t[1][len('CANCELLED '):]
                 SessionAndDates = t[3]
                 Credits = t[4][-5:].strip()
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(SessionAndDates)  # SessionAndDates
@@ -125,7 +125,7 @@ class Parse:
                 DaysTimeLocation = t[1][len('CANCELLED '):]
                 SessionAndDates = t[3]
                 Credits = t[5].strip()
-                print(t)  # TODO: remove
+                print(t)  # TODO: remove prints
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(SessionAndDates)  # SessionAndDates
@@ -134,66 +134,82 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
-        # TODO: fill available variables
         elif test.startswith('Closed'):
-            # t = test.split('"')
-            # length = len(t)  # only 3 cases: 5 7 9
-            # if length == 5:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[2][1:])  # Instructor
-            #     print(t[3])  # SessionAndDates
-            #     print(t[4].strip())  # credit
-            # elif length == 7:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[6])  # credit
-            # elif length == 9:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[7])  # credit
-            # else:
-            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            t = test.split('"')
+            length = len(t)  # only 3 cases: 5 7 9
+            if length == 5:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1]
+                Instructor = t[2][1:]
+                SessionAndDates = t[3]
+                Credits = t[4].strip()
+                print(t)
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)  # Instructor
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            elif length == 7:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1]
+                Instructor = t[3]
+                SessionAndDates = t[5]
+                Credits = t[6].strip()
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)  # Instructor
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            elif length == 9:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1]
+                Instructor = t[3]
+                SessionAndDates = t[5]
+                Credits = t[7]
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)  # Instructor
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            else:
+                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
-        # TODO: fill available variables
-
         elif test.startswith('Open '):
             t = test.split('"')
             length = len(t)  # only 3 cases: 5 7 9
-            # if length == 5:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[2][1:-1])  # Instructor
-            #     print(t[3])  # SessionAndDates
-            #     print(t[4].strip())  # credit
-            # elif length == 7:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[6].strip())  # credit
-            # elif length == 9:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1])  # DaysTimeLocation
-            #     print(t[3])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[7])  # credit
-            # else:
-            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            if length == 5:
+                StatusSeatsAvailable =
+                DaysTimeLocation =
+                Instructor =
+                SessionAndDates =
+                Credits =
+                print(t)
+                print(t[0])  # StatusSeatsAvailable
+                print(t[1])  # DaysTimeLocation
+                print(t[2][1:-1])  # Instructor
+                print(t[3])  # SessionAndDates
+                print(t[4].strip())  # credit
+            elif length == 7:
+                print(t)
+                print(t[0])  # StatusSeatsAvailable
+                print(t[1])  # DaysTimeLocation
+                print(t[3])  # Instructor
+                print(t[5])  # SessionAndDates
+                print(t[6].strip())  # credit
+            elif length == 9:
+                print(t)
+                print(t[0])  # StatusSeatsAvailable
+                print(t[1])  # DaysTimeLocation
+                print(t[3])  # Instructor
+                print(t[5])  # SessionAndDates
+                print(t[7])  # credit
+            else:
+                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             # TODO: fill available variables
             self.count_status += 1
         # else:
         #     print("this line is not matched", test)
+        return StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
 
     def get_days_time_location(self):
         pass
