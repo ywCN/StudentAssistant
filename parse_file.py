@@ -91,71 +91,86 @@ class Parse:
             # print(t[4:])
             self.count_status += 1
             # TODO: fill available variables
-        # elif test.startswith('Cancelled'):  #TODO: uncomment this
-        #     t = test.split('"')
-        #     length = len(t)  # only 3 cases: 3 5 7
-        #     if length == 3:
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-        #         print(t[2][-5:].strip())  # credit
-        #         # NO Instructor
-        #         # NO SessionAndDates
-        #     elif length == 5:
-        #         print(t)
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-        #         print(t[3])  # SessionAndDates
-        #         print(t[4][-5:].strip())  # credit
-        #         # NO Instructor
-        #     elif length == 7:
-        #         # print(t)
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-        #         print(t[3])  # SessionAndDates
-        #         print(t[5].strip())  # credit
-        #         # NO Instructor
-        #     else:
-        #         print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-        #     self.count_status += 1
+        elif test.startswith('Cancelled'):
+            # t = test.split('"')
+            # length = len(t)  # only 3 cases: 3 5 7
+            # if length == 3:
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
+            #     print(t[2][-5:].strip())  # credit
+            #     # NO Instructor
+            #     # NO SessionAndDates
+            # elif length == 5:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
+            #     print(t[3])  # SessionAndDates
+            #     print(t[4][-5:].strip())  # credit
+            #     # NO Instructor
+            # elif length == 7:
+            #     # print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
+            #     print(t[3])  # SessionAndDates
+            #     print(t[5].strip())  # credit
+            #     # NO Instructor
+            # else:
+            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            self.count_status += 1
         # TODO: fill available variables
-        # elif test.startswith('Closed'):
-        #     t = test.split('"')
-        #     length = len(t)  # only 3 cases: 5 7 9
-        #     if length == 5:
-        #         print(t)
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1])  # DaysTimeLocation
-        #         print(t[2][1:])  # Instructor
-        #         print(t[3])  # SessionAndDates
-        #         print(t[4].strip())  # credit
-        #     elif length == 7:
-        #         print(t)
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1])  # DaysTimeLocation
-        #         print(t[3])  # Instructor
-        #         print(t[5])  # SessionAndDates
-        #         print(t[6])  # credit
-        #     elif length == 9:
-        #         print(t)
-        #         print(t[0])  # StatusSeatsAvailable
-        #         print(t[1])  # DaysTimeLocation
-        #         print(t[3])  # Instructor
-        #         print(t[5])  # SessionAndDates
-        #         print(t[7])  # credit
-        #     else:
-        #         print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-        #     self.count_status += 1
+        elif test.startswith('Closed'):
+            # t = test.split('"')
+            # length = len(t)  # only 3 cases: 5 7 9
+            # if length == 5:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[2][1:])  # Instructor
+            #     print(t[3])  # SessionAndDates
+            #     print(t[4].strip())  # credit
+            # elif length == 7:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[6])  # credit
+            # elif length == 9:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[7])  # credit
+            # else:
+            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            self.count_status += 1
         # TODO: fill available variables
 
         elif test.startswith('Open '):
             t = test.split('"')
             length = len(t)  # only 3 cases: 5 7 9
-            if length == 5:
-                pass
-            elif length == 7:
-                pass
-            elif length == 9:
-                pass
+            # if length == 5:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[2][1:-1])  # Instructor
+            #     print(t[3])  # SessionAndDates
+            #     print(t[4].strip())  # credit
+            # elif length == 7:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[6].strip())  # credit
+            # elif length == 9:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[7])  # credit
             # else:
             #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
 
@@ -205,6 +220,7 @@ class Parse:
             self.get_status_seats_available(line)
 
         # print(self.count_title_call_number)
+        print()
         print(self.count_title_call_number_control)
         print(self.count_status)
 
