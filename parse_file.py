@@ -129,15 +129,20 @@ class Parse:
             #     print(t[2][1:])  # Instructor
             #     print(t[3])  # SessionAndDates
             #     print(t[4].strip())  # credit
-            if length == 7:  #TODO:back to elif
-                print(t)
-                #     print(t[0])  # StatusSeatsAvailable
-                #     print(t[1])  # DaysTimeLocation
-                #     print(t[2][1:])  # Instructor
-                #     print(t[3])  # SessionAndDates
-                #     print(t[4].strip())  # credit
-            elif length == 9: #TODO:back to elif
-                pass
+            # elif length == 7:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[6])  # credit
+            # elif length == 9:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[3])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[7])  # credit
             # else:
             #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
