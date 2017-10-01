@@ -7,7 +7,7 @@ class Parse:
         self.count_title_call_number = 0
         self.count_title_call_number_control = 0
         self.count_status = 0
-        self.stage1 = self.open_stage1()
+        self.preprocessed = self.open_stage1()
 
     def open_file(self):
         return open(r'test.txt')  # row courses file
@@ -15,8 +15,13 @@ class Parse:
     def open_stage1(self):
         return open(r'stage1.txt', 'w+')
 
-    def get_section_title_and_call_number(self, txt):
-
+    def parse_line1(self, txt):
+        """
+        SectionTitle, CallNumber
+        :param txt: self.preprocessed
+        :return: tuple
+        """
+        course_name = call_number = "NA"
         re1 = '(")'  # Any Single Character 1
         re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
         re3 = '(\\s+)'  # White Space 1
@@ -37,22 +42,19 @@ class Parse:
             call_number = words[1][0:5]
             print(call_number)  # this is the call number, like this: 10086
             self.count_title_call_number += 1
-            # return course_name, call_number
-        else:
-            print("no match found")
-
-        # TODO: if m, return result. return "NA" at the end.
-        # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
-        # TODO: in order to populate the list
+        return course_name, call_number
 
     def get_status_seats_available(self, txt):
-        # TODO: fill available variables; unavailable one are left with default "NA"
+        """
+        StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        :param txt:
+        :return: tuple
+        """
         words = txt.split('cart" ')
-        # print(words[1])  # this part contains StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
-        test = words[1]
+        partition = words[1]  # contains StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         StatusSeatsAvailable = DaysTimeLocation = Instructor = SessionAndDates = Credits = "NA"
-        if test.startswith('"Open'):
-            t = test.split('"')
+        if partition.startswith('"Open'):
+            t = partition.split('"')
             length = len(t)  # only 3 cases: 7 9 11
             if length == 7:
                 StatusSeatsAvailable = t[1]
@@ -96,8 +98,8 @@ class Parse:
             else:
                 print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             self.count_status += 1
-        elif test.startswith('Cancelled'):
-            t = test.split('"')
+        elif partition.startswith('Cancelled'):
+            t = partition.split('"')
             length = len(t)  # only 3 cases: 3 5 7
             if length == 3:
                 StatusSeatsAvailable = t[0]
@@ -134,8 +136,8 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
-        elif test.startswith('Closed'):
-            t = test.split('"')
+        elif partition.startswith('Closed'):
+            t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
             if length == 5:
                 StatusSeatsAvailable = t[0]
@@ -176,8 +178,8 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
-        elif test.startswith('Open '):
-            t = test.split('"')
+        elif partition.startswith('Open '):
+            t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
             if length == 5:
                 StatusSeatsAvailable = t[0]
@@ -220,7 +222,7 @@ class Parse:
             # TODO: fill available variables
             self.count_status += 1
         else:
-            print("this line is not matched", test)
+            print("\n\n\nthis line is not matched", partition)
         return StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
 
     def get_days_time_location(self):
@@ -250,17 +252,17 @@ class Parse:
         rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, re.IGNORECASE | re.DOTALL)
         m = rg.search(txt)
         if m:
-            self.stage1.write(txt)
+            self.preprocessed.write(txt)
             self.count_title_call_number_control += 1
 
     def file_works(self):
         for line in self.f:
             self.populate_stage1(line)
 
-        self.stage1.close()
-        self.stage1 = open(r'stage1.txt')
+        self.preprocessed.close()
+        self.preprocessed = open(r'stage1.txt')
 
-        for line in self.stage1:
+        for line in self.preprocessed:
             # self.get_section_title_and_call_number(line)
             self.get_status_seats_available(line)
 
@@ -282,7 +284,7 @@ def main():
     demo = Parse()
     demo.file_works()
     demo.f.close()
-    demo.stage1.close()
+    demo.preprocessed.close()
 
 
 if __name__ == '__main__':
