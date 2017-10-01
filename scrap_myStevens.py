@@ -16,17 +16,23 @@ class ScrapStevensCourses:
 
     def __init__(self):
         self.driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
-        self.driver.implicitly_wait(10)  # second
+        self.driver.implicitly_wait(10)  # DO NOT CHANGE THIS LINE.
         self.driver.get("https://mystevens.stevens.edu/sso/web4student.php")
         self.raw_courses = open('all_courses_raw.txt', 'w+')
         self.errors = open('errors.txt', 'w+')
 
     def get_login_info(self):
         user = input("Enter the User Name:")
-        password = input("Enter the Password:") # uncomment this line if you are using IDE
-        # password = getpass.getpass()  # uncomment this line if you are using terminal
+        password = input("Enter the Password:")  # for IDE
+        # password = getpass.getpass()  # for terminal
         print("got password")
         return user, password
+
+    def login(self):
+        info = self.get_login_info()
+        self.driver.find_element_by_name("j_username").send_keys(info[0])
+        self.driver.find_element_by_name("j_password").send_keys(info[1])
+        self.driver.find_element_by_name('submit').submit()
 
     def go_to_courses_description_page(self, course_id):
         select1 = Select(self.driver.find_element_by_xpath('//select[option/@value="%s"]' % course_id))
@@ -47,12 +53,6 @@ class ScrapStevensCourses:
         ActionChains(self.driver).move_to_element(hover1_element).move_to_element(hover2_element).click(
             hover2_element).perform()
         time.sleep(2)
-
-    def login(self):
-        info = self.get_login_info()
-        self.driver.find_element_by_name("j_username").send_keys(info[0])
-        self.driver.find_element_by_name("j_password").send_keys(info[1])
-        self.driver.find_element_by_name('submit').submit()
 
     def get_raw_majors(self):
         f = open('majors_raw.txt', 'w+')
@@ -95,7 +95,7 @@ class ScrapStevensCourses:
 
         dfs = pd.read_html(self.driver.page_source)
         # print(type(dfs))  # <class 'list'>
-        # print(len(dfs[4]))  # normally this is the table we need
+        # print(len(dfs[4]))  # [4] is the table we need
         try:
             line = dfs[4].to_csv(sep=' ', index=False, header=False)
             line = line.replace(u'\xa0', u' ')
@@ -112,35 +112,19 @@ class ScrapStevensCourses:
         majors = self.parse_raw_majors()
 
         for major in majors:
-            try:
-                self.go_to_courses_page(major)
-                courses = self.parse_raw_courses(major)
+            self.go_to_courses_page(major)
+            courses = self.parse_raw_courses(major)
 
-                for course in courses:
-                    try:
-                        self.go_to_courses_description_page(course)
-                        self.save_tables()
-                        self.driver.back()  # due to the stability of connections, this may not success
-                    except:
-                        self.driver.back()
-                        pass
+            for course in courses:
+                self.go_to_courses_description_page(course)
+                self.save_tables()
+                self.driver.back()  # due to the stability of connections, this may not success
 
-                self.driver.back()
-            except:
-                self.driver.back()
-                pass
+            self.driver.back()
 
         self.driver.quit()
         self.raw_courses.close()
         self.errors.close()
-
-    # def back_not_success(self):
-    #     if self.driver.page_source == self.course_page_cache:
-    #         return True
-    #     return False
-
-# class SaveIntoDatabase:
-    # TODO : save information in database
 
 
 def main():
