@@ -52,31 +52,42 @@ class Parse:
         test = words[1]
         StatusSeatsAvailable = DaysTimeLocation = Instructor = SessionAndDates = Credits = "NA"
         if test.startswith('"Open'):
-            # t = test.split('"')
-            # length = len(t)  # only 3 cases: 7 9 11
-            # if length == 7: #TODO: uncomment this
-            #     # print(t)
-            #     print(t[1])  # StatusSeatsAvailable
-            #     print(t[3])  # DaysTimeLocation
-            #     print(t[4][1:])  # Instructor
-            #     print(t[5])  # SessionAndDates
-            #     print(t[6].strip())  # credit
-            # elif length == 9:
-            #     print(t)
-            #     print(t[1])  # StatusSeatsAvailable
-            #     print(t[3])  # DaysTimeLocation
-            #     print(t[5])  # Instructor
-            #     if " STAFF " in t:
-            #         print(t[4][1:-1])  # Instructor
-            #     print(t[7])  # SessionAndDates
-            #     print(t[8].strip())  # credit
-            # elif length == 11:
-            #     print(t)
-            #     print(t[1])  # StatusSeatsAvailable
-            #     print(t[3])  # DaysTimeLocation
-            #     print(t[5])  # Instructor
-            #     print(t[7])  # SessionAndDates
-            #     print(t[9])  # credit
+            t = test.split('"')
+            length = len(t)  # only 3 cases: 7 9 11
+            if length == 7: #TODO: uncomment this
+                StatusSeatsAvailable = t[1]
+                DaysTimeLocation = t[3]
+                Instructor = t[4][1:]
+                SessionAndDates = t[5]
+                Credits = t[6].strip()
+                print(t)
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)  # Instructor
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            elif length == 9:
+                StatusSeatsAvailable = t[1]
+                DaysTimeLocation = t[3]
+                if " STAFF " in t:
+                    Instructor = t[4][1:-1]
+                else:
+                    Instructor = t[5]
+                SessionAndDates = t[7]
+                Credits = t[8].strip()
+                print(t)
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Instructor)
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+            elif length == 11:
+                print(t)
+                print(t[1])  # StatusSeatsAvailable
+                print(t[3])  # DaysTimeLocation
+                print(t[5])  # Instructor
+                print(t[7])  # SessionAndDates
+                print(t[9])  # credit
             # else: #TODO: uncomment this
             #     print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             # print(t[1])  # StatusSeatsAvailable
@@ -173,7 +184,7 @@ class Parse:
             #     print(t[7])  # credit
             # else:
             #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-
+            # TODO: fill available variables
             self.count_status += 1
         # else:
         #     print("this line is not matched", test)
