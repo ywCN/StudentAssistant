@@ -6,6 +6,7 @@ class Parse:
         self.f = self.open_file()
         self.count_title_call_number = 0
         self.count_title_call_number_control = 0
+        self.count_status = 0
         self.stage1 = self.open_stage1()
 
     def open_file(self):
@@ -44,9 +45,21 @@ class Parse:
         # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         # TODO: in order to populate the list
 
+    def get_status_seats_available(self, txt):
+        words = txt.split('cart" ')
 
-    def get_status_seats_available(self):
-        pass
+        # print(words[1])  # this is the part of StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
+        test = words[1]
+        if test.startswith('"Open'):
+            self.count_status += 1
+        elif test.startswith('Cancelled'):
+            self.count_status += 1
+        elif test.startswith('Closed'):
+            self.count_status += 1
+        elif test.startswith('Open '):
+            self.count_status += 1
+        else:
+            print("this line is not matched", test)
 
     def get_days_time_location(self):
         pass
@@ -86,10 +99,12 @@ class Parse:
         self.stage1 = open(r'stage1.txt')
 
         for line in self.stage1:
-            self.get_section_title_and_call_number(line)
+            # self.get_section_title_and_call_number(line)
+            self.get_status_seats_available(line)
 
-        print(self.count_title_call_number)
+        # print(self.count_title_call_number)
         print(self.count_title_call_number_control)
+        print(self.count_status)
 
     def get_course_dependency(self):
         pass
