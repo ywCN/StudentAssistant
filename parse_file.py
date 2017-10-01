@@ -4,38 +4,46 @@ import re
 class Parse:
     def __init__(self):
         self.f = self.open_file()
-        self.count_title = 0
-        self.count_call_number = 0
+        self.count_title_call_number = 0
+        self.count_title_call_number_control = 0
+        self.stage1 = self.open_stage1()
 
     def open_file(self):
-        return open(r'test.txt')
+        return open(r'test.txt')  # row courses file
 
-    def get_section_title(self, txt):
+    def open_stage1(self):
+        return open(r'stage1.txt', 'w+')
+
+    def get_section_title_and_call_number(self, txt):
+
         re1 = '(")'  # Any Single Character 1
         re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
         re3 = '(\\s+)'  # White Space 1
         re4 = '(-)'  # Any Single Character 2
         re5 = '(\\d+)'  # Integer Number 1
         re6 = '(-)'  # Any Single Character 3
+        re7 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 2
+        re8 = '.*?'  # Non-greedy match on filler
+        re9 = '((?:[a-z][a-z0-9_]*))'
+        re10 = '(")'  # Any Single Character 4
 
-        rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6, re.IGNORECASE | re.DOTALL)
+        rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, re.IGNORECASE | re.DOTALL)
         m = rg.search(txt)
         if m:
             words = txt.split("\" \"")
-            course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -612-WS  Regul/Plcy Telecomm Ind.
+            course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -616-W0
             print(course_name)
-            print(words[1][0:5])
-            self.count_title += 1
+            call_number = words[1][0:5]
+            print(call_number)  # this is the call number, like this: 10086
+            self.count_title_call_number += 1
+            # return course_name, call_number
+        else:
+            print("no match found")
 
         # TODO: if m, return result. return "NA" at the end.
         # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         # TODO: in order to populate the list
 
-    def get_call_number(self, txt):
-        pass
-        # TODO: pre populate a list with "NA"
-        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
-        # TODO:
 
     def get_status_seats_available(self):
         pass
@@ -52,12 +60,36 @@ class Parse:
     def get_credits(self):
         pass
 
+    def populate_stage1(self, txt):
+        re1 = '(")'  # Any Single Character 1
+        re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
+        re3 = '(\\s+)'  # White Space 1
+        re4 = '(-)'  # Any Single Character 2
+        re5 = '(\\d+)'  # Integer Number 1
+        re6 = '(-)'  # Any Single Character 3
+        re7 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 2
+        re8 = '.*?'  # Non-greedy match on filler
+        re9 = '(\\s+)'  # White Space 2
+        re10 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 3
 
+        rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, re.IGNORECASE | re.DOTALL)
+        m = rg.search(txt)
+        if m:
+            self.stage1.write(txt)
+            self.count_title_call_number_control += 1
 
-    def print_function(self):
+    def file_works(self):
         for line in self.f:
-            self.get_section_title(line)
-        print(self.count_title)
+            self.populate_stage1(line)
+
+        self.stage1.close()
+        self.stage1 = open(r'stage1.txt')
+
+        for line in self.stage1:
+            self.get_section_title_and_call_number(line)
+
+        print(self.count_title_call_number)
+        print(self.count_title_call_number_control)
 
     def get_course_dependency(self):
         pass
@@ -70,8 +102,9 @@ class Parse:
 
 def main():
     demo = Parse()
-    demo.print_function()
+    demo.file_works()
     demo.f.close()
+    demo.stage1.close()
 
 
 if __name__ == '__main__':
