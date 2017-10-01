@@ -60,7 +60,7 @@ class Parse:
                 Instructor = t[4][1:]
                 SessionAndDates = t[5]
                 Credits = t[6].strip()
-                print(t)
+                print(t)  # TODO: remove
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)  # Instructor
@@ -75,7 +75,7 @@ class Parse:
                     Instructor = t[5]
                 SessionAndDates = t[7]
                 Credits = t[8].strip()
-                print(t)
+                print(t)  # TODO: remove
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)
@@ -87,7 +87,7 @@ class Parse:
                 Instructor = t[5]
                 SessionAndDates = t[7]
                 Credits = t[9]
-                print(t)
+                print(t)  # TODO: remove
                 print(StatusSeatsAvailable)  # StatusSeatsAvailable
                 print(DaysTimeLocation)  # DaysTimeLocation
                 print(Instructor)  # Instructor
@@ -97,30 +97,42 @@ class Parse:
                 print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
             self.count_status += 1
         elif test.startswith('Cancelled'):
-            # t = test.split('"')
-            # length = len(t)  # only 3 cases: 3 5 7
-            # if length == 3:
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-            #     print(t[2][-5:].strip())  # credit
-            #     # NO Instructor
-            #     # NO SessionAndDates
-            # elif length == 5:
-            #     print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-            #     print(t[3])  # SessionAndDates
-            #     print(t[4][-5:].strip())  # credit
-            #     # NO Instructor
-            # elif length == 7:
-            #     # print(t)
-            #     print(t[0])  # StatusSeatsAvailable
-            #     print(t[1][len('CANCELLED '):])  # DaysTimeLocation
-            #     print(t[3])  # SessionAndDates
-            #     print(t[5].strip())  # credit
-            #     # NO Instructor
-            # else:
-            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+            t = test.split('"')
+            length = len(t)  # only 3 cases: 3 5 7
+            if length == 3:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1][len('CANCELLED '):]
+                Credits = t[2][-5:].strip()
+                print(t)  # TODO: remove
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(Credits)  # credit
+                # NO Instructor
+                # NO SessionAndDates
+            elif length == 5:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1][len('CANCELLED '):]
+                SessionAndDates = t[3]
+                Credits = t[4][-5:].strip()
+                print(t)  # TODO: remove
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+                # NO Instructor
+            elif length == 7:
+                StatusSeatsAvailable = t[0]
+                DaysTimeLocation = t[1][len('CANCELLED '):]
+                SessionAndDates = t[3]
+                Credits = t[5].strip()
+                print(t)  # TODO: remove
+                print(StatusSeatsAvailable)  # StatusSeatsAvailable
+                print(DaysTimeLocation)  # DaysTimeLocation
+                print(SessionAndDates)  # SessionAndDates
+                print(Credits)  # credit
+                # NO Instructor
+            else:
+                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
         # TODO: fill available variables
         elif test.startswith('Closed'):
