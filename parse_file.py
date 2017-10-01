@@ -92,9 +92,8 @@ class Parse:
             # print(t[4:])
             self.count_status += 1
             # TODO: fill available variables
-        # elif test.startswith('Cancelled'):  #TODO: uncomment this elif
+        # elif test.startswith('Cancelled'):  #TODO: uncomment this
         #     t = test.split('"')
-        #     # print(t[1])  # StatusSeatsAvailable
         #     length = len(t)  # only 3 cases: 3 5 7
         #     if length == 3:
         #         print(t[0])  # StatusSeatsAvailable
@@ -121,6 +120,26 @@ class Parse:
         #     self.count_status += 1
         # TODO: fill available variables
         elif test.startswith('Closed'):
+            t = test.split('"')
+            length = len(t)  # only 3 cases: 5 7 9
+            # if length == 5:
+            #     print(t)
+            #     print(t[0])  # StatusSeatsAvailable
+            #     print(t[1])  # DaysTimeLocation
+            #     print(t[2][1:])  # Instructor
+            #     print(t[3])  # SessionAndDates
+            #     print(t[4].strip())  # credit
+            if length == 7:  #TODO:back to elif
+                print(t)
+                #     print(t[0])  # StatusSeatsAvailable
+                #     print(t[1])  # DaysTimeLocation
+                #     print(t[2][1:])  # Instructor
+                #     print(t[3])  # SessionAndDates
+                #     print(t[4].strip())  # credit
+            elif length == 9: #TODO:back to elif
+                pass
+            # else:
+            #     print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
             self.count_status += 1
         elif test.startswith('Open '):
             self.count_status += 1
