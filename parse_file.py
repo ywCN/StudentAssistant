@@ -46,6 +46,7 @@ class Parse:
         # TODO: in order to populate the list
 
     def get_status_seats_available(self, txt):
+        # TODO: fill available variables; unavailable one are left with default "NA"
         words = txt.split('cart" ')
         # print(words[1])  # this part contains StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         test = words[1]
@@ -54,9 +55,14 @@ class Parse:
 
             t = test.split('"')
             length = len(t)  # only 3 cases: 7 9 11
-            if length == 7:
-                pass
-            elif length == 9:
+            # if length == 7: #TODO: uncomment this
+            #     # print(t)
+            #     print(t[1])  # StatusSeatsAvailable
+            #     print(t[3])  # DaysTimeLocation
+            #     print(t[4][1:])  # Instructor
+            #     print(t[5])  # SessionAndDates
+            #     print(t[6].strip())  # credit
+            if length == 9:  #TODO: change back to elif
                 pass
             elif length == 11:
                 pass
@@ -73,7 +79,7 @@ class Parse:
             # print(credit)
             # print(t[4:])
             self.count_status += 1
-            # TODO:
+            # TODO: fill available variables
         # elif test.startswith('Cancelled'):  #TODO: uncomment this elif
         #     t = test.split('"')
         #     # print(t[1])  # StatusSeatsAvailable
@@ -101,6 +107,7 @@ class Parse:
         #     else:
         #         print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
         #     self.count_status += 1
+        # TODO: fill available variables
         elif test.startswith('Closed'):
             self.count_status += 1
         elif test.startswith('Open '):
