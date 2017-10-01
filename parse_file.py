@@ -10,7 +10,7 @@ class Parse:
     def open_file(self):
         return open(r'test.txt')
 
-    def get_course_name(self, txt):
+    def get_section_title(self, txt):
         re1 = '(")'  # Any Single Character 1
         re2 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 1
         re3 = '(\\s+)'  # White Space 1
@@ -30,6 +30,33 @@ class Parse:
         # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         # TODO: in order to populate the list
 
+
+    def get_status_seats_available(self):
+        pass
+
+    def get_days_time_location(self):
+        pass
+
+    def get_instructor(self):
+        pass
+
+    def get_session_and_dates(self):
+        pass
+
+    def get_credits(self):
+        pass
+
+    def get_call_number(self):
+        pass
+        # TODO: pre populate a list with "NA"
+        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
+        # TODO:
+
+    def print_function(self):
+        for line in self.f:
+            self.get_section_title(line)
+        print(self.count_course)
+
     def get_course_dependency(self):
         pass
         # TODO: parse dependencies from PDF file using regex, dependencies have 2 or more types, 1 pre, 2 coreq
@@ -38,21 +65,10 @@ class Parse:
         while a corequisite is a course that must be taken at the same time.
         '''
 
-    def get_course_info(self):
-        pass
-        # TODO: pre populate a list with "NA"
-        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
-        # TODO:
-
-    def print_course_name(self):
-        for line in self.f:
-            self.get_course_name(line)
-        print(self.count_course)
-
 
 def main():
     demo = Parse()
-    demo.print_course_name()
+    demo.print_function()
     demo.f.close()
 
 
