@@ -22,14 +22,18 @@ class Parse:
         m = rg.search(txt)
         if m:
             words = txt.split("\" \"")
-            print(words[0][1:])
+            course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -612-WS  Regul/Plcy Telecomm Ind.
+            print(course_name)
             self.count_course += 1
+
+        # TODO : parse dependencies from PDF file
+
+
 
     def print_course_name(self):
         for line in self.f:
             self.get_course_name(line)
         print(self.count_course)
-        print(self.count_course_control_group)
 
 
 def main():
