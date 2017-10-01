@@ -4,8 +4,8 @@ import re
 class Parse:
     def __init__(self):
         self.f = self.open_file()
-        self.count_course = 0
-        self.count_course_control_group = 0
+        self.count_title = 0
+        self.count_call_number = 0
 
     def open_file(self):
         return open(r'test.txt')
@@ -24,12 +24,18 @@ class Parse:
             words = txt.split("\" \"")
             course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -612-WS  Regul/Plcy Telecomm Ind.
             print(course_name)
-            self.count_course += 1
+            print(words[1][0:5])
+            self.count_title += 1
 
-        # TODO: if m return result, return "NA" at the end
+        # TODO: if m, return result. return "NA" at the end.
         # TODO: create other similar functions by using regex for CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits
         # TODO: in order to populate the list
 
+    def get_call_number(self, txt):
+        pass
+        # TODO: pre populate a list with "NA"
+        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
+        # TODO:
 
     def get_status_seats_available(self):
         pass
@@ -46,16 +52,12 @@ class Parse:
     def get_credits(self):
         pass
 
-    def get_call_number(self):
-        pass
-        # TODO: pre populate a list with "NA"
-        # TODO: [SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, Instructor, SessionAndDates, Credits]
-        # TODO:
+
 
     def print_function(self):
         for line in self.f:
             self.get_section_title(line)
-        print(self.count_course)
+        print(self.count_title)
 
     def get_course_dependency(self):
         pass
