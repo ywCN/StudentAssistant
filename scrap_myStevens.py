@@ -16,7 +16,7 @@ class ScrapStevensCourses:
 
     def __init__(self):
         self.driver = webdriver.PhantomJS("C:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
-        self.driver.implicitly_wait(1)  # second
+        self.driver.implicitly_wait(10)  # second
         self.driver.get("https://mystevens.stevens.edu/sso/web4student.php")
         self.raw_courses = open('all_courses_raw.txt', 'w+')
         self.errors = open('errors.txt', 'w+')
@@ -35,13 +35,13 @@ class ScrapStevensCourses:
         select1.select_by_value(course_id)
 
         self.driver.find_element_by_name("submitbutton").submit()
-        time.sleep(2)
+        # time.sleep(2)
 
     def go_to_courses_page(self, major_id):
         select = Select(self.driver.find_element_by_xpath('//select[option/@value="%s"]' % major_id))
         select.select_by_value(major_id)
         self.driver.find_element_by_name("submitbutton").submit()
-        time.sleep(2)
+        # time.sleep(2)
 
     def go_to_majors_page(self):
         hover1_element = self.driver.find_element_by_id("menuHeading5")
