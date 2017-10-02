@@ -12,8 +12,8 @@ class SearchCourse:
         else:
             print("Please put %s in the same path of this .py file." % self.db_name)
             exit()
-        # self.course_list = self.create_course_list()
-        # self.major_list = self.create_major_list()
+        self.majors = self.analyze_database_section_title()[0]
+        self.courses = self.analyze_database_section_title()[1]
 
     def create_course_list(self):
         pass
@@ -23,11 +23,19 @@ class SearchCourse:
         pass
 
     def analyze_database_section_title(self):
+        majors = set()
+        courses = {}
         query = "SELECT SectionTitle from courses"
         titles = self.query_info(query)
         for title in titles:
-            print(title)
-        # return course_list, major_list
+            words = title[0].split()
+            majors.add(words[0])
+            if words[0] in courses:
+                courses[words[0]].add(words[0] + " " + words[1][:4])
+            else:
+                courses[words[0]] = set()
+
+        return majors, courses
 
     def query_info(self, query):
         """
@@ -62,10 +70,15 @@ class SearchCourse:
         self.c.close()
         self.conn.close()
 
+    def test(self):
+        # print(self.majors)
+        for key in self.courses:
+            print(key)
+            print(self.courses[key])
 
 def main():
     demo = SearchCourse()
-    demo.analyze_database_section_title()
+    demo.test()
     demo.disconnect()
 
 
