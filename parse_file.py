@@ -62,7 +62,7 @@ class Parse:
                 if " STAFF " in t:
                     instructor = t[4][1:-1]
                     session_and_dates = t[5]
-                    credit = t[6]
+                    credit = t[7]
                 else:
                     instructor = t[5]
                     session_and_dates = t[7]
