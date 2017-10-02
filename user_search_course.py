@@ -15,13 +15,6 @@ class SearchCourse:
         self.majors = self.analyze_database_section_title()[0]
         self.courses = self.analyze_database_section_title()[1]
 
-    def create_course_list(self):
-        pass
-        # TODO: query database course titles
-
-    def create_major_list(self):
-        pass
-
     def analyze_database_section_title(self):
         majors = set()
         courses = {}
@@ -46,22 +39,22 @@ class SearchCourse:
         return self.c.fetchall()
 
     def ask_major(self):
-        pass
-
-        # TODO: getting input from user
+        print(self.majors)
+        return input("Enter major.")
 
     def ask_course(self):
-        pass
-
-        # TODO: getting input from user
+        major = self.ask_major()
+        print(self.courses[major])
+        return input("Enter course.")
 
     def create_query(self):
         """
-        SELECT * FROM course WHERE ______
+        SELECT * FROM courses WHERE SectionTitle LIKE '%SSW -555%'
         :return: str
         """
-        major = self.ask_major()
         course = self.ask_course()
+        item = ["SELECT * FROM courses WHERE SectionTitle LIKE '%", course, "%'"]
+        return "".join(item)
 
     def disconnect(self):
         """
@@ -70,15 +63,22 @@ class SearchCourse:
         self.c.close()
         self.conn.close()
 
+    def display(self):
+        entries = self.query_info(self.create_query())
+        for entry in entries:
+            print(entry)
+
     def test(self):
         # print(self.majors)
         for key in self.courses:
             print(key)
             print(self.courses[key])
 
+
 def main():
     demo = SearchCourse()
-    demo.test()
+    # demo.test()
+    demo.display()
     demo.disconnect()
 
 
