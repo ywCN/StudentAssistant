@@ -40,31 +40,29 @@ class SearchCourse:
 
     def ask_major(self):
         print(self.majors)
-        return input("Enter major:")
+        major = input("Enter major:")
+        while major.upper() not in self.majors:
+            print("Major not found. Please enter again.")
+            major = input("Enter major:")
+        return major.upper()
 
     def ask_course(self):
-        major = self.ask_major().upper()
-        while major not in self.majors:
-            major = self.ask_major()
+        major = self.ask_major()
         print(self.courses[major])
-        return input("Enter course:"), major
+        course = input("Enter course:")
+        while course not in self.courses[major] and major + " -" + course not in self.courses[major]:
+            course = input("Enter course:")
+        if len(course) == 3:
+            course = major + " -" + course
+        return course
 
     def create_query(self):
         """
         SELECT * FROM courses WHERE SectionTitle LIKE '%SSW -555%'
         :return: str
         """
-        course = self.ask_course()[0]
-        major = self.ask_course()[1]
-        item = []
-        if len(course) == 3 and major + " -" + course in self.courses[major]:
-            item.append("SELECT * FROM courses WHERE SectionTitle LIKE '%")
-            item.append(major + " -" + course)
-            item.append("%'")
-        elif course in self.courses[major]:
-            item = ["SELECT * FROM courses WHERE SectionTitle LIKE '%", course, "%'"]
-        else:
-            raise Exception("Invalid Input")
+        course = self.ask_course()
+        item = ["SELECT * FROM courses WHERE SectionTitle LIKE '%", course, "%'"]
         return "".join(item)
 
     def disconnect(self):
@@ -76,7 +74,8 @@ class SearchCourse:
 
     def display(self):
         t = PrettyTable(['SectionTitle', 'CallNumber', 'StatusSeatsAvailable', 'DaysTimeLocation', 'Instructor', 'SessionAndDates', 'Credits'])
-        entries = self.query_info(self.create_query())
+        query = self.create_query()
+        entries = self.query_info(query)
         for entry in entries:
             t.add_row(entry)
         print(t)
