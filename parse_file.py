@@ -4,9 +4,8 @@ import re
 class Parse:
     def __init__(self):
         self.f = self.open_file()
-        self.count_title_call_number = 0
-        self.count_title_call_number_control = 0
-        self.count_status = 0
+        self.count_valid_lines = 0
+        self.count_parsed_valid_lines = 0
         self.preprocessed = self.open_stage1()
 
     def open_file(self):
@@ -14,6 +13,13 @@ class Parse:
 
     def open_stage1(self):
         return open(r'stage1.txt', 'w+')
+
+    def parse_line(self):
+        """
+        Wrapper of the other two parse methods.
+        :return: tuple
+        """
+        pass
 
     def parse_line1(self, txt):
         """
@@ -23,10 +29,9 @@ class Parse:
         """
         words = txt.split("\" \"")
         course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -616-W0
-        print(course_name)
+        print(course_name)  # TODO: remove prints
         call_number = words[1][0:5]
-        print(call_number)  # this is the call number, like this: 10086
-        self.count_title_call_number += 1
+        print(call_number)  # this is the call number, like this: 10086   # TODO: remove prints
         return course_name, call_number
 
     def parse_line2(self, txt):
@@ -47,7 +52,6 @@ class Parse:
                 instructor = t[4][1:]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -62,7 +66,7 @@ class Parse:
                     instructor = t[5]
                 session_and_dates = t[7]
                 credit = t[8].strip()
-                print(t)  # TODO: remove prints
+                print(t)
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -74,7 +78,6 @@ class Parse:
                 instructor = t[5]
                 session_and_dates = t[7]
                 credit = t[9]
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -82,7 +85,7 @@ class Parse:
                 print(credit)
             else:
                 print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
-            self.count_status += 1
+            self.count_parsed_valid_lines += 1
         elif partition.startswith('Cancelled'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 3 5 7
@@ -90,7 +93,6 @@ class Parse:
                 status_seats_available = t[0]
                 days_time_location = t[1][len('CANCELLED '):]
                 credit = t[2][-5:].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(credit)
@@ -101,7 +103,6 @@ class Parse:
                 days_time_location = t[1][len('CANCELLED '):]
                 session_and_dates = t[3]
                 credit = t[4][-5:].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(session_and_dates)
@@ -112,7 +113,6 @@ class Parse:
                 days_time_location = t[1][len('CANCELLED '):]
                 session_and_dates = t[3]
                 credit = t[5].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(session_and_dates)
@@ -120,7 +120,7 @@ class Parse:
                 # NO instructor
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-            self.count_status += 1
+            self.count_parsed_valid_lines += 1
         elif partition.startswith('Closed'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
@@ -130,7 +130,6 @@ class Parse:
                 instructor = t[2][1:]
                 session_and_dates = t[3]
                 credit = t[4].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -142,7 +141,6 @@ class Parse:
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -154,7 +152,6 @@ class Parse:
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[7]
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -162,7 +159,7 @@ class Parse:
                 print(credit)
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-            self.count_status += 1
+            self.count_parsed_valid_lines += 1
         elif partition.startswith('Open '):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
@@ -172,7 +169,6 @@ class Parse:
                 instructor = t[2][1:-1]
                 session_and_dates = t[3]
                 credit = t[4].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -184,7 +180,6 @@ class Parse:
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -196,7 +191,6 @@ class Parse:
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[7]
-                print(t)  # TODO: remove prints
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
@@ -204,8 +198,7 @@ class Parse:
                 print(credit)
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
-            # TODO: fill available variables
-            self.count_status += 1
+            self.count_parsed_valid_lines += 1
         else:
             print("\n\n\nthis line is not matched", partition)
         return status_seats_available, days_time_location, instructor, session_and_dates, credit
@@ -244,7 +237,7 @@ class Parse:
         m = rg.search(txt)
         if m:
             self.preprocessed.write(txt)
-            self.count_title_call_number_control += 1
+            self.count_valid_lines += 1
 
     def file_works(self):
         for line in self.f:
@@ -257,10 +250,9 @@ class Parse:
             self.parse_line1(line)
             self.parse_line2(line)
             print()
-            print()
 
         print()
-        print(self.count_title_call_number == self.count_title_call_number_control == self.count_status)  # no missing
+        print(self.count_valid_lines == self.count_parsed_valid_lines)  # no missing
 
     def get_course_dependency(self):
         pass
