@@ -40,20 +40,31 @@ class SearchCourse:
 
     def ask_major(self):
         print(self.majors)
-        return input("Enter major.")
+        return input("Enter major:")
 
     def ask_course(self):
-        major = self.ask_major()
+        major = self.ask_major().upper()
+        while major not in self.majors:
+            major = self.ask_major()
         print(self.courses[major])
-        return input("Enter course.")
+        return input("Enter course:"), major
 
     def create_query(self):
         """
         SELECT * FROM courses WHERE SectionTitle LIKE '%SSW -555%'
         :return: str
         """
-        course = self.ask_course()
-        item = ["SELECT * FROM courses WHERE SectionTitle LIKE '%", course, "%'"]
+        course = self.ask_course()[0]
+        major = self.ask_course()[1]
+        item = []
+        if len(course) == 3 and major + " -" + course in self.courses[major]:
+            item.append("SELECT * FROM courses WHERE SectionTitle LIKE '%")
+            item.append(major + " -" + course)
+            item.append("%'")
+        elif course in self.courses[major]:
+            item = ["SELECT * FROM courses WHERE SectionTitle LIKE '%", course, "%'"]
+        else:
+            raise Exception("Invalid Input")
         return "".join(item)
 
     def disconnect(self):
@@ -64,24 +75,18 @@ class SearchCourse:
         self.conn.close()
 
     def display(self):
+        t = PrettyTable(['SectionTitle', 'CallNumber', 'StatusSeatsAvailable', 'DaysTimeLocation', 'Instructor', 'SessionAndDates', 'Credits'])
         entries = self.query_info(self.create_query())
         for entry in entries:
-            print(entry)
-
-    def test(self):
-        # print(self.majors)
-        for key in self.courses:
-            print(key)
-            print(self.courses[key])
+            t.add_row(entry)
+        print(t)
 
 
 def main():
     demo = SearchCourse()
-    # demo.test()
     demo.display()
     demo.disconnect()
 
 
 if __name__ == '__main__':
     main()
-
