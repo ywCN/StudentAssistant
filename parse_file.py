@@ -41,6 +41,7 @@ class Parse:
         if partition.startswith('"Open'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 7 9 11
+            self.count_parsed_valid_lines += 1
             if length == 7:
                 status_seats_available = t[1]
                 days_time_location = t[3]
@@ -63,11 +64,11 @@ class Parse:
                     instructor = t[5]
                     session_and_dates = t[7]
                     credit = t[8].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
+                    # print(status_seats_available)
+                    # print(days_time_location)
+                    # print(instructor)
+                    # print(session_and_dates)
+                    # print(credit)
             elif length == 11:
                 status_seats_available = t[1]
                 days_time_location = t[3]
@@ -82,10 +83,10 @@ class Parse:
             else:
                 print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
                 self.count_parsed_valid_lines -= 1
-            self.count_parsed_valid_lines += 1
         elif partition.startswith('Cancelled'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 3 5 7
+            self.count_parsed_valid_lines += 1
             if length == 3:
                 status_seats_available = t[0]
                 days_time_location = t[1][len('CANCELLED '):]
@@ -118,10 +119,10 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
                 self.count_parsed_valid_lines -= 1
-            self.count_parsed_valid_lines += 1
         elif partition.startswith('Closed'):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
+            self.count_parsed_valid_lines += 1
             if length == 5:
                 status_seats_available = t[0]
                 days_time_location = t[1]
@@ -158,10 +159,10 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
                 self.count_parsed_valid_lines -= 1
-            self.count_parsed_valid_lines += 1
         elif partition.startswith('Open '):
             t = partition.split('"')
             length = len(t)  # only 3 cases: 5 7 9
+            self.count_parsed_valid_lines += 1
             if length == 5:
                 status_seats_available = t[0]
                 days_time_location = t[1]
@@ -198,7 +199,6 @@ class Parse:
             else:
                 print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
                 self.count_parsed_valid_lines -= 1
-            self.count_parsed_valid_lines += 1
         else:
             print("\n\n\nthis line is not matched", partition)
         return status_seats_available, days_time_location, instructor, session_and_dates, credit
@@ -240,8 +240,9 @@ class Parse:
         for line in self.f:
             if self.populate_stage1(line):
                 self.count_valid_lines += 1
-                for item in self.parse_line(line):
-                    if len(self.parse_line(line)) != 7:
+                items = self.parse_line(line)
+                for item in items:
+                    if len(items) != 7:
                         raise Exception("wrong length")
                     else:
                         print(item)
@@ -251,7 +252,9 @@ class Parse:
             print("\nValid lines and parsed lines are different!")
             print("Valid lines:", self.count_valid_lines, "\nParsed lines:", self.count_parsed_valid_lines)
         else:
-            print("nothing is wrong")
+            print("--------------------------------------"
+                  "\n| Nothing seems wrong. Take a break. |"
+                  "\n--------------------------------------")
 
     def get_course_dependency(self):
         pass
