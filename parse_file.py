@@ -8,7 +8,7 @@ class Parse:
         self.count_parsed_valid_lines = 0
 
     def open_file(self):
-        return open(r'test.txt')  # row courses file
+        return open(r'test.txt')  # raw courses file
 
     def parse_line(self, line):
         """
@@ -25,9 +25,9 @@ class Parse:
         :return: tuple
         """
         words = line.split("\" \"")
-        course_name = words[0][1:].split(" - ")[0]  # this is the course name. like this: TM -616-W0
-        call_number = words[1][0:5]
-        return course_name, call_number
+        section_title = words[0][1:].split(" - ")[0]  # for example: TM -616-W0
+        call_number = words[1][0:5]  # for example: 10086
+        return section_title, call_number
 
     def parse_line2(self, line):
         """
@@ -48,11 +48,6 @@ class Parse:
                 instructor = t[4][1:]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             elif length == 9:
                 status_seats_available = t[1]
                 days_time_location = t[3]
@@ -64,24 +59,14 @@ class Parse:
                     instructor = t[5]
                     session_and_dates = t[7]
                     credit = t[8].strip()
-                    # print(status_seats_available)
-                    # print(days_time_location)
-                    # print(instructor)
-                    # print(session_and_dates)
-                    # print(credit)
             elif length == 11:
                 status_seats_available = t[1]
                 days_time_location = t[3]
                 instructor = t[5]
                 session_and_dates = t[7]
                 credit = t[9]
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             else:
-                print("AAAAAAAAAAAAAWWWWWWWWWWWWWWGGGGGGGGGGGGGGGGG")
+                print("Missed some cases. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!")
                 self.count_parsed_valid_lines -= 1
         elif partition.startswith('Cancelled'):
             t = partition.split('"')
@@ -91,33 +76,21 @@ class Parse:
                 status_seats_available = t[0]
                 days_time_location = t[1][len('CANCELLED '):]
                 credit = t[2][-5:].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(credit)
-                # # NO instructor
-                # # NO session_and_dates
+                # NO instructor. NO session_and_dates.
             elif length == 5:
                 status_seats_available = t[0]
                 days_time_location = t[1][len('CANCELLED '):]
                 session_and_dates = t[3]
                 credit = t[4][-5:].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(session_and_dates)
-                # print(credit)
-                # # NO instructor
+                # NO instructor.
             elif length == 7:
                 status_seats_available = t[0]
                 days_time_location = t[1][len('CANCELLED '):]
                 session_and_dates = t[3]
                 credit = t[5].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(session_and_dates)
-                # print(credit)
-                # # NO instructor
+                # NO instructor.
             else:
-                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+                print("Missed some cases. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!")
                 self.count_parsed_valid_lines -= 1
         elif partition.startswith('Closed'):
             t = partition.split('"')
@@ -129,35 +102,20 @@ class Parse:
                 instructor = t[2][1:]
                 session_and_dates = t[3]
                 credit = t[4].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             elif length == 7:
                 status_seats_available = t[0]
                 days_time_location = t[1]
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             elif length == 9:
                 status_seats_available = t[0]
                 days_time_location = t[1]
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[7]
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             else:
-                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+                print("Missed some cases. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!")
                 self.count_parsed_valid_lines -= 1
         elif partition.startswith('Open '):
             t = partition.split('"')
@@ -169,35 +127,20 @@ class Parse:
                 instructor = t[2][1:-1]
                 session_and_dates = t[3]
                 credit = t[4].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             elif length == 7:
                 status_seats_available = t[0]
                 days_time_location = t[1]
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[6].strip()
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             elif length == 9:
                 status_seats_available = t[0]
                 days_time_location = t[1]
                 instructor = t[3]
                 session_and_dates = t[5]
                 credit = t[7]
-                # print(status_seats_available)
-                # print(days_time_location)
-                # print(instructor)
-                # print(session_and_dates)
-                # print(credit)
             else:
-                print("AAAAAAAAAWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGG")
+                print("Missed some cases. NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!")
                 self.count_parsed_valid_lines -= 1
         else:
             print("\n\n\nthis line is not matched", partition)
@@ -219,6 +162,7 @@ class Parse:
         """
         Get useful lines and save them into another file. This can be an optional process.
         Later this function can be changed to a function return boolean telling if this line is valid.
+        regex generated by https://txt2re.com/
         :param txt:
         :return:
         """
@@ -248,6 +192,7 @@ class Parse:
                         print(item)
                 print()
 
+                # TODO: instead of print, save info into database
         if self.count_valid_lines != self.count_parsed_valid_lines:
             print("\nValid lines and parsed lines are different!")
             print("Valid lines:", self.count_valid_lines, "\nParsed lines:", self.count_parsed_valid_lines)
@@ -258,7 +203,7 @@ class Parse:
 
     def get_course_dependency(self):
         pass
-        # TODO: parse dependencies from PDF file using regex, dependencies have 2 or more types, 1 pre-req, 2 co-req
+        # TODO:parse dependencies from PDF file using regex, dependencies have 2 or more types, 1 pre-req, 2 co-req
         '''
         A prerequisite is a requirement that must be met before you take a course, 
         while a corequisite is a course that must be taken at the same time.
