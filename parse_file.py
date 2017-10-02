@@ -1,8 +1,18 @@
 import re
+import os
+import sqlite3
 
 
 class Parse:
     def __init__(self):
+        self.db_name = r'courses.db'
+        if os.path.isfile(self.db_name):
+            print("Please delete or rename %s and run this program again." % self.db_name)
+            exit()
+        else:
+            self.conn = sqlite3.connect(r'courses.db')
+            self.c = self.conn.cursor()
+            self.create_table()
         self.f = self.open_file()
         self.count_valid_lines = 0
         self.count_parsed_valid_lines = 0
@@ -185,14 +195,17 @@ class Parse:
             if self.populate_stage1(line):
                 self.count_valid_lines += 1
                 items = self.parse_line(line)
-                for item in items:
-                    if len(items) != 7:
-                        raise Exception("wrong length")
-                    else:
-                        print(item)
-                print()
+                if len(items) != 7:
+                    raise Exception("wrong length")
+                else:
+                    self.insert_entry(items)
+                # for item in items:
+                #     if len(items) != 7:
+                #         raise Exception("wrong length")
+                #     else:
+                #         print(item)
+                # print()
 
-                # TODO: instead of print, save info into database
         if self.count_valid_lines != self.count_parsed_valid_lines:
             print("\nValid lines and parsed lines are different!")
             print("Valid lines:", self.count_valid_lines, "\nParsed lines:", self.count_parsed_valid_lines)
@@ -201,6 +214,17 @@ class Parse:
                   "\n| Nothing seems wrong. Take a break. |"
                   "\n--------------------------------------")
 
+    def create_table(self):
+
+        self.c.execute("CREATE TABLE IF NOT EXISTS courses(SectionTitle TEXT, CallNumber TEXT, StatusSeatsAvailable "
+                       "TEXT, DaysTimeLocation TEXT, Instructor TEXT, SessionAndDates TEXT, Credits TEXT)")
+
+    def insert_entry(self, data):
+        self.c.execute("INSERT INTO courses (SectionTitle, CallNumber, StatusSeatsAvailable, DaysTimeLocation, "
+                       "Instructor, SessionAndDates, Credits) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                       (data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+        self.conn.commit()
+
     def get_course_dependency(self):
         pass
         # TODO:parse dependencies from PDF file using regex, dependencies have 2 or more types, 1 pre-req, 2 co-req
@@ -208,12 +232,16 @@ class Parse:
         A prerequisite is a requirement that must be met before you take a course, 
         while a corequisite is a course that must be taken at the same time.
         '''
+    def finalize(self):
+        self.f.close()
+        self.c.close()
+        self.conn.close()
 
 
 def main():
     demo = Parse()
     demo.file_works()
-    demo.f.close()
+    demo.finalize()
 
 
 if __name__ == '__main__':
