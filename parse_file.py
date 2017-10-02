@@ -6,13 +6,9 @@ class Parse:
         self.f = self.open_file()
         self.count_valid_lines = 0
         self.count_parsed_valid_lines = 0
-        self.preprocessed = self.open_stage1()  # TODO: remove this extra process, parse directly from raw course file
 
     def open_file(self):
         return open(r'test.txt')  # row courses file
-
-    def open_stage1(self):
-        return open(r'stage1.txt', 'w+')
 
     def parse_line(self, line):
         """
@@ -238,26 +234,24 @@ class Parse:
         re10 = '((?:[a-z][a-z0-9_]*))'  # Variable Name 3
 
         rg = re.compile(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, re.IGNORECASE | re.DOTALL)
-        m = rg.search(txt)  # TODO: make this as the boolean to be returned
-        if m:
-            self.preprocessed.write(txt)
-            self.count_valid_lines += 1
+        return rg.search(txt)
 
     def file_works(self):
         for line in self.f:
-            self.populate_stage1(line)
-
-        self.preprocessed.close()
-        self.preprocessed = open(r'stage1.txt')
-
-        for line in self.preprocessed:
-            if len(self.parse_line(line)) != 7:
+            if self.populate_stage1(line):
+                self.count_valid_lines += 1
                 for item in self.parse_line(line):
-                    print(item)
+                    if len(self.parse_line(line)) != 7:
+                        raise Exception("wrong length")
+                    else:
+                        print(item)
                 print()
 
-        print()
-        print(self.count_valid_lines == self.count_parsed_valid_lines)  # no missing
+        if self.count_valid_lines != self.count_parsed_valid_lines:
+            print("\nValid lines and parsed lines are different!")
+            print("Valid lines:", self.count_valid_lines, "\nParsed lines:", self.count_parsed_valid_lines)
+        else:
+            print("nothing is wrong")
 
     def get_course_dependency(self):
         pass
@@ -272,7 +266,6 @@ def main():
     demo = Parse()
     demo.file_works()
     demo.f.close()
-    demo.preprocessed.close()
 
 
 if __name__ == '__main__':
