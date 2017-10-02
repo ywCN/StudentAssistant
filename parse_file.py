@@ -6,7 +6,7 @@ class Parse:
         self.f = self.open_file()
         self.count_valid_lines = 0
         self.count_parsed_valid_lines = 0
-        self.preprocessed = self.open_stage1()
+        self.preprocessed = self.open_stage1()  # TODO: remove this extra process, parse directly from raw course file
 
     def open_file(self):
         return open(r'test.txt')  # row courses file
@@ -251,9 +251,10 @@ class Parse:
         self.preprocessed = open(r'stage1.txt')
 
         for line in self.preprocessed:
-            for item in self.parse_line(line):
-                print(item)
-            print()
+            if len(self.parse_line(line)) != 7:
+                for item in self.parse_line(line):
+                    print(item)
+                print()
 
         print()
         print(self.count_valid_lines == self.count_parsed_valid_lines)  # no missing
