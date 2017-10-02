@@ -62,11 +62,12 @@ class Parse:
                 days_time_location = t[3]
                 if " STAFF " in t:
                     instructor = t[4][1:-1]
+                    session_and_dates = t[5]
+                    credit = t[6]
                 else:
                     instructor = t[5]
-                session_and_dates = t[7]
-                credit = t[8].strip()
-                print(t)
+                    session_and_dates = t[7]
+                    credit = t[8].strip()
                 print(status_seats_available)
                 print(days_time_location)
                 print(instructor)
