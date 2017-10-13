@@ -15,8 +15,11 @@ class ParsePDF:
         self.file = self.open_file()
 
     def open_file(self):
-        # try:
-        return open(self.file_name, encoding='utf-8')
+        try:
+            return open(self.file_name, encoding='utf-8')
+        except FileNotFoundError:
+            print("Please put {} in the same path!".format(self.file_name))
+            exit()
 
     def is_valid_line(self, text):
         re1 = '((?:[a-z][a-z]+))'  # Word 1
@@ -41,7 +44,7 @@ class ParsePDF:
                 loc = line.index("Corequisites: ")
                 parsed_line = line[loc:]
                 print(parsed_line.strip())
-            elif self.is_valid_line(line[:6]) and len(line) < 10 and 'or' not in line:
+            elif self.is_valid_line(line[:7]) and len(line) < 10 and 'or' not in line:
                 cache = line.strip()
 
 def main():
