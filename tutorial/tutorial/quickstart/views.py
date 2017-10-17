@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from quickstart.models import Course
 from rest_framework import viewsets
-from quickstart.serializers import UserSerializer, GroupSerializer, CourseDescriptionSerializer
+from quickstart.serializers import UserSerializer, GroupSerializer, CourseDescriptionSerializer, GetAvailableCourseSerializer
 
 from rest_framework.decorators import detail_route
 from rest_framework.decorators import list_route
@@ -48,6 +48,10 @@ class CourseDescriptionViewSet(viewsets.ModelViewSet):
 		serializer_class = CourseDescriptionSerializer
 		serializer = CourseDescriptionSerializer(queryset, many=True, context=self.get_serializer_context())
 		return Response(serializer.data)
+
+class GetAvailableCourseViewSet(viewsets.ModelViewSet):
+	queryset = Course.objects.all()
+	serializer_class = GetAvailableCourseSerializer
 
 class IndividualCourseDescriptionViewSet(viewsets.ModelViewSet):
 	"""

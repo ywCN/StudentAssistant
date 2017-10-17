@@ -22,7 +22,8 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 #router.register(r'^course_description/get_course_description/([A-Z]{3}[0-9]{3})/$', views.CourseDescriptionViewSet.get_course_description)
-router.register(r'^course_description/$', views.CourseDescriptionViewSet)
+router.register(r'course_description/', views.CourseDescriptionViewSet)
+router.register(r'status_seats/', views.GetAvailableCourseViewSet)
 #router.register(r'course_description/SSW690/$', views.CourseDescriptionViewSet.get_course_description)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

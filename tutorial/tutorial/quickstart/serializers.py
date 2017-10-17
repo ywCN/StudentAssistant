@@ -20,7 +20,13 @@ class CourseDescriptionSerializer(serializers.HyperlinkedModelSerializer):
 	
 	class Meta:
 		model = Course
-		fields = ('course_id', 'course_name', 'course_description')
+		fields = ('course_id', 'course_name', 'course_description', 'days_times')
+
+class GetAvailableCourseSerializer(serializers.HyperlinkedModelSerializer):
+
+	class Meta:
+		model = Course
+		fields = ('course_id', 'course_name', 'status_seats')
 
 class GetClassTimeSerializer(serializers.HyperlinkedModelSerializer):
 
