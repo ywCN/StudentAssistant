@@ -1,0 +1,345 @@
+ScreenManager:
+	id: screen_manager
+	HomeScreen:
+		id: home_screen
+		name: 'HomeScreen'
+		manager: 'screen_manager'
+	CourseDescriptionScreen:
+		id: course_description_screen
+		name: 'CourseDescriptionScreen'
+		manager: 'screen_manager'		
+	CoursesAvailScreen:
+		id: courses_avail_screen
+		name: 'CoursesAvailScreen'
+		manager: 'screen_manager'				
+	CourseTimeScreen:
+		id: course_time_screen
+		name: 'CourseTimeScreen'
+		manager: 'screen_manager'		
+	BuildingsScreen:
+		id: buildings_screen
+		name: 'BuildingsScreen'
+		manager: 'screen_manager'
+	TeachersScreen:
+		id: teachers_screen
+		name: 'TeachersScreen'
+		manager: 'screen_manager'
+	DanSandboxScreen:
+		id: dan_sandbox_screen
+		name: 'DanSandboxScreen'
+		manager: 'screen_manager'
+
+<HomeScreen>
+
+	BoxLayout:
+		orientation: "vertical"
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"					
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"			
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+				ActionButton:
+					text: "DanSandbox"
+					on_release: app.root.current = "DanSandboxScreen"	
+
+		BoxLayout:
+			orientation: 'vertical'
+			AsyncImage:
+				source:'Logo-NJ-stevens.png'
+				allow_stretch: True
+				keep_ratio: True
+				size_hint_y: None
+				size_hint_x: None
+				width: self.parent.width
+				height: self.parent.height
+
+<CourseDescriptionScreen>
+	BoxLayout:
+		id: course_description_screen
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"			
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"		
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+		BoxLayout:
+			height: "40dp"
+			size_hint_y: None
+			orientation: 'horizontal'
+			TextInput:
+				id: course_id
+				size_hint_x: 50
+				focus: True
+				multiline: False
+			Button:
+				text: "Search"
+				size_hint_x: 25
+				on_press: root.get_course_description()
+		BoxLayout:
+			id: course_description_section
+			width: self.parent.width
+			height: self.parent.height
+			
+<CoursesAvailScreen>
+	BoxLayout:
+		id: courses_avail_screen
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"			
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"		
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+		BoxLayout:
+			height: "40dp"
+			size_hint_y: None
+			orientation: 'horizontal'
+			TextInput:
+				id: course_id
+				size_hint_x: 50
+				focus: True
+				multiline: False
+			Button:
+				text: "Search"
+				size_hint_x: 25
+				on_press: root.get_courses_available()
+			Button:
+				text: "Clear"
+				size_hint_x: 25
+				on_press: root.clear_courses_available()
+		BoxLayout:
+			id: courses_avail_section
+			width: self.parent.width
+			height: self.parent.height			
+			
+<CourseTimeScreen>
+	BoxLayout:
+		id: course_time_screen
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"			
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"		
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+		BoxLayout:
+			height: "40dp"
+			size_hint_y: None
+			orientation: 'horizontal'
+			TextInput:
+				id: course_id
+				size_hint_x: 50
+				focus: True
+				multiline: False
+			Button:
+				text: "Search"
+				size_hint_x: 25
+				on_press: root.get_course_times()
+			Button:
+				text: "Clear"
+				size_hint_x: 25
+				on_press: root.clear_course_times()
+		BoxLayout:
+			id: course_time_section
+			width: self.parent.width
+			height: self.parent.height		
+			
+<BuildingsScreen>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"				
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"						
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+
+
+		BoxLayout:
+			orientation: "vertical"
+			AsyncImage:
+				source:"CampusMap.png"
+				allow_stretch: True
+				keep_ratio: True
+				size_hint_y: None
+				size_hint_x: None
+				width: self.parent.width
+				height: self.parent.height
+
+
+<TeachersScreen>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"		
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"		
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+				
+<DanSandboxScreen>
+	BoxLayout:
+		id: dan_sandbox_screen
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					size_hint_x: None
+					width: 0
+					app_icon_width: 0.1
+					with_previous: False				
+				ActionButton:
+					text: "Home"
+					on_release: app.root.current = 'HomeScreen'
+				ActionButton:
+					text: "Course Description"
+					on_release: app.root.current = "CourseDescriptionScreen"
+				ActionButton:
+					text: "Courses Available"
+					on_release: app.root.current = "CoursesAvailScreen"					
+				ActionButton:
+					text: "Course Times"
+					on_release: app.root.current = "CourseTimeScreen"		
+				ActionButton:
+					text: "Buildings"
+					on_release: app.root.current = "BuildingsScreen"
+				ActionButton:
+					text: "Teachers"
+					on_release: app.root.current = "TeachersScreen"
+		BoxLayout:
+			height: "40dp"
+			size_hint_y: None
+			orientation: 'horizontal'
+			TextInput:
+				id: course_id
+				size_hint_x: 50
+				focus: True
+				multiline: False
+			Button:
+				text: "Search"
+				size_hint_x: 25
+				on_press: root.get_courses_available()
+			Button:
+				text: "Clear"
+				size_hint_x: 25
+				on_press: root.clear_courses_available()
+		BoxLayout:
+			id: courses_avail_section
+			width: self.parent.width
+			height: self.parent.height		
