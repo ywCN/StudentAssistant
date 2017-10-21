@@ -102,7 +102,7 @@ class CourseTimeScreen(Screen):
 		
 	def get_course_times(self):
 		#clear widgets from display area
-		self.ids.courses_time_section.clear_widgets()	
+		self.ids.courses_avail_section.clear_widgets()	
 
 		#URL request section
 		#@TODO update to remove hard-coded indexing once server call is available
@@ -112,7 +112,7 @@ class CourseTimeScreen(Screen):
 		res = req.result[0]
 		
 		#debug print statement
-		print(res)
+		print(test_TxtIn.text)
 					
 		#This section currently only displays the following default widgets upon successful resolution  
 		#of the UrlRequest /courses_available/
@@ -121,7 +121,9 @@ class CourseTimeScreen(Screen):
 		#@TODO update look and feel of this tab to conform to the iOS prototype visuals
 		#NOTE that the req.result array currently is hard coded to index 0, this will need to
 		#to be considered once a valid return is gotten from the server				
-		
+		headers = {'Accept' : 'application/json; indent=4'}
+		self.ids.course_time_section.clear_widgets()
+
 		layout_inner1 = BoxLayout(orientation='horizontal')
 		layout_inner1.add_widget(Label(text = "Course ID"))
 		layout_inner1.add_widget(Label(text = "Course Name"))
