@@ -7,7 +7,7 @@ ScreenManager:
 	CourseDescriptionScreen:
 		id: course_description_screen
 		name: 'CourseDescriptionScreen'
-		manager: 'screen_manager'		
+		manager: 'screen_manager'
 	CoursesAvailScreen:
 		id: courses_avail_screen
 		name: 'CoursesAvailScreen'
@@ -62,6 +62,7 @@ ScreenManager:
 					text: "DanSandbox"
 					on_release: app.root.current = "DanSandboxScreen"	
 
+
 		BoxLayout:
 			orientation: 'vertical'
 			AsyncImage:
@@ -89,13 +90,7 @@ ScreenManager:
 					on_release: app.root.current = 'HomeScreen'
 				ActionButton:
 					text: "Course Description"
-					on_release: app.root.current = "CourseDescriptionScreen"			
-				ActionButton:
-					text: "Courses Available"
-					on_release: app.root.current = "CoursesAvailScreen"					
-				ActionButton:
-					text: "Course Times"
-					on_release: app.root.current = "CourseTimeScreen"		
+					on_release: app.root.current = "CourseDescriptionScreen"
 				ActionButton:
 					text: "Buildings"
 					on_release: app.root.current = "BuildingsScreen"
@@ -119,7 +114,7 @@ ScreenManager:
 			id: course_description_section
 			width: self.parent.width
 			height: self.parent.height
-			
+
 <CoursesAvailScreen>
 	BoxLayout:
 		id: courses_avail_screen
@@ -221,7 +216,7 @@ ScreenManager:
 			id: course_time_section
 			width: self.parent.width
 			height: self.parent.height		
-			
+
 <BuildingsScreen>
 	BoxLayout:
 		orientation: 'vertical'
@@ -237,13 +232,7 @@ ScreenManager:
 					on_release: app.root.current = 'HomeScreen'
 				ActionButton:
 					text: "Course Description"
-					on_release: app.root.current = "CourseDescriptionScreen"				
-				ActionButton:
-					text: "Courses Available"
-					on_release: app.root.current = "CoursesAvailScreen"					
-				ActionButton:
-					text: "Course Times"
-					on_release: app.root.current = "CourseTimeScreen"						
+					on_release: app.root.current = "CourseDescriptionScreen"
 				ActionButton:
 					text: "Buildings"
 					on_release: app.root.current = "BuildingsScreen"
@@ -279,20 +268,14 @@ ScreenManager:
 					on_release: app.root.current = 'HomeScreen'
 				ActionButton:
 					text: "Course Description"
-					on_release: app.root.current = "CourseDescriptionScreen"		
-				ActionButton:
-					text: "Courses Available"
-					on_release: app.root.current = "CoursesAvailScreen"					
-				ActionButton:
-					text: "Course Times"
-					on_release: app.root.current = "CourseTimeScreen"		
+					on_release: app.root.current = "CourseDescriptionScreen"
 				ActionButton:
 					text: "Buildings"
 					on_release: app.root.current = "BuildingsScreen"
 				ActionButton:
 					text: "Teachers"
 					on_release: app.root.current = "TeachersScreen"
-				
+
 <DanSandboxScreen>
 	BoxLayout:
 		id: dan_sandbox_screen
@@ -342,4 +325,4 @@ ScreenManager:
 		BoxLayout:
 			id: courses_avail_section
 			width: self.parent.width
-			height: self.parent.height		
+			height: self.parent.height

@@ -15,36 +15,6 @@ class BuildingsScreen(Screen):
 class TeachersScreen(Screen):
 	pass
 
-class CourseDescriptionScreen(Screen):
-	
-	def get_course_description(self):
-		headers = {'Accept': 'application/json; indent=4'}
-		#This is how you grab the text to perform the search and retrievel
-	 	#searched = self.ids.course_id.text
-		req = UrlRequest('http://127.0.0.1:8000/course_description/', req_headers=headers)
-		req.wait()
-		res = req.result[0]
-		#print req.result
-		layout = BoxLayout(orientation='vertical')
-		course_id = res['course_id']
-		course_name = res['course_name']
-		course_description = res['course_description']
-		id_label = Label(text=course_id, halign='left', valign='middle')
-		name_label = Label(text=course_name)
-		description_label = Label(text=course_description, size_hint=(1,None))
-		description_label.bind(
-			width=lambda*x:description_label.setter('text_size')(description_label,(description_label.width,None)),
-			texture_size=lambda*x:description_label.setter('height')(description_label,description_label.texture_size[1]))
-		layout.add_widget(id_label)
-		layout.add_widget(name_label)
-		layout.add_widget(description_label)
-		self.ids.course_description_section.clear_widgets()
-		self.ids.course_description_section.add_widget(layout)	
-		
-#Description: tab to pull and display the courses that currently have open seats
-#
-#@TODO: see TODOs in the body of the class relating to getting and displaying
-#@TODO: add the ability to specify which semester the open classes are being pulled from
 class CoursesAvailScreen(Screen):
 		
 	def get_courses_available(self):
@@ -92,17 +62,38 @@ class CoursesAvailScreen(Screen):
 		self.ids.courses_avail_section.add_widget(layout_outer)
 		
 	def clear_courses_available(self):
-		self.ids.courses_avail_section.clear_widgets()
-
-#Description: tab display the times for a specified class
-#
-#@TODO: update for course times once server call is available. Currently this class is 
-#a simple copy of the CoursesAvailScreen class as a stub
+		self.ids.courses_avail_section.clear_widgets()	
+	
+class CourseDescriptionScreen(Screen):
+	
+	def get_course_description(self):
+		headers = {'Accept': 'application/json; indent=4'}
+		#This is how you grab the text to perform the search and retrievel
+	 	#searched = self.ids.course_id.text
+		req = UrlRequest('http://127.0.0.1:8000/course_description/', req_headers=headers)
+		req.wait()
+		res = req.result[0]
+		#print req.result
+		layout = BoxLayout(orientation='vertical')
+		course_id = res['course_id']
+		course_name = res['course_name']
+		course_description = res['course_description']
+		id_label = Label(text=course_id, halign='left', valign='middle')
+		name_label = Label(text=course_name)
+		description_label = Label(text=course_description, size_hint=(1,None))
+		description_label.bind(
+			width=lambda*x:description_label.setter('text_size')(description_label,(description_label.width,None)),
+			texture_size=lambda*x:description_label.setter('height')(description_label,description_label.texture_size[1]))
+		layout.add_widget(id_label)
+		layout.add_widget(name_label)
+		layout.add_widget(description_label)
+		self.ids.course_description_section.clear_widgets()
+		self.ids.course_description_section.add_widget(layout)
 class CourseTimeScreen(Screen):
 		
 	def get_course_times(self):
 		#clear widgets from display area
-		self.ids.courses_avail_section.clear_widgets()	
+		self.ids.course_time_section.clear_widgets()	
 
 		#URL request section
 		#@TODO update to remove hard-coded indexing once server call is available
@@ -112,7 +103,7 @@ class CourseTimeScreen(Screen):
 		res = req.result[0]
 		
 		#debug print statement
-		print(test_TxtIn.text)
+		print(res)
 					
 		#This section currently only displays the following default widgets upon successful resolution  
 		#of the UrlRequest /courses_available/
@@ -201,7 +192,7 @@ class DanSandboxScreen(Screen):
 		self.ids.courses_avail_section.add_widget(layout_outer)
 		
 	def clear_courses_available(self):
-		self.ids.courses_avail_section.clear_widgets()
+		self.ids.courses_avail_section.clear_widgets()		
 
 class SA_App(App):
 	pass
