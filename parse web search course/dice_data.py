@@ -102,9 +102,20 @@ class DiceData:
 
         # print(CourseID, CourseName, CourseSection)  # BIO381 Cell Biology A
         CallNumber = info[1]
-        print(CallNumber)
+        # print(CallNumber)
+        status_seats_available_elements = info[2].split(' - ')  # Open - 33 of 96 -> Open, 33 of 96
+        if status_seats_available_elements[0] == 'Open':
+            Status = 'Open'
+            seats_elements = status_seats_available_elements[1].split(' of ')
+            if len(seats_elements) == 2:
+                Seats = seats_elements[0]
+            else:
+                Seats = 'unlimited'
+        else:
+            Status = 'Closed'
 
-        # self.insert_entry()
+
+            # self.insert_entry()
 
 
 def main():
