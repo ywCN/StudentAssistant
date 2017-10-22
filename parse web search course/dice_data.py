@@ -46,6 +46,7 @@ class DiceData:
             print("Please put {} in the same path of this .py file.".format(self.db_name))
             exit()
         self.call_numbers = self.get_all_call_numbers()
+        # print(self.call_numbers[1])
 
     def get_all_call_numbers(self):
         # query = 'select courses.SectionTitle from courses'
@@ -53,13 +54,11 @@ class DiceData:
         # print(len(self.query_info(query)))  # 2052
         query = 'select courses.CallNumber from courses'
         calls = self.query_info(query)
-        call_numbers = set()
+        call_numbers = []
         for call in calls:
-            call_numbers.add(call[0])
-
-        print(call_numbers)
-        print(len(call_numbers))  # 2052
-        return
+            call_numbers.append(call[0])
+        # print(len(call_numbers))  # 2052
+        return call_numbers
 
     def query_info(self, query):  # in old database
         """
@@ -76,10 +75,15 @@ class DiceData:
         self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
         self.conn2.commit()
 
+    def print_old_db(self):
+        for call in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call)
+            print(self.query_info(query))
+
 
 def main():
     demo = DiceData()
-    # demo.get_all_call_numbers()
+    demo.print_old_db()
 
 
 if __name__ == '__main__':
