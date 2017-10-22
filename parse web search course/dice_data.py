@@ -93,7 +93,11 @@ class DiceData:
         CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
             = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
+        section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
         CourseID = section_elements[0] + section_elements[1]
+        CourseName = section_elements2[1]
+        CourseSection = section_elements2[0]
+
 
 def main():
     demo = DiceData()
