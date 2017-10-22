@@ -40,15 +40,26 @@ class DiceData:
             self.conn1 = sqlite3.connect(self.db_name)  # old db
             self.c1 = self.conn1.cursor()
             self.conn2 = sqlite3.connect(r'courses2.db')  # new db
-            self.c2 = self.conn1.cursor()
+            self.c2 = self.conn2.cursor()
+            self.create_table()
         else:
-            print("Please put %s in the same path of this .py file." % self.db_name)
+            print("Please put {} in the same path of this .py file.".format(self.db_name))
             exit()
-        self.courses = self.get_all_courses()
+        self.call_numbers = self.get_all_call_numbers()
 
-    def get_all_courses(self):
-        query = 'select courses.SectionTitle from courses'
-        print(type(self.query_info(query)))
+    def get_all_call_numbers(self):
+        # query = 'select courses.SectionTitle from courses'
+        # print(type(self.query_info(query)))  # list
+        # print(len(self.query_info(query)))  # 2052
+        query = 'select courses.CallNumber from courses'
+        calls = self.query_info(query)
+        call_numbers = set()
+        for call in calls:
+            call_numbers.add(call[0])
+
+        print(call_numbers)
+        print(len(call_numbers))  # 2052
+        return
 
     def query_info(self, query):  # in old database
         """
@@ -68,7 +79,7 @@ class DiceData:
 
 def main():
     demo = DiceData()
-    demo.get_all_courses()
+    # demo.get_all_call_numbers()
 
 
 if __name__ == '__main__':
