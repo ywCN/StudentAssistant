@@ -69,17 +69,31 @@ class DiceData:
         return self.c1.fetchall()
 
     def create_table(self):  # in new database
-        self.c2.execute("CREATE TABLE IF NOT EXISTS courses(CourseID TEXT, CourseName TEXT, CourseSection TEXT, CallNumber TEXT, Status TEXT, Seats TEXT, Day TEXT, Time TEXT, Campus TEXT, Location TEXT, Instructor TEXT, StartDate TEXT, EndDate TEXT, MinCredit TEXT, MaxCredit TEXT)")
+        self.c2.execute("CREATE TABLE IF NOT EXISTS courses(CourseID TEXT, CourseName TEXT, CourseSection TEXT, "
+                        "CallNumber TEXT, Status TEXT, Seats TEXT, Day TEXT, Time TEXT, Campus TEXT, Location TEXT, "
+                        "Instructor TEXT, StartDate TEXT, EndDate TEXT, MinCredit TEXT, MaxCredit TEXT)")
 
     def insert_entry(self, data):  # in new database
-        self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+        self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, "
+                        "Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit "
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
         self.conn2.commit()
 
     def print_old_db(self):
-        for call in self.call_numbers:
-            query = 'select * from courses where courses.CallNumber == {}'.format(call)
-            print(self.query_info(query))
+        # for call in self.call_numbers:
+        #     query = 'select * from courses where courses.CallNumber == {}'.format(call)
+        #     print(self.query_info(query))
+        query = 'select * from courses where courses.CallNumber == 10032'
+        info = self.query_info(query)[0]
+        # print(type(info))  # tuple
+        print(info)
 
+    def parse_line(self, info):
+        CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
+            = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
+        section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
+        CourseID = section_elements[0] + section_elements[1]
 
 def main():
     demo = DiceData()
