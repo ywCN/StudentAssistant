@@ -84,7 +84,9 @@ class DiceData:
         # for call in self.call_numbers:
         #     query = 'select * from courses where courses.CallNumber == {}'.format(call)
         #     print(self.query_info(query))
-        query = 'select * from courses where courses.CallNumber == 10032'
+        # query = 'select * from courses where courses.CallNumber == 10032'
+        # query = 'select * from courses where courses.CallNumber == 10537'
+        query = 'select * from courses where courses.CallNumber == 10417'
         info = self.query_info(query)[0]
         # print(type(info))  # tuple
         print(info)
@@ -104,15 +106,20 @@ class DiceData:
         CallNumber = info[1]
         # print(CallNumber)
         status_seats_available_elements = info[2].split(' - ')  # Open - 33 of 96 -> Open, 33 of 96
-        if status_seats_available_elements[0] == 'Open':
+        if status_seats_available_elements[0] == 'Open' and len(status_seats_available_elements) > 1:
             Status = 'Open'
             seats_elements = status_seats_available_elements[1].split(' of ')
             if len(seats_elements) == 2:
                 Seats = seats_elements[0]
             else:
                 Seats = 'unlimited'
+        elif len(status_seats_available_elements) == 1 and 'Open' in status_seats_available_elements[0]:
+            Status = 'Open'
         else:
             Status = 'Closed'
+
+        print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
+              Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
 
             # self.insert_entry()
