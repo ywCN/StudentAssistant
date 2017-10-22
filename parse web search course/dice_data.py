@@ -100,7 +100,11 @@ class DiceData:
         CourseName = section_elements2[1]
         CourseSection = section_elements2[0]
 
-        print(CourseID, CourseName, CourseSection)
+        # print(CourseID, CourseName, CourseSection)  # BIO381 Cell Biology A
+        CallNumber = info[1]
+        print(CallNumber)
+
+        # self.insert_entry()
 
 
 def main():
