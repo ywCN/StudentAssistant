@@ -88,15 +88,19 @@ class DiceData:
         info = self.query_info(query)[0]
         # print(type(info))  # tuple
         print(info)
+        self.parse_line(info)
 
     def parse_line(self, info):
         CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
             = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
-        CourseID = section_elements[0] + section_elements[1]
+        # CourseID = section_elements[0] + section_elements[1]  # BIO 381
+        CourseID = section_elements[0][:-1] + section_elements[1]  # BIO381
         CourseName = section_elements2[1]
         CourseSection = section_elements2[0]
+
+        print(CourseID, CourseName, CourseSection)
 
 
 def main():
