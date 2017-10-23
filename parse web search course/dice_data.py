@@ -142,11 +142,17 @@ class DiceData:
             Campus = 'TBA'
         elif 'WEB' in info[3]:
             Campus = 'Web Campus'
-        # else:
-        #     print(info[3])
-        #
-        #
-        #
+        elif 'N/A' in info[3]:
+            Campus = 'Main Campus'
+        elif 'Main Campus' in info[3]:
+            Campus = 'Main Campus'
+        elif 'Web Campus' in info[3]:
+            Campus = 'Web Campus'
+        else:
+            Campus = 'Off Campus'
+
+
+
         # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
         #       Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
