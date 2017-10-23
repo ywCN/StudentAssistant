@@ -80,7 +80,9 @@ class ParsePDF:
         pre = ''
         co = ''
 
-        if 'Prerequisites: Corequisites:' in line:
+        if line == 'Prerequisites: Corequisites:':
+            return pre, co
+        elif 'Prerequisites: Corequisites:' in line:
             co = line.replace('Prerequisites: Corequisites: ', '')
         elif 'Prerequisites: ' in line and 'Corequisites: ' in line:
             data = line.split(' Corequisites: ')
@@ -106,8 +108,8 @@ class ParsePDF:
     def save_into_db(self):
         dep = self.parse_file()
         for key in dep:
-            print(dep[key])
-
+            data = [key, dep[key]['Prerequisites'], dep[key]['Corequisites']]
+            self.insert_entry(data)
 
 
 def main():
