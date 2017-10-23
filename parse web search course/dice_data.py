@@ -81,16 +81,20 @@ class DiceData:
         self.conn2.commit()
 
     def print_old_db(self):
-        # for call in self.call_numbers:
-        #     query = 'select * from courses where courses.CallNumber == {}'.format(call)
+        for call in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call)
         #     print(self.query_info(query))
         # query = 'select * from courses where courses.CallNumber == 10032'
         # query = 'select * from courses where courses.CallNumber == 10537'
-        query = 'select * from courses where courses.CallNumber == 10417'
-        info = self.query_info(query)[0]
+        # query = 'select * from courses where courses.CallNumber == 10417'
+            info = self.query_info(query)[0]
         # print(type(info))  # tuple
-        print(info)
-        self.parse_line(info)
+        # print(info)
+            try:
+                self.parse_line(info)
+            except IndexError:
+                # print(info[0].split('-'))
+                print(info)
 
     def parse_line(self, info):
         CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
@@ -99,8 +103,13 @@ class DiceData:
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
         # CourseID = section_elements[0] + section_elements[1]  # BIO 381
         CourseID = section_elements[0][:-1] + section_elements[1]  # BIO381
-        CourseName = section_elements2[1]
-        CourseSection = section_elements2[0]
+        CourseName = section_elements2[-1]
+        if len(section_elements) == 3:
+            CourseSection = section_elements2[0]
+        elif len(section_elements) == 4:
+            # print(section_elements2)
+            CourseSection = section_elements[-1] + section_elements2[0]
+            # print(CourseSection)
 
         # print(CourseID, CourseName, CourseSection)  # BIO381 Cell Biology A
         CallNumber = info[1]
@@ -118,8 +127,28 @@ class DiceData:
         else:
             Status = 'Closed'
 
-        print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
-              Instructor, StartDate, EndDate, MinCredit, MaxCredit)
+        # print(info[3])  # MWF 08:00-08:50AM  Main Campus Edwin A. Stevens Hall 222
+        if 'AM' in info[3] or 'PM' in info[3]:
+            days_time_location = info[3].split()
+            # print(days_time_location)
+            Day = days_time_location[0]
+            Time = days_time_location[1]
+            Campus = 'Main Campus'
+            if 'Not Applicable' not in info[3]:
+                Location = ' '.join(days_time_location[4:])
+        elif 'TBA' in info[3]:
+            Day = 'TBA'
+            Time = 'TBA'
+            Campus = 'TBA'
+        elif 'WEB' in info[3]:
+            Campus = 'Web Campus'
+        # else:
+        #     print(info[3])
+        #
+        #
+        #
+        # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
+        #       Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
 
             # self.insert_entry()
