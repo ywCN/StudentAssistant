@@ -75,9 +75,9 @@ class DiceData:
 
     def insert_entry(self, data):  # in new database
         self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, "
-                        "Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit "
+                        "Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit) "
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14]))
         self.conn2.commit()
 
     def print_old_db(self):
@@ -87,8 +87,7 @@ class DiceData:
             self.parse_line(info)
 
     def parse_line(self, info):
-        CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
-            = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
+        CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
         # CourseID = section_elements[0] + section_elements[1]  # BIO 381
@@ -155,10 +154,13 @@ class DiceData:
         else:
             MinCredit = info[6]
 
-        print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
-              Instructor, StartDate, EndDate, MinCredit, MaxCredit)
+        # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
+        #       Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
-            # self.insert_entry()
+        data = [CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location, Instructor,
+                StartDate, EndDate, MinCredit, MaxCredit]
+
+        self.insert_entry(data)
 
 
 def main():
@@ -168,5 +170,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
