@@ -35,29 +35,30 @@ After:
 
 class DiceData:
     def __init__(self):
-        self.db_name = r'courses.db'
-        if os.path.isfile(self.db_name):
-            self.conn1 = sqlite3.connect(self.db_name)  # old db
+        self.old_db = r'courses.db'
+        self.new_db = r'courses2.db'
+        if os.path.isfile(self.old_db):
+            self.conn1 = sqlite3.connect(self.old_db)  # old db
             self.c1 = self.conn1.cursor()
-            self.conn2 = sqlite3.connect(r'courses2.db')  # new db
-            self.c2 = self.conn2.cursor()
-            self.create_table()
+            if os.path.isfile(self.new_db):
+                print("Please delete or rename {} and run this program again.".format(self.new_db))
+                exit()
+            else:
+                self.conn2 = sqlite3.connect(self.new_db)  # new db
+                self.c2 = self.conn2.cursor()
+                self.create_table()
         else:
-            print("Please put {} in the same path of this .py file.".format(self.db_name))
+            print("Please put {} in the same path of this .py file.".format(self.old_db))
             exit()
         self.call_numbers = self.get_all_call_numbers()
         # print(self.call_numbers[1])
 
     def get_all_call_numbers(self):
-        # query = 'select courses.SectionTitle from courses'
-        # print(type(self.query_info(query)))  # list
-        # print(len(self.query_info(query)))  # 2052
         query = 'select courses.CallNumber from courses'
         calls = self.query_info(query)
         call_numbers = []
         for call in calls:
             call_numbers.append(call[0])
-        # print(len(call_numbers))  # 2052
         return call_numbers
 
     def query_info(self, query):  # in old database
@@ -77,7 +78,8 @@ class DiceData:
         self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, "
                         "Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit) "
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14]))
+                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9],
+                         data[10], data[11], data[12], data[13], data[14]))
         self.conn2.commit()
 
     def print_old_db(self):
@@ -87,7 +89,9 @@ class DiceData:
             self.parse_line(info)
 
     def parse_line(self, info):
-        CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
+        # CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time = Campus = Location = \
+        #     Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
+        CourseSection = Seats = Day = Time = Location = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
         # CourseID = section_elements[0] + section_elements[1]  # BIO 381
@@ -153,9 +157,6 @@ class DiceData:
                 MaxCredit = credit[1]
         else:
             MinCredit = info[6]
-
-        # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
-        #       Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
         data = [CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location, Instructor,
                 StartDate, EndDate, MinCredit, MaxCredit]
