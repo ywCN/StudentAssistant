@@ -1,4 +1,5 @@
 import re
+import sqlite3
 '''
 This program will parse as many as possible dependencies from the file.
 If no pre-requisite and nor co-requisite is found, the course has no dependencies with others. 
@@ -31,21 +32,43 @@ class ParsePDF:
 
     def parse_file(self):
         cache = ''
+        dep = {}
+        #TODO: return a dict {course: {pre:[dep], co:[dep]}}
         for line in self.file:
             if "Prerequisites: " in line and cache != '':
                 print(cache)
-                cache = ''
+
                 loc = line.index("Prerequisites: ")
                 parsed_line = line[loc:]
                 print(parsed_line.strip())
+                self.parse_line(parsed_line.strip(), dep, cache)
+                cache = ''
             elif "Corequisites: " in line and cache != '':
                 print(cache)
-                cache = ''
+
                 loc = line.index("Corequisites: ")
                 parsed_line = line[loc:]
                 print(parsed_line.strip())
+
+                cache = ''
             elif self.is_valid_line(line[:7]) and len(line) < 10 and 'or' not in line:
                 cache = line.strip()
+            else:
+                pass
+
+    def parse_line(self, line, dep, course):
+        """
+
+        :param data:
+        :return: None
+        """
+        pre = []
+        co = []
+        # TODO: parse line and put data into dict
+        dep[course] = {}
+
+
+
 
 def main():
     demo = ParsePDF()
