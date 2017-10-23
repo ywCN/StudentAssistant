@@ -147,10 +147,16 @@ class DiceData:
                 StartDate = dates[0][-8:]
                 EndDate = dates[1]
 
+        if '- ' in info[6]:
+            credit = info[6].split('- ')
+            if len(credit) == 2:
+                MinCredit = credit[0]
+                MaxCredit = credit[1]
+        else:
+            MinCredit = info[6]
 
-        # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
-        #       Instructor, StartDate, EndDate, MinCredit, MaxCredit)
-
+        print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
+              Instructor, StartDate, EndDate, MinCredit, MaxCredit)
 
             # self.insert_entry()
 
