@@ -83,18 +83,9 @@ class DiceData:
     def print_old_db(self):
         for call in self.call_numbers:
             query = 'select * from courses where courses.CallNumber == {}'.format(call)
-        #     print(self.query_info(query))
-        # query = 'select * from courses where courses.CallNumber == 10032'
-        # query = 'select * from courses where courses.CallNumber == 10537'
-        # query = 'select * from courses where courses.CallNumber == 10417'
             info = self.query_info(query)[0]
-        # print(type(info))  # tuple
-        # print(info)
-            try:
-                self.parse_line(info)
-            except IndexError:
-                # print(info[0].split('-'))
-                print(info)
+            self.parse_line(info)
+
 
     def parse_line(self, info):
         CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
@@ -150,6 +141,8 @@ class DiceData:
             Campus = 'Web Campus'
         else:
             Campus = 'Off Campus'
+
+        Instructor = info[4]
 
 
 
