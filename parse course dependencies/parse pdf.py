@@ -73,7 +73,11 @@ class ParsePDF:
     def parse_line(self, line):
         pre = ''
         co = ''
-        if 'Prerequisites' in line and 'Corequisites' in line:
+
+        if 'Prerequisites: Corequisites:' in line:
+            co = line.replace('Prerequisites: Corequisites: ', '')
+        elif 'Prerequisites: ' in line and 'Corequisites: ' in line:
+            print(line)
             data = line.split(' Corequisites: ')
             co = data[1]
             pre = data[0].replace('Prerequisites: ', '')
@@ -84,9 +88,6 @@ class ParsePDF:
         else:
             print('missing lines', line)
         return pre, co
-
-
-
 
 
 def main():
