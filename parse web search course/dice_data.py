@@ -86,25 +86,23 @@ class DiceData:
             info = self.query_info(query)[0]
             self.parse_line(info)
 
-
     def parse_line(self, info):
         CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time \
             = Campus = Location = Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
         # CourseID = section_elements[0] + section_elements[1]  # BIO 381
+
         CourseID = section_elements[0][:-1] + section_elements[1]  # BIO381
         CourseName = section_elements2[-1]
+
         if len(section_elements) == 3:
             CourseSection = section_elements2[0]
         elif len(section_elements) == 4:
-            # print(section_elements2)
             CourseSection = section_elements[-1] + section_elements2[0]
-            # print(CourseSection)
 
-        # print(CourseID, CourseName, CourseSection)  # BIO381 Cell Biology A
         CallNumber = info[1]
-        # print(CallNumber)
+
         status_seats_available_elements = info[2].split(' - ')  # Open - 33 of 96 -> Open, 33 of 96
         if status_seats_available_elements[0] == 'Open' and len(status_seats_available_elements) > 1:
             Status = 'Open'
@@ -118,7 +116,6 @@ class DiceData:
         else:
             Status = 'Closed'
 
-        # print(info[3])  # MWF 08:00-08:50AM  Main Campus Edwin A. Stevens Hall 222
         if 'AM' in info[3] or 'PM' in info[3]:
             days_time_location = info[3].split()
             # print(days_time_location)
@@ -144,6 +141,11 @@ class DiceData:
 
         Instructor = info[4]
 
+        if ' to ' in info[5]:
+            dates = info[5].split(' to ')
+            if len(dates) == 2:
+                StartDate = dates[0][-8:]
+                EndDate = dates[1]
 
 
         # print(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location,
