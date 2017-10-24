@@ -73,10 +73,14 @@ class ParseDescription:
                 flag = True
             elif ln in self.ids and flag:
                 # TODO: check cache, if valid save(print)
-                # if len(cache[1]) == 0 and len(cache[3]) == 0 and len(cache[4]) == len('(4-0-4)'):
-                #     print(cache)
-                print(cache)
+                try:
+                    if len(cache[1]) == 0 and len(cache[3]) == 0 and len(cache[4]) == len('(4-0-4)'):
+                        print(cache)
+                except IndexError:
+                    print(cache)
+                # print(cache)
                 cache.clear()
+                cache.append(ln)
             else:
                 cache.append(ln)
 
