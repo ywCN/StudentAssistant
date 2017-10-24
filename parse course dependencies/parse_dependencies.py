@@ -11,7 +11,7 @@ The pdf file is firstly converted into a text file. Then this program will parse
 '''
 
 
-class ParsePDF:
+class ParseDependency:
 
     def __init__(self):
         self.text = r'catalog.txt'
@@ -113,7 +113,7 @@ class ParsePDF:
 
 
 def main():
-    demo = ParsePDF()
+    demo = ParseDependency()
     demo.save_into_db()
 
 
