@@ -63,7 +63,24 @@ class ParseDescription:
 
     def print_info(self):  # line.replace(u'\xa0', u' ')
         cache = []  # CourseID, , Course Name, ,(0-0-0), mutiple lines, ,
+        flag = False  # init
         # TODO: start caching line when encountering courseID, stop caching when encounting courseID
+        for line in self.file:
+            ln = line.strip().replace(u'\xa0', u' ')
+            if ln in self.ids and not flag:
+                # print(ln)  # got all ids
+                cache.append(ln)
+                flag = True
+            elif ln in self.ids and flag:
+                # TODO: check cache, if valid save(print)
+                # if len(cache[1]) == 0 and len(cache[3]) == 0 and len(cache[4]) == len('(4-0-4)'):
+                #     print(cache)
+                print(cache)
+                cache.clear()
+            else:
+                cache.append(ln)
+
+        # if [3] length != len((4-0-4)) abandon cache
 
         # In the cache:
         # if [0]
@@ -79,7 +96,7 @@ class ParseDescription:
 
 def main():
     demo = ParseDescription()
-    demo.get_all_ids()
+    demo.print_info()
 
 
 if __name__ == '__main__':
