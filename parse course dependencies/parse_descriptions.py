@@ -18,20 +18,20 @@ class ParseDescription:
         self.file = self.open_file()
         self.db = r'course_descriptions.db'
 
-    #     if os.path.isfile(self.db):
-    #         print("Please delete or rename {} and run this program again.".format(self.db))
-    #         exit()
-    #     else:
-    #         self.conn = sqlite3.connect(self.db)  # new db
-    #         self.c = self.conn.cursor()
-    #         self.create_table()
-    #
-    # def create_table(self):
-    #     self.c.execute("CREATE TABLE IF NOT EXISTS descriptions(CourseID TEXT, Description TEXT)")
-    #
-    # def insert_entry(self, data):
-    #     self.c.execute("INSERT INTO descriptions (CourseID, Description) VALUES (?, ?)", (data[0], data[1]))
-    #     self.conn.commit()
+        if os.path.isfile(self.db):
+            print("Please delete or rename {} and run this program again.".format(self.db))
+            exit()
+        else:
+            self.conn = sqlite3.connect(self.db)  # new db
+            self.c = self.conn.cursor()
+            self.create_table()
+
+    def create_table(self):
+        self.c.execute("CREATE TABLE IF NOT EXISTS descriptions(CourseID TEXT, Description TEXT)")
+
+    def insert_entry(self, data):
+        self.c.execute("INSERT INTO descriptions (CourseID, Description) VALUES (?, ?)", (data[0], data[1]))
+        self.conn.commit()
 
     def open_file(self):
         try:
@@ -63,8 +63,7 @@ class ParseDescription:
                     course_id = cache[0]
                     course_description = ' '.join(cache[6:])
                     if len(course_id) < 8:
-                        print(course_id)
-                        print(course_description)
+                        self.insert_entry([course_id, course_description])
                 cache.clear()
                 cache.append(ln)
             else:
