@@ -48,9 +48,9 @@ class ParseDescription:
 
         rg = re.compile(re1 + re2 + re3, re.IGNORECASE | re.DOTALL)
 
-        cache = []  # CourseID, , Course Name, ,(0-0-0), mutiple lines, ,
+        cache = []  # CourseID, , Course Name, ,(0-0-0), multiple lines, ,
         flag = False  # init
-        # TODO: start caching line when encountering courseID, stop caching when encounting courseID
+        # TODO: start caching line when encountering courseID, stop caching when encountering courseID
         for line in self.file:
             ln = line.strip().replace(u'\xa0', u' ')
             m = rg.search(ln)
@@ -60,11 +60,11 @@ class ParseDescription:
                 flag = True
             elif m and flag:
                 if len(cache) > 5 and len(cache[1]) == 0 and len(cache[3]) == 0 and '(' in cache[4]:
-                    # print(cache)
                     course_id = cache[0]
                     course_description = ' '.join(cache[6:])
-                    print(course_id)
-                    print(course_description)
+                    if len(course_id) < 8:
+                        print(course_id)
+                        print(course_description)
                 cache.clear()
                 cache.append(ln)
             else:
