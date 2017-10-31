@@ -9,17 +9,83 @@ from kivy.network.urlrequest import UrlRequest
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.uix.checkbox import CheckBox
-from kivy.properties import ObjectProperty
+from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 
 Window.size = (600, 900)
 Window.clearcolor = (1, 1, 1, 1)
+
+focus_btn_color = (2,0,0,1)
+active_btn_color = (1,0,0,1)
+
+active_crs_state = 'avail'
 
 class HomeScreen(Screen):
 	pass
 class StudyPlanScreen(Screen):
 	pass
 class CoursesScreen(Screen):
-	pass
+	
+	def set_course_avail_state(self):	
+		self.ids.crs_srch_lbl.text = 'Department:'
+		self.ids.crs_srch_txtin.text = 'ex. SSW'
+		self.ids.avail_btn.background_color = focus_btn_color
+		self.ids.times_btn.background_color = active_btn_color
+		self.ids.desc_btn.background_color = active_btn_color
+		
+	def set_course_times_state(self):
+		self.ids.crs_srch_lbl.text = 'Course ID:'
+		self.ids.crs_srch_txtin.text = 'ex. SSW555'		
+		self.ids.avail_btn.background_color = active_btn_color
+		self.ids.times_btn.background_color = focus_btn_color
+		self.ids.desc_btn.background_color = active_btn_color
+		
+	def set_course_desc_state(self):
+		self.ids.crs_srch_lbl.text = 'Course ID:'
+		self.ids.crs_srch_txtin.text = 'ex. SSW555'	
+		self.ids.avail_btn.background_color = active_btn_color
+		self.ids.times_btn.background_color = active_btn_color
+		self.ids.desc_btn.background_color = focus_btn_color
+
+	def get_course_id_text(self):	
+		#course_id TextInput text validation function
+		#@TODO Add additional text validation after
+		# coordinating with server team
+		def validate_course_id_text():
+			return(len(self.ids.crs_srch_txtin.text) == 6)		
+		print(validate_course_id_text())
+		
+	def go_btn_handler(self):
+		if active_crs_state == 'avail':
+		
+			self.ids.crs_disp_box.clear_widgets()	
+			#URL request section
+			headers = {'Accept' : 'application/json; indent=4'}		
+			req = UrlRequest(
+				'http://34.207.67.202:8080/available/', 
+				req_headers=headers)
+			req.wait()		
+			print(*req.result, sep='/n')	
+			for x in range(0, 5):
+				res = req.result[x]
+				c_id_btn = Button(
+							text=res["course_id"], size=(200, 20), 
+							size_hint=(1, None))			
+				c_name_label = Label(text=res["course_name"])
+				c_seats_label = Label(text=str(res['status']))
+				b = BoxLayout(
+					height= "20dp", size_hint_y= None, 
+					orientation= 'horizontal')
+				b.add_widget(c_id_btn)
+				b.add_widget(c_name_label)
+				b.add_widget(c_seats_label)
+				self.ids.crs_disp_box.add_widget(b)	
+			self.ids.crs_disp_box.add_widget(Widget())	
+			
+	def reset_crs_srch_box(self):
+		self.ids.crs_disp_box.clear_widgets()
+		self.ids.crs_srch_txtin.text = ''
+		
 class ProfessorsScreen(Screen):
 	pass
 class BuildingsScreen(Screen):
