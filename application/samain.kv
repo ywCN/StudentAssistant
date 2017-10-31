@@ -1,10 +1,10 @@
 ScreenManager:
 	id: screen_manager
-	
+    
 	HomeScreen:
 		id: home_screen
 		name: 'HomeScreen'
-		manager: 'screen_manager'		
+		manager: 'screen_manager'       
 	StudyPlanScreen:
 		id: study_plan_screen
 		name: 'StudyPlanScreen'
@@ -45,9 +45,8 @@ ScreenManager:
 		manager: 'screen_manager'
 #End of Dan's screens
 
-
 <HomeScreen>
-    FloatLayout:
+	FloatLayout:
         BoxLayout:
             canvas:
                 Color:
@@ -60,30 +59,30 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000
-        Button:
-            text: "Study Plans"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0, 'top':0.97}
-            on_press: app.root.current = "StudyPlanScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)
-        Button:
-            text: "Courses"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.26, 'top': 0.97}
-            on_press: app.root.current = "CoursesScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)
-        Button:
-            text: "Professors"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.52, 'top': 0.97}
-            on_press: app.root.current = "ProfessorsScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)
-        Button:
-            text: "Building"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.8, 'top': 0.97}
-            on_press: app.root.current = "BuildingsScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0) 
+		Button:
+			text: "Study Plans"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0, 'top':0.97}
+			on_press: app.root.current = "StudyPlanScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Courses"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.26, 'top': 0.97}
+			on_press: app.root.current = "CoursesScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Professors"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.52, 'top': 0.97}
+			on_press: app.root.current = "ProfessorsScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Building"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.8, 'top': 0.97}
+			on_press: app.root.current = "BuildingsScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0) 
         
         BoxLayout:
             canvas:
@@ -98,29 +97,29 @@ ScreenManager:
             height: 7
             width: 5000
 
-        Label:
-            size_hint_x: None
-            text: 'Welcome to Student Assistant Application.'
-            color: (0,0,0,1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+		Label:
+			size_hint_x: None
+			text: 'Welcome to Student Assistant Application.'
+			color: (0,0,0,1)
+			pos_hint: {'center_x': 0.5, 'center_y': 0.75}
 
-        AsyncImage:
-            source:'Logo-NJ-stevens.png'
-            allow_stretch: True
-            keep_ratio: True
-            size_hint: None, None
-            size: 500,500
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+		AsyncImage:
+			source:'Logo-NJ-stevens.png'
+			allow_stretch: True
+			keep_ratio: True
+			size_hint: None, None
+			size: 500,500
+			pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
-        Button:
-            text: "DanSandbox"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.80, 'top': 0.10}
-            on_press: app.root.current = "DanSandboxScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)
- 
+		Button:
+			text: "DanSandbox"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.80, 'top': 0.10}
+			on_press: app.root.current = "DanSandboxScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+            
 <StudyPlanScreen>
-    FloatLayout:
+	FloatLayout:
         BoxLayout:
             canvas:
                 Color:
@@ -133,14 +132,14 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000    
-        Button:
-            text: "Home Page"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0, 'top':0.97 }
-            on_press: app.root.current = "HomeScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0, 'top':0.97 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
 
-        BoxLayout:
+		BoxLayout:
             canvas:
                 Color:
                     rgb: (0.6,0.6,0.6)
@@ -153,52 +152,52 @@ ScreenManager:
             height: 7
             width: 5000
             
-        BoxLayout:
-            height: "40dp"
-            width: "1dp"
-            size_hint_y: None
-            pos_hint: {'x': 0, 'top':0.80 }
-            orientation: 'horizontal'
-            Label:
-                size_hint_x: 8
-                text: 'Major Name:'
-                color: (0,0,0,1)
-            TextInput:
-                id: professor_id
-                size_hint_x: 10
-                focus: True
-                multiline: False
-            Button:
-                text: "Go"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)
-            Button:
-                text: "Reset"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)           
-        BoxLayout:
-	        height: "40dp"
-	        width: "1dp"
-	        size_hint_y: None
-	        pos_hint: {'x': 0, 'top':0.75 }
-	        orientation: 'horizontal'
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.80 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Major Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)           
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.75 }
+			orientation: 'horizontal'
 
  #checkboxes  hint x = 0              
-	        CheckBox:
-                    group: "degree"
-                    size_hint_x: 0.5
-	        Label:
-	            text: "Undergraduate"
-	            color: 0, 0, 0, 1    
-	            size_hint_x: 0.5
+			CheckBox:
+                group: "degree"
+                size_hint_x: 0.5
+			Label:
+				text: "Undergraduate"
+				color: 0, 0, 0, 1    
+				size_hint_x: 0.5
                 
-	        CheckBox:
-	            group: "degree"
-	            size_hint_x: 0.5
-	        Label:
-	            text: "Graduate"
-	            color: 0, 0, 0, 1
-	            size_hint_x: 0.5
+			CheckBox:
+				group: "degree"
+				size_hint_x: 0.5
+			Label:
+				text: "Graduate"
+				color: 0, 0, 0, 1
+				size_hint_x: 0.5
         BoxLayout:
             canvas:
                 Color:
@@ -212,8 +211,9 @@ ScreenManager:
             height: 7
             width: 5000
                            
+					    
 <CoursesScreen>
-    FloatLayout:
+	FloatLayout:
         BoxLayout:
             canvas:
                 Color:
@@ -227,35 +227,35 @@ ScreenManager:
             height: 7
             width: 5000
     
-        Button:
-            text: "Home Page"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0, 'top': 0.97 }
-            on_press: app.root.current = "HomeScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0, 'top': 0.97 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)	
             
-        Spinner:
-            text: "Course"
-            values: ["Descriptions", "Availability", "Times"]
-            pos_hint: {'x': 0.2, 'top':0.97 }
-            background_color: (1.0, 0.0, 0.0, 1.0)	
-            size_hint: 0.2,0.1
+		Spinner:
+			text: "Course"
+			values: ["Descriptions", "Availability", "Times"]
+			pos_hint: {'x': 0.2, 'top':0.97 }
+			background_color: (1.0, 0.0, 0.0, 1.0)	
+			size_hint: 0.2,0.1
 
-        Button:
-            text: "Descriptions"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.4, 'top':0.97 }
-            background_color: (1.0, 0.0, 0.0, 1.0)	
-        Button:
-            text: "Availability"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.6, 'top':0.97 }
-            background_color: (1.0, 0.0, 0.0, 1.0)	
-        Button:
-            text: "Times"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.8, 'top':0.97}
-            background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Descriptions"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.4, 'top':0.97 }
+			background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Availability"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.6, 'top':0.97 }
+			background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Times"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.8, 'top':0.97}
+			background_color: (1.0, 0.0, 0.0, 1.0)	
         BoxLayout:
             canvas:
                 Color:
@@ -269,29 +269,29 @@ ScreenManager:
             height: 7
             width: 5000
                     
-        BoxLayout:
-            height: "40dp"
-            width: "1dp"
-            size_hint_y: None
-            pos_hint: {'x': 0, 'top':0.83}
-            orientation: 'horizontal'
-            Label:
-                size_hint_x: 8
-                text: 'Course Name:'
-                color: (0,0,0,1)
-            TextInput:
-                id: professor_id
-                size_hint_x: 10
-                focus: True
-                multiline: False
-            Button:
-                text: "Go"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)
-            Button:
-                text: "Reset"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.83}
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Course Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
 
         BoxLayout:
             canvas:
@@ -307,7 +307,7 @@ ScreenManager:
             width: 5000
             
 <ProfessorsScreen>
-    FloatLayout:  
+	FloatLayout:  
         BoxLayout:
             canvas:
                 Color:
@@ -320,12 +320,12 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000          
-        Button:
-            text: "Home Page"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0, 'top':0.97}
-            on_press: app.root.current = "HomeScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0, 'top':0.97}
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)	
         BoxLayout:
             canvas:
                 Color:
@@ -339,29 +339,29 @@ ScreenManager:
             height: 7
             width: 5000
                  				
-        BoxLayout:
-            height: "40dp"
-            width: "1dp"
-            size_hint_y: None
-            pos_hint: {'x': 0, 'top':0.83 }
-            orientation: 'horizontal'
-            Label:
-                size_hint_x: 8
-                text: 'Professor Name:'
-                color: (0,0,0,1)
-            TextInput:
-                id: professor_id
-                size_hint_x: 10
-                focus: True
-                multiline: False
-            Button:
-                text: "Go"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)
-            Button:
-                text: "Reset"
-                size_hint_x: 8
-                background_color: (1.0, 0.0, 0.0, 1.0)
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.83 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Professor Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
 
         BoxLayout:
             canvas:
@@ -378,7 +378,8 @@ ScreenManager:
 			
 
 <BuildingsScreen>
-    FloatLayout:     
+
+	FloatLayout:     
         BoxLayout:
             canvas:
                 Color:
@@ -391,12 +392,12 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000                  
-        Button:
-            text: "Home Page"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0, 'top':0.97 }
-            on_press: app.root.current = "HomeScreen"
-            background_color: (1.0, 0.0, 0.0, 1.0)	
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0, 'top':0.97 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)	
         BoxLayout:
             canvas:
                 Color:
@@ -409,18 +410,18 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             height: 7
             width: 5000              
-        BoxLayout:
-            orientation: "vertical"
-            AsyncImage:
-                source:"CampusMap.png"
-                allow_stretch: True
-                keep_ratio: True
-                size_hint_y: None
-                size_hint_x: None
-                width: self.parent.width
-                height: self.parent.height
+		BoxLayout:
+			orientation: "vertical"
+			AsyncImage:
+				source:"CampusMap.png"
+				allow_stretch: True
+				keep_ratio: True
+				size_hint_y: None
+				size_hint_x: None
+				width: self.parent.width
+				height: self.parent.height
                 
-#Start of Dan's pages. 
+ #Start of Dan's pages.   
 <CourseDescriptionScreen>
 	BoxLayout:
 		id: course_description_screen

@@ -1,4 +1,4 @@
-#ToDo: add authors names.
+# Add Authors name:
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -25,7 +25,7 @@ class ProfessorsScreen(Screen):
 class BuildingsScreen(Screen):
 	pass
 
-#Start of Dan's classes.
+#Start of Dan's classes.   
 class TeachersScreen(Screen):
 	pass
 
@@ -77,7 +77,7 @@ class CoursesAvailScreen(Screen):
 		
 	def clear_courses_available(self):
 		self.ids.courses_avail_section.clear_widgets()	
-	
+        
 class CourseDescriptionScreen(Screen):
 	
 	def get_course_description(self):
@@ -207,12 +207,12 @@ class DanSandboxScreen(Screen):
 		
 	def clear_courses_available(self):
 		self.ids.courses_avail_section.clear_widgets()		
-#End of Dan's classes.
+#End of Dan's classes. 
 
 class samainapp(App):
-	def build(self):
-        	self.title = 'Student Assistant Application'
-		pass
+    def build(self):
+        self.title = 'Student Assistant Application'
+        pass
 
 if __name__=='__main__':
 	samainapp().run()
