@@ -6,22 +6,25 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.network.urlrequest import UrlRequest
+
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
-
+ 
 Window.size = (600, 900)
 Window.clearcolor = (1, 1, 1, 1)
 
+
 focus_btn_color = (2,0,0,1)
 active_btn_color = (1,0,0,1)
-
 active_crs_state = 'avail'
-
+ 
+ 
 class HomeScreen(Screen):
 	pass
+
 class StudyPlanScreen(Screen):
 	pass
 class CoursesScreen(Screen):
@@ -69,23 +72,20 @@ class CoursesScreen(Screen):
 			for x in range(0, 5):
 				res = req.result[x]
 				c_id_btn = Button(
-							text=res["course_id"], size=(200, 20), 
-							size_hint=(1, None))			
-				c_name_label = Label(text=res["course_name"])
-				c_seats_label = Label(text=str(res['status']))
-				b = BoxLayout(
-					height= "20dp", size_hint_y= None, 
-					orientation= 'horizontal')
-				b.add_widget(c_id_btn)
-				b.add_widget(c_name_label)
-				b.add_widget(c_seats_label)
-				self.ids.crs_disp_box.add_widget(b)	
+							text=res["course_id"], background_color =(1.0, 0.0, 0.0, 1.0))			
+				c_name_label = Label(text=res["course_name"],color=(0,0,0,1))
+				c_seats_label = Label(text=str(res['status']),color= (0,0,0,1))
+                
+				self.ids.crs_disp_box.add_widget(c_id_btn)
+				self.ids.crs_disp_box.add_widget(c_name_label)
+				self.ids.crs_disp_box.add_widget(c_seats_label)	
 			self.ids.crs_disp_box.add_widget(Widget())	
 			
 	def reset_crs_srch_box(self):
 		self.ids.crs_disp_box.clear_widgets()
 		self.ids.crs_srch_txtin.text = ''
 		
+        
 class ProfessorsScreen(Screen):
 	pass
 class BuildingsScreen(Screen):
