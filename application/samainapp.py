@@ -19,8 +19,16 @@ Window.clearcolor = (1, 1, 1, 1)
 
 focus_btn_color = (2,0,0,1)
 active_btn_color = (1,0,0,1)
- 
+
+#Alla - pass popup window
+class CustomPopup(Popup):
+	pass
+
 class HomeScreen(Screen):
+#Alla add popup method to homepage screen for the button      
+	def open_popup(self):
+		the_popup = CustomPopup()
+		the_popup.open()	
 	pass
 
 class StudyPlanScreen(Screen):
@@ -69,6 +77,10 @@ class CoursesScreen(Screen):
 		# coordinating with server team
 		def validate_course_id_text():
 			return(len(self.ids.crs_srch_txtin.text) == 6)
+#Alla add popup method to course screen for the button      
+	def open_popup(self):
+		the_popup = CustomPopup()
+		the_popup.open()	
 		
 	def go_btn_handler(self):
 		#@TODO: why doesn't this call work if the active_crs_state
@@ -83,8 +95,14 @@ class CoursesScreen(Screen):
 			#iterates over the results in the req object and
 			# creates a set of button and labels for each result.
 			# Adds these to the crs_disp_box display area.
+			#the total is 1420
 			for x in range(0, 5):
 				res = req.result[x]
+				#Alla playing popup
+               			#c_id_btn = Button(on_press = self.open_popup,
+				#		   text=res["course_id"], 
+				#                  background_color =(1.0, 0.0, 0.0, 1.0),
+				#                  size_hint=(None,None))	
 				c_id_btn = Button(
 							text=res["course_id"], 
 							background_color =(1.0, 0.0, 0.0, 1.0))	
