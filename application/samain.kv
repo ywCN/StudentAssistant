@@ -22,18 +22,6 @@ ScreenManager:
 		name: 'BuildingsScreen'
 		manager: 'screen_manager'
 
-#Alla adding popup window        
-<CustomPopup>
-	size_hint: .5, .5
-	auto_dismiss: False
-	title: "Adding New Class"
-	Button:
-            size_hint: 0.1,0.1
-            text: "close"
-            on_press: root.dismiss()
-            background_color: (1.0, 0.0, 0.0, 1.0)
-
-
 <HomeScreen>
 	FloatLayout:
         BoxLayout:
@@ -72,6 +60,7 @@ ScreenManager:
 			pos_hint: {'x': 0.8, 'top': 0.97}
 			on_press: app.root.current = "BuildingsScreen"
 			background_color: (1.0, 0.0, 0.0, 1.0) 
+        
         BoxLayout:
             canvas:
                 Color:
@@ -84,11 +73,13 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             height: 7
             width: 5000
+
 		Label:
 			size_hint_x: None
 			text: 'Welcome to Student Assistant Application.'
 			color: (0,0,0,1)
 			pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+
 		AsyncImage:
 			source:'Logo-NJ-stevens.png'
 			allow_stretch: True
@@ -96,15 +87,7 @@ ScreenManager:
 			size_hint: None, None
 			size: 500,500
 			pos_hint: {'center_x': 0.5, 'center_y': 0.5}
- #Alla playing popup
-		Button:
-			text: "Try Popup"
-			size_hint: 0.2,0.1
-			pos_hint: {'x': 0.80, 'top': 0.10}
-			on_press: on_press: root.open_popup()
-			background_color: (1.0, 0.0, 0.0, 1.0)
-			
-			
+            
 <StudyPlanScreen>
 	FloatLayout:
         BoxLayout:
@@ -125,6 +108,7 @@ ScreenManager:
 			pos_hint: {'x': 0, 'top':0.97 }
 			on_press: app.root.current = "HomeScreen"
 			background_color: (1.0, 0.0, 0.0, 1.0)
+
 		BoxLayout:
             canvas:
                 Color:
@@ -136,294 +120,68 @@ ScreenManager:
             size_hint: None, None
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             height: 7
-            width: 5000 
+            width: 5000
+            
 		BoxLayout:
 			height: "40dp"
 			width: "1dp"
 			size_hint_y: None
-			pos_hint: {'x': 0, 'top':0.85 }
+			pos_hint: {'x': 0, 'top':0.80 }
 			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Major Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)           
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.75 }
+			orientation: 'horizontal'
+
+ #checkboxes  hint x = 0              
 			CheckBox:
-				group: "degree"
-				size_hint_x: 0.5
+                group: "degree"
+                size_hint_x: 0.5
 			Label:
 				text: "Undergraduate"
 				color: 0, 0, 0, 1    
-				size_hint_x: 0.5                
+				size_hint_x: 0.5
+                
 			CheckBox:
 				group: "degree"
 				size_hint_x: 0.5
 			Label:
 				text: "Graduate"
 				color: 0, 0, 0, 1
-				size_hint_x: 0.5            
-		BoxLayout:
-			height: 500
-			size_hint_y: None
-			pos_hint: {'x': 0, 'top':0.9}
-			orientation: 'horizontal'           
-			GridLayout:
-				cols:6
-				spacing: 0.5
-				padding: [20,10]
-				size_hint_y:None
-				height: 435
-				width: 30
-				Button:
-				    text: "Class 1"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 2"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 3"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 4"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 5"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 6"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 7"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 8"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 9"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 10"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 11"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 12"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 13"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 14"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 15"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 16"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 17"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 18"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 19"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 20"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 21"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 22"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 23"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 24"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 25"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 26"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 27"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 28"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 29"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				Button:
-				    text: "Class 30"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-		BoxLayout:
-			height: 30
-			size_hint_y: None
-			pos_hint: {'x': 0, 'top':0.05}
-			orientation: 'horizontal'
-			Button:
-				text: "Save"
-				size_hint_x: 5
-				background_color: (1.0, 0.0, 0.0, 1.0)
-			Button:
-				text: "Reset"
-				size_hint_x: 5
-				background_color: (1.0, 0.0, 0.0, 1.0)           
-				
-				
+				size_hint_x: 0.5
+        BoxLayout:
+            canvas:
+                Color:
+                    rgb: (0.6,0.6,0.6)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            orientation: 'horizontal'
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5, 'center_y': 0.68}
+            height: 7
+            width: 5000
+                           
+					    
 <CoursesScreen>
 	FloatLayout:
         BoxLayout:
@@ -438,38 +196,35 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000
+    
         Button:
             text: "Home Page"
             size_hint: 0.2,0.1
             pos_hint: {'x': 0, 'top': 0.97 }
             on_press: app.root.current = "HomeScreen"
-	    #Add this to RESET
-            on_press: root.reset_crs_srch_box()
             background_color: (1.0, 0.0, 0.0, 1.0)	
+            
 #		Spinner:
 #			text: "Course"
 #			values: ["Descriptions", "Availability", "Times"]
 #			pos_hint: {'x': 0.2, 'top':0.97 }
 #			background_color: (1.0, 0.0, 0.0, 1.0)	
 #			size_hint: 0.2,0.1
+
         Button:
             id: avail_btn
             text: "Availability"
             size_hint: 0.2,0.1
             pos_hint: {'x': 0.4, 'top':0.97 }
             background_color: (1.0, 0.0, 0.0, 1.0)
-            on_press: root.set_course_avail_state()
-	    #Add this to RESET
-            on_press: root.reset_crs_srch_box()	
+            on_press: root.set_course_avail_state()	
         Button:
             id: times_btn
             text: "Times"
             size_hint: 0.2,0.1
             pos_hint: {'x': 0.6, 'top':0.97}
             background_color: (1.0, 0.0, 0.0, 1.0)
-            on_press: root.set_course_times_state() 
-	    #Add this to RESET
-	    on_press: root.reset_crs_srch_box()
+            on_press: root.set_course_times_state()            
         Button:
             id: desc_btn
             text: "Descriptions"
@@ -477,8 +232,6 @@ ScreenManager:
             pos_hint: {'x': 0.8, 'top':0.97}
             background_color: (1.0, 0.0, 0.0, 1.0)
             on_press: root.set_course_desc_state()
-	    #Add this to RESET
-	    on_press: root.reset_crs_srch_box()
         BoxLayout:
             canvas:
                 Color:
@@ -490,7 +243,8 @@ ScreenManager:
             size_hint: None, None
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             height: 7
-            width: 5000      
+            width: 5000
+                    
         BoxLayout:
             id: crs_srch_box
             height: "40dp"
@@ -533,24 +287,15 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.74}
             height: 7
             width: 5000
-        BoxLayout: 
-            height: 450
-	    size_hint_y: None
+#Output            
+        BoxLayout:               
+			size_hint_y: None
             pos_hint: {'x': 0, 'top':0.72}
             orientation: 'horizontal'
-#	    BoxLayout:
-#                Label:
-#                    Text: 'The result will be here.'
-#		    color: (0,0,0,1)
-#		    pos_hint: {'x': 0.5, 'top':1}
-            ScrollView:
-	        GridLayout:
-                    cols:3
-                    spacing: 35
-                    id: crs_disp_box
-                    padding: [20,10]
-                    size_hint_y:None
-                    height: self.minimum_height
+            GridLayout:
+                cols:3
+                spacing: 5
+                id: crs_disp_box
                                           
             
 <ProfessorsScreen>
@@ -584,7 +329,8 @@ ScreenManager:
             size_hint: None, None
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             height: 7
-            width: 5000                 				
+            width: 5000
+                 				
 		BoxLayout:
 			height: "40dp"
 			width: "1dp"
@@ -608,6 +354,7 @@ ScreenManager:
 				text: "Reset"
 				size_hint_x: 8
 				background_color: (1.0, 0.0, 0.0, 1.0)
+
         BoxLayout:
             canvas:
                 Color:
@@ -623,6 +370,7 @@ ScreenManager:
 			
 
 <BuildingsScreen>
+
 	FloatLayout:     
         BoxLayout:
             canvas:
