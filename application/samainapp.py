@@ -23,6 +23,9 @@ active_btn_color = (1, 0, 0, 1)
 class HomeScreen(Screen):
     pass
 
+class CustomPopup(Popup):
+    pass
+
 class StudyPlanScreen(Screen):
     pass
 
