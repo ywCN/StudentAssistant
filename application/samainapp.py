@@ -70,6 +70,10 @@ class CoursesScreen(Screen):
         def validate_course_id_text():
             return(len(self.ids.crs_srch_txtin.text) == 6)
 
+    def open_popup(self):
+        the_popup = CustomPopup()
+        the_popup.open()
+	
     def go_btn_handler(self):
         #@TODO: why doesn't this call work if the active_crs_state
         # hasn't changed between calls to go_btn_handler?
@@ -85,9 +89,10 @@ class CoursesScreen(Screen):
             # Adds these to the crs_disp_box display area.
             for x in range(0, 5):
                 res = req.result[x]
-                c_id_btn = Button(
+                c_id_btn = Button(on_press = CoursesScreen.open_popup,
                             text=res["course_id"],
-                            background_color =(1.0, 0.0, 0.0, 1.0))
+                            background_color =(1.0, 0.0, 0.0, 1.0),
+				 size_hint_y=(None), size=(100, 50))
                 c_name_label = Label(text=res["course_name"],
                             color=(0, 0 ,0 ,1))
                 c_seats_label = Label(text=str(res['status']),
