@@ -131,7 +131,7 @@ class CoursesScreen(Screen):
 
         #Construct the URLRequest object
         req = UrlRequest(
-            server+rpc, 
+            server+rpc+search, 
         req_headers=headers)
         req.wait()
 
