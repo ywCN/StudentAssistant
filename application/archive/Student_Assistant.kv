@@ -1,0 +1,215 @@
+ScreenManager:
+	id: screen_manager
+    
+	HomeScreen:
+		id: home_screen
+		name: 'HomeScreen'
+		manager: 'screen_manager'
+        
+	StudyPlanScreen:
+		id: study_plan_screen
+		name: 'StudyPlanScreen'
+		manager: 'screen_manager'
+	CoursesScreen:
+		id: courses_screen
+		name: 'CoursesScreen'
+		manager: 'screen_manager'	
+	ProfessorsScreen:
+		id: professors_screen
+		name: 'ProfessorsScreen'
+		manager: 'screen_manager'				
+	BuildingsScreen:
+		id: buildings_screen
+		name: 'BuildingsScreen'
+		manager: 'screen_manager'
+
+<HomeScreen>
+			
+	FloatLayout:
+		Button:
+			text: "Study Plans"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.1, 'top':1 }
+			on_press: app.root.current = "StudyPlanScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Courses"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.3, 'top': 1}
+			on_press: app.root.current = "CoursesScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Professors"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.5, 'top': 1}
+			on_press: app.root.current = "ProfessorsScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+		Button:
+			text: "Building"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.7, 'top': 1}
+			on_press: app.root.current = "BuildingsScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+
+		AsyncImage:
+			source:'Logo-NJ-stevens.png'
+			allow_stretch: True
+			keep_ratio: True
+			size_hint: None, None
+			size: 500,500
+			pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+
+
+<StudyPlanScreen>
+	FloatLayout:
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.4, 'top':1 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)
+
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.9 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Major Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+            
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.8 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 5
+				text: 'Degree:'
+				color: (0,0,0,1)
+                
+			CheckBox:
+                group: "degree"
+                size_hint_x: 8
+			Label:
+				text: "Undergraduate"
+				color: 0, 0, 0, 1    
+				size_hint_x: 5
+                
+			CheckBox:
+				group: "degree"
+				size_hint_x: 8
+			Label:
+				text: "Graduate"
+				color: 0, 0, 0, 1
+				size_hint_x: 5
+  
+                
+					    
+<CoursesScreen>
+	FloatLayout:
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.4, 'top':1 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)					
+                    
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.9 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Course Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+
+            
+
+<ProfessorsScreen>
+	FloatLayout:
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.4, 'top':1 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)					
+                    
+		BoxLayout:
+			height: "40dp"
+			width: "1dp"
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.9 }
+			orientation: 'horizontal'
+			Label:
+				size_hint_x: 8
+				text: 'Professor Name:'
+				color: (0,0,0,1)
+			TextInput:
+				id: professor_id
+				size_hint_x: 10
+				focus: True
+				multiline: False
+			Button:
+				text: "Go"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+			Button:
+				text: "Reset"
+				size_hint_x: 8
+				background_color: (1.0, 0.0, 0.0, 1.0)
+
+            
+			
+<BuildingsScreen>
+	FloatLayout:
+		Button:
+			text: "Home Page"
+			size_hint: 0.2,0.1
+			pos_hint: {'x': 0.4, 'top':1 }
+			on_press: app.root.current = "HomeScreen"
+			background_color: (1.0, 0.0, 0.0, 1.0)	
+				
+		BoxLayout:
+			orientation: "vertical"
+			AsyncImage:
+				source:"CampusMap.png"
+				allow_stretch: True
+				keep_ratio: True
+				size_hint_y: None
+				size_hint_x: None
+				width: self.parent.width
+				height: self.parent.height
+
