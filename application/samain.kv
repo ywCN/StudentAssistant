@@ -139,15 +139,18 @@ ScreenManager:
 			CheckBox:
 				group: "degree"
 				size_hint_x: 0.5
+				active: True                
 			Label:
-				text: "Undergraduate"
+				text: "Graduate"
 				color: 0, 0, 0, 1    
 				size_hint_x: 0.5                
 			CheckBox:
+				id: check1
 				group: "degree"
 				size_hint_x: 0.5
+				active: False                 
 			Label:
-				text: "Graduate"
+				text: "Undergraduate"
 				color: 0, 0, 0, 1
 				size_hint_x: 0.5            
 		BoxLayout:
@@ -246,162 +249,202 @@ ScreenManager:
 				    text: "Class 11"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 12"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 13"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
+				    disabled: not check1.active                    
 				    size_hint_x: 4
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 14"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 15"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 16"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 17"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 18"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 19"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 20"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 21"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 22"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 23"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 24"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 25"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 26"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 27"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 28"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                   
 				Button:
 				    text: "Class 29"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 				Button:
 				    text: "Class 30"
 				    background_color: (1.0, 0.0, 0.0, 1.0)
 				    size_hint_x: 4
+				    disabled: not check1.active                    
 				TextInput:
 				    size_hint_x: 4
 				    focus: True
 				    multiline: False
+				    disabled: not check1.active                    
 		BoxLayout:
 			height: 30
 			size_hint_y: None
