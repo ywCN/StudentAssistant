@@ -82,15 +82,7 @@ class DiceData:
                          data[10], data[11], data[12], data[13], data[14]))
         self.conn2.commit()
 
-    def print_old_db(self):
-        for call in self.call_numbers:
-            query = 'select * from courses where courses.CallNumber == {}'.format(call)
-            info = self.query_info(query)[0]
-            self.parse_line(info)
-
     def parse_line(self, info):
-        # CourseID = CourseName = CourseSection = CallNumber = Status = Seats = Day = Time = Campus = Location = \
-        #     Instructor = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         CourseSection = Seats = Day = Time = Location = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
         section_elements = info[0].split('-')  # BIO -381-A  Cell Biology -> BIO , 381, A  Cell Biology
         section_elements2 = section_elements[2].split('  ')  # A  Cell Biology -> A, Cell Biology
@@ -159,14 +151,20 @@ class DiceData:
             MinCredit = info[6]
 
         data = [CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, Location, Instructor,
-                StartDate, EndDate, MinCredit, MaxCredit]
+                StartDate, EndDate, MinCredit, MaxCredit]  # put them into a list container
 
-        self.insert_entry(data)
+        self.insert_entry(data)  # insert them into database
+
+    def parse_old_db(self):  # driver program for this class
+        for call in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call)
+            info = self.query_info(query)[0]
+            self.parse_line(info)
 
 
 def main():
     demo = DiceData()
-    demo.print_old_db()
+    demo.parse_old_db()
 
 
 if __name__ == '__main__':
