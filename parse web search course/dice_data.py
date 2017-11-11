@@ -34,24 +34,26 @@ After:
 
 
 class DiceData:
+    """
+    This class is used for cleaning up data in the old database and create a new database.
+    """
     def __init__(self):
         self.old_db = r'courses.db'
         self.new_db = r'courses2.db'
-        if os.path.isfile(self.old_db):
-            self.conn1 = sqlite3.connect(self.old_db)  # old db
-            self.c1 = self.conn1.cursor()
+        if os.path.isfile(self.old_db):  # make sure old database exists and new database not exist
+            self.old_conn = sqlite3.connect(self.old_db)  # old db
+            self.old_cursor = self.old_conn.cursor()
             if os.path.isfile(self.new_db):
                 print("Please delete or rename {} and run this program again.".format(self.new_db))
                 exit()
             else:
-                self.conn2 = sqlite3.connect(self.new_db)  # new db
-                self.c2 = self.conn2.cursor()
+                self.new_conn = sqlite3.connect(self.new_db)  # new db
+                self.new_cursor = self.new_conn.cursor()
                 self.create_table()
         else:
             print("Please put {} in the same path of this .py file.".format(self.old_db))
             exit()
-        self.call_numbers = self.get_all_call_numbers()
-        # print(self.call_numbers[1])
+        self.call_numbers = self.get_all_call_numbers()  # for looping through the old database
 
     def get_all_call_numbers(self):
         query = 'select courses.CallNumber from courses'
@@ -66,21 +68,23 @@ class DiceData:
         :type query: str
         :rtype: List[List[str]]
         """
-        self.c1.execute("{}".format(query))
-        return self.c1.fetchall()
+        self.old_cursor.execute("{}".format(query))
+        return self.old_cursor.fetchall()
 
     def create_table(self):  # in new database
-        self.c2.execute("CREATE TABLE IF NOT EXISTS courses(CourseID TEXT, CourseName TEXT, CourseSection TEXT, "
-                        "CallNumber TEXT, Status TEXT, Seats TEXT, Day TEXT, Time TEXT, Campus TEXT, Location TEXT, "
-                        "Instructor TEXT, StartDate TEXT, EndDate TEXT, MinCredit TEXT, MaxCredit TEXT)")
+        self.new_cursor.execute("CREATE TABLE IF NOT EXISTS courses"
+                                "(CourseID TEXT, CourseName TEXT, CourseSection TEXT, CallNumber TEXT, Status TEXT, "
+                                "Seats TEXT, Day TEXT, Time TEXT, Campus TEXT, Location TEXT, Instructor TEXT, "
+                                "StartDate TEXT, EndDate TEXT, MinCredit TEXT, MaxCredit TEXT)")
 
     def insert_entry(self, data):  # in new database
-        self.c2.execute("INSERT INTO courses (CourseID, CourseName, CourseSection, CallNumber, Status, "
-                        "Seats, Day, Time, Campus, Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit) "
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                        (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9],
-                         data[10], data[11], data[12], data[13], data[14]))
-        self.conn2.commit()
+        self.new_cursor.execute("INSERT INTO courses "
+                                "(CourseID, CourseName, CourseSection, CallNumber, Status, Seats, Day, Time, Campus, "
+                                "Location, Instructor, StartDate, EndDate, MinCredit, MaxCredit) "
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
+                                    data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8],
+                                    data[9], data[10], data[11], data[12], data[13], data[14]))
+        self.new_conn.commit()
 
     def parse_line(self, info):
         CourseSection = Seats = Day = Time = Location = StartDate = EndDate = MinCredit = MaxCredit = 'NA'
@@ -113,7 +117,6 @@ class DiceData:
 
         if 'AM' in info[3] or 'PM' in info[3]:
             days_time_location = info[3].split()
-            # print(days_time_location)
             Day = days_time_location[0]
             Time = days_time_location[1]
             Campus = 'Main Campus'
