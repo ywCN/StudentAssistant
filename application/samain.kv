@@ -21,11 +21,16 @@ ScreenManager:
 		id: buildings_screen
 		name: 'BuildingsScreen'
 		manager: 'screen_manager'
-#Alla adding popup window        
+
 <CustomPopup>
 	size_hint: .5, .5
+	background: "BG_Popup.png"
 	auto_dismiss: False
-	title: "Adding New Class"
+	title: "Course Description"
+	title_align: 'center'
+	title_size: '18sp'
+	title_color: 128, 0, 0, 8
+	separator_color: 0, 0, 0, 0.7
 	Button:
 		size_hint: 0.1,0.1
 		text: "close"
