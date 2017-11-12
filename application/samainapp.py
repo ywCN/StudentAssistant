@@ -127,23 +127,19 @@ class CoursesScreen(Screen):
         #initialize url string for the URLRequest
         server = 'http://34.207.67.202:8080/'
         rpc = ''
-        search = ''
 
         #set the url string for the URLRequest
         if state == 'avail':
             rpc = 'available/'
-            search = ''
         elif state == 'desc':
             rpc = ('course_description/'
                 'get_course_description/?search_id=')
-            search = srch_id
         elif state == 'times':
             rpc = 'times/'
-            search = ''
 
         #Construct the URLRequest object
         req = UrlRequest(
-            server+rpc+search, 
+            server+rpc+srch_id, 
         req_headers=headers)
         req.wait()
 
