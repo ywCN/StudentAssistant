@@ -6,6 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
+from kivy.uix.textinput import TextInput
 
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
@@ -22,6 +23,12 @@ class HomeScreen(Screen):
 
 class CustomPopup(Popup):
     pass
+
+class MyTextInput(TextInput):
+    def insert_text(self, substring, from_undo=False):
+        # limit to 6 chars
+        substring = substring[:6 - len(self.text)]
+        return super(MyTextInput, self).insert_text(substring, from_undo=from_undo)
 
 class StudyPlanScreen(Screen):
     pass
