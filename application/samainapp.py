@@ -94,24 +94,29 @@ class CoursesScreen(Screen):
         #Switch that populates the crs_disp_box differently
         # based on the CourseScreen active_crs_state
         if self.active_crs_state == 'avail':
-            req = self.create_url_request(self.active_crs_state,'')
-
-            #iterates over the results in the req object and
-            # creates a set of button and labels for each result.
-            # Adds these to the crs_disp_box display area.
-            for x in range(0, 5):
-                res = req.result[x]
-                c_id_btn = Button(on_press = CoursesScreen.open_popup,
-                            text=res["course_id"],
-                            background_color =(1.0, 0.0, 0.0, 1.0),
-				 size_hint_y=(None), size=(100, 50))
-                c_name_label = Label(text=res["course_name"],
-                            color=(0, 0 ,0 ,1))
-                c_seats_label = Label(text=str(res['status']),
-                            color= (0, 0, 0, 1))         
-                self.ids.crs_disp_box.add_widget(c_id_btn)
+            req = self.create_url_request(self.active_crs_state,self.ids.crs_srch_txtin.text)
+            if len(req.result)>0:
+                #iterates over the results in the req object and
+                # creates a set of button and labels for each result.
+                # Adds these to the crs_disp_box display area.
+                for x in range(0,5):
+                    res = req.result[x]
+                    c_id_btn = Button(on_press = CoursesScreen.open_popup,
+                                text=res["course_id"],
+                                background_color =(1.0, 0.0, 0.0, 1.0),
+                     size_hint_y=(None), size=(100, 50))
+                    c_name_label = Label(text=res["course_name"],
+                                color=(0, 0 ,0 ,1))
+                    c_seats_label = Label(text=str(res['status']),
+                                color= (0, 0, 0, 1))         
+                    self.ids.crs_disp_box.add_widget(c_id_btn)
+                    self.ids.crs_disp_box.add_widget(c_name_label)
+                    self.ids.crs_disp_box.add_widget(c_seats_label)
+            else:
+                c_name_label = Label(text='NO RESULTS',
+                    color=(0, 0 ,0 ,1))
                 self.ids.crs_disp_box.add_widget(c_name_label)
-                self.ids.crs_disp_box.add_widget(c_seats_label)
+
         elif self.active_crs_state == 'times':
             req = self.create_url_request(self.active_crs_state,'')
 
@@ -127,29 +132,36 @@ class CoursesScreen(Screen):
         #initialize url string for the URLRequest
         server = 'http://34.207.67.202:8080/'
         rpc = ''
+        search = ''
 
         #set the url string for the URLRequest
         if state == 'avail':
-            rpc = 'available/'
+            rpc = ('available/'
+			    'get_available_course/')
         elif state == 'desc':
             rpc = ('course_description/'
                 'get_course_description/?search_id=')
         elif state == 'times':
             rpc = 'times/'
-
+        
+        if len(srch_id)>0 and srch_id != 'ex. SSW':
+            rpc = rpc + '?search_dept_id='
+            search = srch_id
+			
+			
         #Construct the URLRequest object
         req = UrlRequest(
-            server+rpc+srch_id, 
+            server+rpc+search, 
         req_headers=headers)
         req.wait()
-
+        print(server+rpc+search)
         #return the URLRequest object	
         return req
 
     #helper function to clear the display space
     def reset_crs_srch_box(self):
         self.ids.crs_disp_box.clear_widgets()
-        self.ids.crs_srch_txtin.text = ''
+        #self.ids.crs_srch_txtin.text = ''
 
 class ProfessorsScreen(Screen):
     pass
