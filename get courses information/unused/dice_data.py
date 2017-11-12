@@ -1,41 +1,38 @@
 import sqlite3
 import os
 
-"""
-This class will split the data in the first version of database.
-Some data will be abandoned; some data will be created.
-
-Before:
-`SectionTitle`   TEXT,
-`CallNumber`   TEXT,
-`StatusSeatsAvailable`   TEXT,
-`DaysTimeLocation`   TEXT,
-`Instructor`   TEXT,
-`SessionAndDates`   TEXT,
-`Credits`   TEXT
-
-After:
-`CourseID`    TEXT,
-`CourseName`    TEXT,
-`CourseSection`    TEXT,
-`CallNumber`    TEXT,
-`Status`    TEXT,
-`Seats`    TEXT,
-`Day`    TEXT,
-`Time`    TEXT,
-`Campus`    TEXT,
-`Location`    TEXT,
-`Instructor`    TEXT,
-`StartDate`    TEXT,
-`EndDate`    TEXT,
-`MinCredit`    TEXT,
-`MaxCredit`    TEXT
-"""
-
 
 class DiceData:
     """
     This class is used for cleaning up data in the old database and create a new database.
+    This class will split the data in the first version of database.
+    Some data will be abandoned; some new data will be created.
+
+    Before:
+    `SectionTitle`   TEXT,
+    `CallNumber`   TEXT,
+    `StatusSeatsAvailable`   TEXT,
+    `DaysTimeLocation`   TEXT,
+    `Instructor`   TEXT,
+    `SessionAndDates`   TEXT,
+    `Credits`   TEXT
+
+    After:
+    `CourseID`    TEXT,
+    `CourseName`    TEXT,
+    `CourseSection`    TEXT,
+    `CallNumber`    TEXT,
+    `Status`    TEXT,
+    `Seats`    TEXT,
+    `Day`    TEXT,
+    `Time`    TEXT,
+    `Campus`    TEXT,
+    `Location`    TEXT,
+    `Instructor`    TEXT,
+    `StartDate`    TEXT,
+    `EndDate`    TEXT,
+    `MinCredit`    TEXT,
+    `MaxCredit`    TEXT
     """
     def __init__(self):
         self.old_db = r'courses.db'
@@ -163,6 +160,13 @@ class DiceData:
             query = 'select * from courses where courses.CallNumber == {}'.format(call)
             info = self.query_info(query)[0]
             self.parse_line(info)
+        self.finalize()
+
+    def finalize(self):
+        self.old_cursor.close()
+        self.new_cursor.close()
+        self.old_conn.close()
+        self.new_conn.close()
 
 
 def main():
