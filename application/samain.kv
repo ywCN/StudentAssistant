@@ -23,19 +23,13 @@ ScreenManager:
 		manager: 'screen_manager'
 
 <CustomPopup>
-	size_hint: .5, .5
+	size_hint: .7, .7
 	background: "BG_Popup.png"
-	auto_dismiss: False
-	title: "Course Description"
+	auto_dismiss: True
 	title_align: 'center'
 	title_size: '18sp'
 	title_color: 128, 0, 0, 8
 	separator_color: 0, 0, 0, 0.7
-	Button:
-		size_hint: 0.1,0.1
-		text: "close"
-		on_press: root.dismiss()
-		background_color: (1.0, 0.0, 0.0, 1.0)
 
 <HomeScreen>
 	FloatLayout:
@@ -514,14 +508,6 @@ ScreenManager:
             pos_hint: {'x': 0, 'top': 0.97 }
             on_press: app.root.current = "HomeScreen"
             background_color: (1.0, 0.0, 0.0, 1.0)	
-            
-#		Spinner:
-#			text: "Course"
-#			values: ["Descriptions", "Availability", "Times"]
-#			pos_hint: {'x': 0.2, 'top':0.97 }
-#			background_color: (1.0, 0.0, 0.0, 1.0)	
-#			size_hint: 0.2,0.1
-
         Button:
             id: avail_btn
             text: "Availability"
@@ -600,13 +586,18 @@ ScreenManager:
             width: 5000
 #Output            
         BoxLayout:               
-			size_hint_y: None
+            height: 450
+            size_hint_y: None
             pos_hint: {'x': 0, 'top':0.72}
             orientation: 'horizontal'
-            GridLayout:
-                cols:3
-                spacing: 5
-                id: crs_disp_box
+            ScrollView:
+                GridLayout:
+                    id: crs_disp_box
+                    cols:3
+                    spacing: 35
+                    padding: [20,10]
+                    size_hint_y:None
+                    height: self.minimum_height  
                                           
             
 <ProfessorsScreen>
