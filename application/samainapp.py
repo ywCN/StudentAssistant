@@ -7,6 +7,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.textinput import TextInput
+from kivy.uix.boxlayout import BoxLayout
 
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
@@ -82,20 +83,53 @@ class CoursesScreen(Screen):
     def open_popup(self):
         the_popup = CustomPopup()
         the_popup.title = self.text
-        the_popup.auto_dismiss = True
 
-        req = self.parent.parent.parent.parent.create_url_request(
+        req = self.parent.parent.parent.parent.parent.create_url_request(
             'desc', self.text)
         res = req.result[0]
-        the_popup.content = Label(text=res['course_description'],
-            color=(0, 0 ,0 ,1))
+        
+        layout = BoxLayout(orientation = 'vertical', spacing = 2, height = 1000, width= 900, pos_hint= {'center_x': 0.2, 'center_y': 0.5})
+        #work on position pos_hint= {'right': 0.2, 'center_x': 1}
+        a = Label (
+            text = 'Course Name: ' + res['course_name'],
+            color = (0,0,0,1))   
+        C = Label ( text = ' ')
+        b = Label (
+            text = 'Course Description: ' + res['course_description'],
+            color = (0,0,0,1),text_size=(400,None))
+        CC = Label ( text = '')
+        c = Label (
+            text = 'Course Time: ' + res['time'],
+            color = (0,0,0,1))            
+        d = Label (
+            text = 'Course Status: '+ res['status'],
+            color = (0,0,0,1))  
+        CCC = Label ( text = ' ')
+
+        f = Button (
+            size_hint= (0.5,0.1),
+            pos_hint= {'right': 0.5, 'center_x': 0.5},
+            text = "close",
+            background_color =  (1.0, 0.0, 0.0, 1.0),
+            on_press = the_popup.dismiss)
+        
+        layout.add_widget(a)
+        layout.add_widget(C)
+        layout.add_widget(b)
+        layout.add_widget(CC)
+        layout.add_widget(c)        
+        layout.add_widget(d)
+        layout.add_widget(CCC)
+        layout.add_widget(f)
+        the_popup.content = layout
+        
         the_popup.open()
 	
     def go_btn_handler(self):
         #@TODO: why doesn't this call work if the active_crs_state
         # hasn't changed between calls to go_btn_handler?
         self.reset_crs_srch_box()
-        display_limit = 7
+        #display_limit = 7
         
         '''Switch that populates the crs_disp_box differently
         based on the CourseScreen active_crs_state'''
@@ -122,13 +156,13 @@ class CoursesScreen(Screen):
                     self.ids.crs_disp_box.add_widget(c_seats_label)
                     '''Workaround to autoscrolling in cases when there
                     are too many results to display on screen.'''
-                    if x == display_limit:
-                        c_limit_btn = Button(
-                            text='TOO MANY COURSES',
-                            background_color =(1.0, 0.0, 0.0, 1.0),
-                            size_hint_y=(None), size=(100, 50))
-                        self.ids.crs_disp_box.add_widget(c_limit_btn)
-                        break
+#                    if x == display_limit:
+#                        c_limit_btn = Button(
+#                            text='TOO MANY COURSES',
+#                            background_color =(1.0, 0.0, 0.0, 1.0),
+#                            size_hint_y=(None), size=(100, 50))
+#                        self.ids.crs_disp_box.add_widget(c_limit_btn)
+#                        break
             elif self.active_crs_state == 'times':
                 '''Iterates over the results in the req object and
                 creates a set of button and labels for each result.
@@ -149,16 +183,16 @@ class CoursesScreen(Screen):
                     self.ids.crs_disp_box.add_widget(c_seats_label)
                     '''Workaround to autoscrolling in cases when there
                     are too many results to display on screen.'''
-                    if x == display_limit:
-                        c_limit_btn = Button(
-                            text='TOO MANY COURSES',
-                            background_color =(1.0, 0.0, 0.0, 1.0),
-                            size_hint_y=(None), size=(100, 50))
-                        self.ids.crs_disp_box.add_widget(c_limit_btn)
-                        break
+#                    if x == display_limit:
+#                        c_limit_btn = Button(
+#                            text='TOO MANY COURSES',
+#                            background_color =(1.0, 0.0, 0.0, 1.0),
+#                            size_hint_y=(None), size=(100, 50))
+#                        self.ids.crs_disp_box.add_widget(c_limit_btn)
+#                        break
                 pass
-            elif self.active_crs_state == 'desc':            
-                pass
+#            elif self.active_crs_state == 'desc':            
+#                pass
         else:
             c_name_label = Label(text='NO RESULTS',
                 color=(0, 0 ,0 ,1))
