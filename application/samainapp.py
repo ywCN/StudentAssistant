@@ -99,10 +99,10 @@ class CoursesScreen(Screen):
         
         '''Switch that populates the crs_disp_box differently
         based on the CourseScreen active_crs_state'''
-        if self.active_crs_state == 'avail':
-            req = self.create_url_request(self.active_crs_state,
-                self.ids.crs_srch_txtin.text)
-            if len(req.result)>0:
+        req = self.create_url_request(self.active_crs_state,
+            self.ids.crs_srch_txtin.text)
+        if len(req.result)>0:
+            if self.active_crs_state == 'avail':                
                 '''Iterates over the results in the req object and
                 creates a set of button and labels for each result.
                 Adds these to the crs_disp_box display area.'''
@@ -129,17 +129,41 @@ class CoursesScreen(Screen):
                             size_hint_y=(None), size=(100, 50))
                         self.ids.crs_disp_box.add_widget(c_limit_btn)
                         break
-            else:
-                c_name_label = Label(text='NO RESULTS',
-                    color=(0, 0 ,0 ,1))
-                self.ids.crs_disp_box.add_widget(c_name_label)
-
-        elif self.active_crs_state == 'times':
-            req = self.create_url_request(self.active_crs_state,'')
-
-        elif self.active_crs_state == 'desc':
-            req = self.create_url_request(self.active_crs_state,'')
-
+            elif self.active_crs_state == 'times':
+                '''Iterates over the results in the req object and
+                creates a set of button and labels for each result.
+                Adds these to the crs_disp_box display area.'''
+                for x in range(0,len(req.result)):
+                    res = req.result[x]
+                    c_id_btn = Button(
+                            on_press = CoursesScreen.open_popup,
+                            text=res["course_id"],
+                            background_color =(1.0, 0.0, 0.0, 1.0),
+                            size_hint_y=(None), size=(80, 50))
+                    c_name_label = Label(text=res["course_name"],
+                            color=(0, 0 ,0 ,1))
+                    c_seats_label = Label(text=str(res['time']), 
+                            color= (0, 0, 0, 1))         
+                    self.ids.crs_disp_box.add_widget(c_id_btn)
+                    self.ids.crs_disp_box.add_widget(c_name_label)
+                    self.ids.crs_disp_box.add_widget(c_seats_label)
+                    '''Workaround to autoscrolling in cases when there
+                    are too many results to display on screen.'''
+                    if x == display_limit:
+                        c_limit_btn = Button(
+                            text='TOO MANY COURSES',
+                            background_color =(1.0, 0.0, 0.0, 1.0),
+                            size_hint_y=(None), size=(100, 50))
+                        self.ids.crs_disp_box.add_widget(c_limit_btn)
+                        break
+                pass
+            elif self.active_crs_state == 'desc':            
+                pass
+        else:
+            c_name_label = Label(text='NO RESULTS',
+                color=(0, 0 ,0 ,1))
+            self.ids.crs_disp_box.add_widget(c_name_label)
+            
     '''Creates and reutrns the URLRequest based on CourseScreens 
     active state'''
     def create_url_request(self,state,srch_id):
@@ -155,23 +179,28 @@ class CoursesScreen(Screen):
         if state == 'avail':
             rpc = ('available/'
 			    'get_available_course/')
+            if len(srch_id)>0 and srch_id != 'ex. SSW':
+                rpc = rpc + '?search_dept_id='
+                search = srch_id
         elif state == 'desc':
             rpc = ('course_description/'
                 'get_course_description/')
+            if len(srch_id)>0 and srch_id != 'ex. SSW555':
+                rpc = rpc + '?search_id='
+                search = srch_id
         elif state == 'times':
-            rpc = 'times/'
-        
-        if len(srch_id)>0 and srch_id != 'ex. SSW':
-            rpc = rpc + '?search_dept_id='
-            search = srch_id
-			
-			
+            rpc = ('course_description/'
+                'get_course_description/')
+            if len(srch_id)>0 and srch_id != 'ex. SSW555':
+                rpc = rpc + '?search_id='
+                search = srch_id
+
         #Construct the URLRequest object
+        print(server+rpc+search)
         req = UrlRequest(
             server+rpc+search, 
         req_headers=headers)
         req.wait()
-        print(server+rpc+search)
         #return the URLRequest object	
         return req
 
