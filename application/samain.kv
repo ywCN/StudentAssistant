@@ -136,7 +136,8 @@ ScreenManager:
 			pos_hint: {'x': 0, 'top':0.85 }
 			orientation: 'horizontal'
 			CheckBox:
-				group: "degree"
+				id: grad_checkbox
+                group: "degree"
 				size_hint_x: 0.5
 				active: True                
 			Label:
@@ -144,7 +145,7 @@ ScreenManager:
 				color: 0, 0, 0, 1    
 				size_hint_x: 0.5                
 			CheckBox:
-				id: check1
+				id: undergrad_checkbox
 				group: "degree"
 				size_hint_x: 0.5
 				active: False                 
@@ -158,322 +159,383 @@ ScreenManager:
 			pos_hint: {'x': 0, 'top':0.9}
 			orientation: 'horizontal'           
 			GridLayout:
-				cols:6
+				id: stdypln_box
+                cols:3
 				spacing: 0.5
 				padding: [20,10]
 				size_hint_y:None
 				height: 435
 				width: 30
-				Button:
-				    text: "Class 1"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 2"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 3"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 4"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 5"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 6"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 7"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 8"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 9"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 10"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 11"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active 
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 12"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 13"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    disabled: not check1.active                    
-				    size_hint_x: 4
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 14"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active  
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 15"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active 
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 16"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 17"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 18"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 19"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 20"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active 
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 21"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 22"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 23"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 24"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 25"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 26"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 27"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 28"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]
-				Button:
-				    text: "Class 29"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
-				Button:
-				    text: "Class 30"
-				    background_color: (1.0, 0.0, 0.0, 1.0)
-				    size_hint_x: 4
-				    disabled: not check1.active                    
-				TextInput:
-				    size_hint_x: 4
-				    focus: True
-				    multiline: False
-				    disabled: not check1.active
-				    input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:         
+                    id: crs1_box
+                    Button:                        
+                        text: "Course 1"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs2_box
+                    Button:
+                        text: "Course 2"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs3_box
+                    Button:
+                        text: "Course 3"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs4_box
+                    Button:
+                        text: "Course 4"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs5_box
+                    Button:
+                        text: "Course 5"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs6_box               
+                    Button:
+                        text: "Course 6"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                                 
+				BoxLayout:
+                    id: crs7_box                   
+                    Button:
+                        text: "Course 7"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs8_box  				
+                    Button:
+                        text: "Course 8"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs9_box  				
+                    Button:
+                        text: "Course 9"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs10_box                      
+                    Button:
+                        text: "Course 10"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs11_box  				
+                    Button:
+                        text: "Course 11"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active 
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs12_box  
+                    Button:
+                        text: "Course 12"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs13_box                      
+                    Button:
+                        text: "Course 13"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                        disabled: not undergrad_checkbox.active                    
+                                 
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs14_box  
+                    Button:
+                        text: "Course 14"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active  
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs15_box  
+                    Button:
+                        text: "Course 15"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active 
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs16_box  
+                    Button:
+                        text: "Course 16"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs17_box  
+                    Button:
+                        text: "Course 17"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs18_box  
+                    Button:
+                        text: "Course 18"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs19_box  
+                    Button:
+                        text: "Course 19"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs20_box  
+                    Button:
+                        text: "Course 20"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active 
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs21_box  
+                    Button:
+                        text: "Course 21"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs22_box  
+                    Button:
+                        text: "Course 22"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs23_box  				
+                    Button:
+                        text: "Course 23"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs24_box  				
+                    Button:
+                        text: "Course 24"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs25_box  				
+                    Button:
+                        text: "Course 25"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs26_box  				
+                    Button:
+                        text: "Course 26"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs27_box  				
+                    Button:
+                        text: "Course 27"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs28_box  				
+                    Button:
+                        text: "Course 28"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+				BoxLayout:
+                    id: crs29_box  				
+                    Button:
+                        text: "Course 29"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                        size_hint_x: 4
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                        size_hint_x: 4
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
+				BoxLayout:
+                    id: crs30_box  				
+                    Button:
+                        text: "Course 30"
+                        background_color: (1.0, 0.0, 0.0, 1.0)
+                                 
+                        disabled: not undergrad_checkbox.active                    
+                    TextInput:
+                                 
+                        focus: True
+                        multiline: False
+                        disabled: not undergrad_checkbox.active
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                                   
 		BoxLayout:
 			height: 30
 			size_hint_y: None
@@ -481,12 +543,19 @@ ScreenManager:
 			orientation: 'horizontal'
 			Button:
 				text: "Save"
-				size_hint_x: 5
+				size_hint_x: 3
 				background_color: (1.0, 0.0, 0.0, 1.0)
+                on_press: root.save_handler()
+			Button:
+				text: "Load"
+				size_hint_x: 3
+				background_color: (1.0, 0.0, 0.0, 1.0)    
+                on_press: root.load_handler()
 			Button:
 				text: "Reset"
-				size_hint_x: 5
-				background_color: (1.0, 0.0, 0.0, 1.0)           
+				size_hint_x: 3
+				background_color: (1.0, 0.0, 0.0, 1.0)   
+                on_press: root.reset_handler()
 <CoursesScreen>
 	FloatLayout:
         BoxLayout:
@@ -510,25 +579,18 @@ ScreenManager:
             background_color: (1.0, 0.0, 0.0, 1.0)	
         Button:
             id: avail_btn
-            text: "Availability"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.4, 'top':0.97 }
+            text: "Available Courses"
+            size_hint: 0.3,0.1
+            pos_hint: {'x': 0.5, 'top':0.97 }
             background_color: (1.0, 0.0, 0.0, 1.0)
             on_press: root.set_course_avail_state()	
         Button:
             id: times_btn
-            text: "Times"
-            size_hint: 0.2,0.1
-            pos_hint: {'x': 0.6, 'top':0.97}
-            background_color: (1.0, 0.0, 0.0, 1.0)
-            on_press: root.set_course_times_state()            
-        Button:
-            id: desc_btn
-            text: "Descriptions"
+            text: "Course Times"
             size_hint: 0.2,0.1
             pos_hint: {'x': 0.8, 'top':0.97}
             background_color: (1.0, 0.0, 0.0, 1.0)
-            on_press: root.set_course_desc_state()
+            on_press: root.set_course_times_state()            
         BoxLayout:
             canvas:
                 Color:
