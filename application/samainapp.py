@@ -13,7 +13,6 @@ import json
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
 # Modification of the prototype SA application written by Zach Ankuda
-# Update to check out branch and review 
 
 Window.size = (600, 700)
 Window.clearcolor = (1, 1, 1, 1)
@@ -23,7 +22,30 @@ active_btn_color = (1, 0, 0, 1)
 
 
 class HomeScreen(Screen):
-    pass
+    """ Initially loaded screen. Used also for static method container
+    since this page will always exist.
+    """
+
+    """ Static method to create popups for specific critical info.
+    It's the responsibility of the calling entity to define the
+    content and title, since those will change depending on the
+    context in which the popup is being created. make_popup handles
+    its own Close Button and calling Popup.open() to show itself.
+    """
+    @staticmethod
+    def make_popup(title, content):
+        popup = CustomPopup()
+        popup.title = title
+        popup.auto_dismiss = True
+        content.add_widget(Button(size_hint=(0.5, 0.1),
+                                  text="Close",
+                                  background_color=active_btn_color,
+                                  pos_hint={'right': 0.5,
+                                            'center_x': 0.5},
+                                  on_press=popup.dismiss)
+                           )
+        popup.content = content
+        popup.open()
 
 
 class CustomPopup(Popup):
@@ -55,8 +77,15 @@ class StudyPlanScreen(Screen):
         try:
             with open('study_plan', 'w') as outfile:
                 json.dump(study_plan, outfile)      
-        except Exception as ex:
-            print('Study plan file write error: ', ex)
+        except (IOError, ValueError) as io_ex:
+            ex_box = BoxLayout(orientation='vertical',
+                               spacing=2, height=500,
+                               width=500)
+            ex_label = Label(text=str(io_ex),
+                             color=(0, 0, 0, 1))
+            ex_box.add_widget(ex_label)
+            HomeScreen.make_popup('StudyPlan file save error: ',
+                                  ex_box)
             
     """ Load button handler that retrieves the user's previously
     saved study plan from the study_plan JSON object file.
@@ -76,8 +105,15 @@ class StudyPlanScreen(Screen):
                     for x in self.ids.stdypln_box.children:
                         if x.children[1].text == key:
                             x.children[0].text = value
-        except Exception as ex: 
-            print('Study plan file load error: ', ex)
+        except (IOError, ValueError) as io_ex:
+            ex_box = BoxLayout(orientation='vertical',
+                               spacing=2, height=500,
+                               width=500)
+            ex_label = Label(text=str(io_ex),
+                             color=(0, 0, 0, 1))
+            ex_box.add_widget(ex_label)
+            HomeScreen.make_popup('StudyPlan file load error: ',
+                                  ex_box)
             
     def reset_handler(self):
         for x in self.ids.stdypln_box.children:
@@ -224,7 +260,7 @@ class CoursesScreen(Screen):
         """ Populates the crs_disp_box display area with the
         results of the URLRequest.
         """
-        def pop_disp(req, result):
+        def populate_disp(req, result):
 
             if len(result) > 0 and req.error is None:
                 print(req.error)
@@ -271,7 +307,7 @@ class CoursesScreen(Screen):
         self.reset_crs_srch_box()                        
         url_string = create_url_string(self.active_crs_state,
                                        self.ids.crs_srch_txtin.text)    
-        UrlRequest(url=url_string, on_success=pop_disp)    
+        UrlRequest(url=url_string, on_success=populate_disp)
         
         
 class ProfessorsScreen(Screen):
