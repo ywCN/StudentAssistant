@@ -627,7 +627,7 @@ ScreenManager:
                 text: "Go"
                 size_hint_x: 8
                 background_color: (1.0, 0.0, 0.0, 1.0)
-                on_press: root.go_btn_handler()
+                on_press: root.create_async_url()
             Button:
                 id: crs_reset_btn
                 text: "Reset"
