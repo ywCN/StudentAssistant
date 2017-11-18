@@ -13,6 +13,7 @@ import json
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
 # Modification of the prototype SA application written by Zach Ankuda
+# Update to check out branch and review 
 
 Window.size = (600, 700)
 Window.clearcolor = (1, 1, 1, 1)
