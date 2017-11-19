@@ -189,7 +189,7 @@ class CleanUpDatabase:
         self.new_cursor.close()
         self.old_conn.close()
         self.new_conn.close()
-        # os.remove(self.old_db)  # TODO: uncomment this
+        os.remove(self.old_db)
 
 
 class Parse:
@@ -409,8 +409,8 @@ class Parse:
 
 
 def main():
-    # demo1 = Parse()  # TODO: uncomment this
-    # demo1.parse_file()  # create a initial version of the database # TODO: uncomment this
+    demo1 = Parse()
+    demo1.parse_file()  # create a initial version of the database
 
     demo2 = CleanUpDatabase()
     demo2.parse_old_db()  # process the initial version of the database
