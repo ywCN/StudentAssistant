@@ -167,10 +167,14 @@ class CleanUpDatabase:
         self.finalize()
 
     def clean_up(self):
+        self.new_cursor.execute("UPDATE courses SET Seats='0' WHERE Seats='NA'")
+        self.new_conn.commit()
         for call in self.call_numbers:
             query = 'select * from courses where courses.CallNumber == {}'.format(call)
             info = self.query_info(query)[0]
-            print(info)
+            if len(info[2]) > 4:
+                print(info[2])
+                #  delete from courses where CallNumber == '10328'
 
     def finalize(self):
         self.old_cursor.close()
