@@ -56,19 +56,27 @@ class CleanUpDatabase:
 
     def get_all_call_numbers(self):
         query = 'select courses.CallNumber from courses'
-        calls = self.query_info(query)
+        calls = self.query_info_from_old_db(query)
         call_numbers = []
         for call in calls:
             call_numbers.append(call[0])
         return call_numbers
 
-    def query_info(self, query):  # in old database
+    def query_info_from_old_db(self, query):  # in old database
         """
         :type query: str
         :rtype: List[List[str]]
         """
         self.old_cursor.execute("{}".format(query))
         return self.old_cursor.fetchall()
+
+    def query_info_from_new_db(self, query):  # in old database
+        """
+        :type query: str
+        :rtype: List[List[str]]
+        """
+        self.new_cursor.execute("{}".format(query))
+        return self.new_cursor.fetchall()
 
     def create_table(self):  # in new database
         self.new_cursor.execute("CREATE TABLE IF NOT EXISTS courses"
@@ -159,22 +167,22 @@ class CleanUpDatabase:
         self.insert_entry(data)  # insert them into database
 
     def parse_old_db(self):  # driver program for this class
-        for call in self.call_numbers:
-            query = 'select * from courses where courses.CallNumber == {}'.format(call)
-            info = self.query_info(query)[0]
+        for call_number in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call_number)
+            info = self.query_info_from_old_db(query)[0]
             self.parse_line(info)
         self.clean_up()
         self.finalize()
 
     def clean_up(self):
         self.new_cursor.execute("UPDATE courses SET Seats='0' WHERE Seats='NA'")
-        self.new_conn.commit()
-        for call in self.call_numbers:
-            query = 'select * from courses where courses.CallNumber == {}'.format(call)
-            info = self.query_info(query)[0]
+        self.new_cursor.execute("UPDATE courses SET Location='NA' WHERE Location=''")
+        for call_number in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call_number)
+            info = self.query_info_from_new_db(query)[0]
             if len(info[2]) > 4:
-                print(info[2])
-                #  delete from courses where CallNumber == '10328'
+                self.new_cursor.execute("delete from courses where CallNumber == '{}'".format(call_number))
+        self.new_conn.commit()
 
     def finalize(self):
         self.old_cursor.close()
