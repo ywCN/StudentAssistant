@@ -92,6 +92,7 @@ class CleanUpDatabase:
         # CourseID = section_elements[0] + section_elements[1]  # BIO 381
 
         CourseID = section_elements[0][:-1] + section_elements[1]  # BIO381
+        # CourseID = section_elements[0][:-1] + ' ' + section_elements[1]  # if need space, uncomment this line
         CourseName = section_elements2[-1]
 
         if len(section_elements) == 3:
@@ -162,13 +163,21 @@ class CleanUpDatabase:
             query = 'select * from courses where courses.CallNumber == {}'.format(call)
             info = self.query_info(query)[0]
             self.parse_line(info)
+        self.clean_up()
         self.finalize()
+
+    def clean_up(self):
+        for call in self.call_numbers:
+            query = 'select * from courses where courses.CallNumber == {}'.format(call)
+            info = self.query_info(query)[0]
+            print(info)
 
     def finalize(self):
         self.old_cursor.close()
         self.new_cursor.close()
         self.old_conn.close()
         self.new_conn.close()
+        # os.remove(self.old_db)  # TODO: uncomment this
 
 
 class Parse:
@@ -177,9 +186,9 @@ class Parse:
     This database will be used by CleanUpDatabase class to create the final database.
     """
     def __init__(self):
-        self.db_name = r'courses.db'
-        if os.path.isfile(self.db_name):
-            print("Please delete or rename %s and run this program again." % self.db_name)
+        self.old_db = r'courses.db'
+        if os.path.isfile(self.old_db):
+            print("Please delete or rename %s and run this program again." % self.old_db)
             exit()
         else:
             self.conn = sqlite3.connect(r'courses.db')
@@ -388,8 +397,8 @@ class Parse:
 
 
 def main():
-    demo1 = Parse()
-    demo1.parse_file()  # create a initial version of the database
+    # demo1 = Parse()  # TODO: uncomment this
+    # demo1.parse_file()  # create a initial version of the database # TODO: uncomment this
 
     demo2 = CleanUpDatabase()
     demo2.parse_old_db()  # process the initial version of the database
