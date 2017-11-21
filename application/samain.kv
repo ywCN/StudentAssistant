@@ -23,13 +23,26 @@ ScreenManager:
 		manager: 'screen_manager'
 
 <CustomPopup>
-	size_hint: .7, .7
+	size: 650,500
+	size_hint: None,None
 	background: "BG_Popup.png"
-	auto_dismiss: True
+                   
 	title_align: 'center'
 	title_size: '18sp'
 	title_color: 128, 0, 0, 8
 	separator_color: 0, 0, 0, 0.7
+    BoxLayout:    
+        id: box_popup
+        orientation: 'vertical'
+        ScrollView:
+            id: scroll_popup
+        Button:
+            text: 'close'
+            size:(0.1,25)
+            size_hint_y:None
+            height: '40dp'
+            background_color : (1.0, 0.0, 0.0, 1.0)
+            on_press :root.dismiss()           
 
 <HomeScreen>
 	FloatLayout:
@@ -587,7 +600,7 @@ ScreenManager:
         Button:
             id: times_btn
             text: "Course Times"
-            size_hint: 0.2,0.1
+            size_hint: 0.3,0.1
             pos_hint: {'x': 0.7, 'top':0.97}
             background_color: (1.0, 0.0, 0.0, 1.0)
             on_press: root.set_course_times_state()            
@@ -656,8 +669,8 @@ ScreenManager:
                 GridLayout:
                     id: crs_disp_box
                     cols:3
-                    spacing: 55
-                    padding: [20,10]
+                    spacing: 20
+                    padding: [10,10]
                     size_hint_y:None
                     height: self.minimum_height  
                                           

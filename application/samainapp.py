@@ -159,52 +159,25 @@ class CoursesScreen(Screen):
         
         """ Creates and displays the actual popup object.
         """
-        def open_popup(req,result):
+        def open_popup(req, result):
             the_popup = CustomPopup()
             the_popup.title = self.text
-            the_popup.auto_dismiss = True                                     
+            the_popup.auto_dismiss = True
 
-            res = req.result[0]
-            
-            layout = BoxLayout(
-                orientation = 'vertical', spacing = 2,
-                height = 1000, width= 900,
-                pos_hint= {'center_x': 0.2, 'center_y': 0.5})
-            #work on position pos_hint= {'right': 0.2, 'center_x': 1}
-            a = Label (
-                text = 'Course Name: ' + res['course_name'],
-                color = (0,0,0,1))   
-            C = Label ( text = ' ')
-            b = Label (
-                text = 'Course Description: ' + res['course_description'],
-                color = (0,0,0,1),text_size=(400,None))
-            CC = Label ( text = '')
-            c = Label (
-                text = 'Course Time: ' + res['time'],
-                color = (0,0,0,1))            
-            d = Label (
-                text = 'Course Status: '+ res['status'],
-                color = (0,0,0,1))  
-            CCC = Label ( text = ' ')
-
-            f = Button (
-                size_hint= (0.5,0.1),
-                pos_hint= {'right': 0.5, 'center_x': 0.5},
-                text = "close",
-                background_color =  (1.0, 0.0, 0.0, 1.0),
-                on_press = the_popup.dismiss)
-            
-            layout.add_widget(a)
-            layout.add_widget(C)
-            layout.add_widget(b)
-            layout.add_widget(CC)
-            layout.add_widget(c)        
-            layout.add_widget(d)
-            layout.add_widget(CCC)
-            layout.add_widget(f)
-            the_popup.content = layout
-            
-            the_popup.open()        
+            res = result[0]
+            a = Label(text='Course Name: ' + res['course_name'] + '\n' +
+                           'Course Description: ' + res['course_description'] + '\n' +
+                           'Course Time: ' + res['time'] + '\n' +
+                           'Course Status: ' + res['status'],
+                      color=(0, 0, 0, 1),
+                      size_hint_y=None,
+                      height=the_popup.height,
+                      text_size=(580, None),
+                      line_height=1.5,
+                      valign="top", halign="center")
+            the_popup.ids.scroll_popup.add_widget(a)
+            the_popup.content = the_popup.ids.box_popup
+            the_popup.open()
             
         url_string = ('http://34.207.67.202:8080/'
                       'course_description/'
@@ -276,7 +249,9 @@ class CoursesScreen(Screen):
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
                         c_name_label = Label(text=res["course_name"],
-                                             color=(0, 0, 0, 1))
+                                             text_size=(200, None),
+                                             color=(0, 0, 0, 1),
+                                             halign='center')
                         c_seats_label = Label(text=str(res['status']), 
                                               color=(0, 0, 0, 1))
                         self.ids.crs_disp_box.add_widget(c_id_btn)
@@ -294,7 +269,9 @@ class CoursesScreen(Screen):
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
                         c_name_label = Label(text=res["course_name"],
-                                             color=(0, 0, 0, 1))
+                                             text_size=(200, None),
+                                             color=(0, 0, 0, 1),
+                                             halign='center')
                         c_seats_label = Label(text=str(res['time']), 
                                               color=(0, 0, 0, 1))
                         self.ids.crs_disp_box.add_widget(c_id_btn)
