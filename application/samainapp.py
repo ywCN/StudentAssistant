@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from functools import partial
 import json
 
 # Base application for the SWAARJA Student Assistant Application
@@ -171,76 +172,6 @@ class CoursesScreen(Screen):
         self.ids.avail_btn.background_color = active_btn_color
         self.ids.times_btn.background_color = focus_btn_color
         self.active_crs_state = 'times'
-    
-    """ Creates and displays a Popup object when a Course ID display
-    button is clicked. Uses the Course ID to construct a second 
-    UrlRequest object to get course-specific info from the server.
-    """
-    def show_course(self):
-        
-        """ Creates and displays the actual popup object.
-        """
-        def open_popup(req, result):
-            the_popup = CustomPopup()
-            the_popup.title = self.text
-            the_popup.auto_dismiss = True
-
-            if req.error is None:
-                res = result[0]
-                # Section to prevent fault when data is missing
-                # from database.
-                # @TODO: Add course type and day to this section
-                if res['course_name'] is None:
-                    popup_string = "No Course Name In Database" + '\n'
-                else:
-                    popup_string = 'Course Name: ' + res['course_name'] + '\n'
-                if res['course_description'] is None:
-                    popup_string += "No Course Description In Database" + '\n'
-                else:
-                    popup_string += 'Course Description: ' + \
-                                     res['course_description'] + '\n'
-                if res['semester'] is None:
-                    popup_string += "No Course Semester In Database" + '\n'
-                else:
-                    popup_string += 'Course Semester: ' + res['semester'] + '\n'
-                if res['day'] is None:
-                    popup_string += "No Course Day In Database" + '\n'
-                else:
-                    popup_string += 'Course Day: ' + res['day'] + '\n'
-                if res['time'] is None:
-                    popup_string += "No Course Time In Database" + '\n'
-                else:
-                    popup_string += 'Course Time: ' + res['time'] + '\n'
-                if res['campus'] is None:
-                    popup_string += "No Course Campus Type In Database" + '\n'
-                else:
-                    popup_string += 'Course Campus Type: ' + res['campus'] + '\n'
-                if res['status'] is None:
-                    popup_string += "No Course Status/Availability In Database" + '\n'
-                else:
-                    popup_string += 'Course Status: ' + res['status']
-
-                a = Label(text=popup_string,
-                          color=(0, 0, 0, 1),
-                          size_hint_y=None,
-                          height=the_popup.height,
-                          text_size=(580, None),
-                          line_height=1.5,
-                          valign="top", halign="center")
-                the_popup.ids.scroll_popup.add_widget(a)
-                the_popup.content = the_popup.ids.box_popup
-                the_popup.open()
-            else:
-                HomeScreen.make_popup('Error',
-                                      Label('There was an error '
-                                            'contacting the database.\n'
-                                            'Please try again later.'))
-
-        url_string = ('http://34.207.67.202:8080/'
-                      'course_description/'
-                      'get_course_description/'
-                      '?search_id='+self.text)
-        UrlRequest(url=url_string, on_success=open_popup)
                 
     """ Clears the display box area.
     """
@@ -300,10 +231,10 @@ class CoursesScreen(Screen):
                     for x in range(0, len(result)):
                         res = result[x]
                         c_id_btn = Button(
-                                on_press=CoursesScreen.show_course,
                                 text=res["course_id"],
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
+                        c_id_btn.bind(on_press=partial(CoursesScreen.tester, res["call_number"]))
                         c_name_label = Label(text=res["course_name"],
                                              text_size=(200, None),
                                              color=(0, 0, 0, 1),
@@ -321,10 +252,10 @@ class CoursesScreen(Screen):
                     for x in range(0, len(result)):
                         res = result[x]
                         c_id_btn = Button(
-                                on_press=CoursesScreen.show_course,
                                 text=res["course_id"],
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
+                        c_id_btn.bind(on_press=partial(CoursesScreen.tester, res["call_number"]))
                         c_name_label = Label(text=res["course_name"],
                                              text_size=(200, None),
                                              color=(0, 0, 0, 1),
@@ -342,7 +273,77 @@ class CoursesScreen(Screen):
         url_string = create_url_string(self.active_crs_state,
                                        self.ids.crs_srch_txtin.text)    
         UrlRequest(url=url_string, on_success=populate_disp)
-        
+
+    """ Creates and displays a Popup object when a Course ID display
+    button is clicked. Uses the Course ID to construct a second 
+    UrlRequest object to get course-specific info from the server.
+    """
+    @staticmethod
+    def tester(call_number, function_reference):
+
+        """ Creates and displays the actual popup object.
+        """
+        def open_popup(req, result):
+            the_popup = CustomPopup()
+            the_popup.title = result[0]['course_id']
+            the_popup.auto_dismiss = True
+
+            if req.error is None:
+                res = result[0]
+                # Section to prevent fault when data is missing
+                # from database.
+                # @TODO: Add course type and day to this section
+                if res['course_name'] is None:
+                    popup_string = "No Course Name In Database" + '\n'
+                else:
+                    popup_string = 'Course Name: ' + res['course_name'] + '\n'
+                if res['course_description'] is None:
+                    popup_string += "No Course Description In Database" + '\n'
+                else:
+                    popup_string += 'Course Description: ' + \
+                                    res['course_description'] + '\n'
+                if res['semester'] is None:
+                    popup_string += "No Course Semester In Database" + '\n'
+                else:
+                    popup_string += 'Course Semester: ' + res['semester'] + '\n'
+                if res['day'] is None:
+                    popup_string += "No Course Day In Database" + '\n'
+                else:
+                    popup_string += 'Course Day: ' + res['day'] + '\n'
+                if res['time'] is None:
+                    popup_string += "No Course Time In Database" + '\n'
+                else:
+                    popup_string += 'Course Time: ' + res['time'] + '\n'
+                if res['campus'] is None:
+                    popup_string += "No Course Campus Type In Database" + '\n'
+                else:
+                    popup_string += 'Course Campus Type: ' + res['campus'] + '\n'
+                if res['status'] is None:
+                    popup_string += "No Course Status/Availability In Database" + '\n'
+                else:
+                    popup_string += 'Course Status: ' + res['status']
+
+                a = Label(text=popup_string,
+                          color=(0, 0, 0, 1),
+                          size_hint_y=None,
+                          height=the_popup.height,
+                          text_size=(580, None),
+                          line_height=1.5,
+                          valign="top", halign="center")
+                the_popup.ids.scroll_popup.add_widget(a)
+                the_popup.content = the_popup.ids.box_popup
+                the_popup.open()
+            else:
+                HomeScreen.make_popup('Error',
+                                      Label('There was an error '
+                                            'contacting the database.\n'
+                                            'Please try again later.'))
+
+        url_string = ('http://34.207.67.202:8080/'
+                      'course_description/'
+                      'get_course_description/'
+                      '?search_call_number=' + str(call_number))
+        UrlRequest(url=url_string, on_success=open_popup)
         
 class ProfessorsScreen(Screen):
     pass
