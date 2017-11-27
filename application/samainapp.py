@@ -15,10 +15,11 @@ import json
 # Modification of the prototype SA application written by Zach Ankuda
 
 Window.size = (600, 700)
-Window.clearcolor = (1, 1, 1, 1)
+Window.clearcolor = [1, 1, 1, 1]
 
-focus_btn_color = (2, 0, 0, 1)
-active_btn_color = (1, 0, 0, 1)
+focus_btn_color = [2, 0, 0, 1]
+active_btn_color = [1, 0, 0, 1]
+taken_btn_color = [0, 1, 0, 1]
 
 
 class HomeScreen(Screen):
@@ -70,10 +71,18 @@ class StudyPlanScreen(Screen):
     system.
     """
     def save_handler(self):
-        study_plan = dict()
-        study_plan['is_grad'] = self.ids.grad_checkbox.state
+
+        courses_list = dict()
+        courses_list['is_grad'] = self.ids.grad_checkbox.state
+        courses_taken = dict()
+
         for x in self.ids.stdypln_box.children:
-            study_plan[x.children[1].text] = x.children[0].text
+            courses_list[x.children[1].text] = x.children[0].text
+            if x.children[1].background_color == taken_btn_color:
+                courses_taken[x.children[1].text] = "yes"
+            else:
+                courses_taken[x.children[1].text] = "no"
+        study_plan = [courses_list, courses_taken]
         try:
             with open('study_plan', 'w') as outfile:
                 json.dump(study_plan, outfile)      
@@ -86,15 +95,16 @@ class StudyPlanScreen(Screen):
             ex_box.add_widget(ex_label)
             HomeScreen.make_popup('StudyPlan file save error: ',
                                   ex_box)
-            
+
     """ Load button handler that retrieves the user's previously
     saved study plan from the study_plan JSON object file.
     """
     def load_handler(self):
         try:
             with open('study_plan') as json_data:
-                course_list = json.load(json_data)
-
+                study_plan = json.load(json_data)
+                course_list = study_plan[0]
+                courses_taken = study_plan[1]
                 if course_list['is_grad'] == 'down':
                     self.ids.grad_checkbox.state = 'down'
                     self.ids.undergrad_checkbox.state = 'normal'
@@ -105,6 +115,10 @@ class StudyPlanScreen(Screen):
                     for x in self.ids.stdypln_box.children:
                         if x.children[1].text == key:
                             x.children[0].text = value
+                for key, value in courses_taken.items():
+                    for x in self.ids.stdypln_box.children:
+                        if x.children[1].text == key and value == 'yes':
+                            x.children[1].background_color = taken_btn_color
         except (IOError, ValueError) as io_ex:
             ex_box = BoxLayout(orientation='vertical',
                                spacing=2, height=500,
@@ -118,6 +132,13 @@ class StudyPlanScreen(Screen):
     def reset_handler(self):
         for x in self.ids.stdypln_box.children:
             x.children[0].text = ''
+            x.children[1].background_color = active_btn_color
+
+    def toggle_taken(self,crs_button):
+        if crs_button.background_color == active_btn_color:
+            crs_button.background_color = taken_btn_color
+        else:
+            crs_button.background_color = active_btn_color
 
 
 class CoursesScreen(Screen):
@@ -159,53 +180,51 @@ class CoursesScreen(Screen):
         
         """ Creates and displays the actual popup object.
         """
-        def open_popup(req,result):
+        def open_popup(req, result):
             the_popup = CustomPopup()
             the_popup.title = self.text
-            the_popup.auto_dismiss = True                                     
+            the_popup.auto_dismiss = True
 
-            res = req.result[0]
-            
-            layout = BoxLayout(
-                orientation = 'vertical', spacing = 2,
-                height = 1000, width= 900,
-                pos_hint= {'center_x': 0.2, 'center_y': 0.5})
-            #work on position pos_hint= {'right': 0.2, 'center_x': 1}
-            a = Label (
-                text = 'Course Name: ' + res['course_name'],
-                color = (0,0,0,1))   
-            C = Label ( text = ' ')
-            b = Label (
-                text = 'Course Description: ' + res['course_description'],
-                color = (0,0,0,1),text_size=(400,None))
-            CC = Label ( text = '')
-            c = Label (
-                text = 'Course Time: ' + res['time'],
-                color = (0,0,0,1))            
-            d = Label (
-                text = 'Course Status: '+ res['status'],
-                color = (0,0,0,1))  
-            CCC = Label ( text = ' ')
+            if req.error is None:
+                res = result[0]
 
-            f = Button (
-                size_hint= (0.5,0.1),
-                pos_hint= {'right': 0.5, 'center_x': 0.5},
-                text = "close",
-                background_color =  (1.0, 0.0, 0.0, 1.0),
-                on_press = the_popup.dismiss)
-            
-            layout.add_widget(a)
-            layout.add_widget(C)
-            layout.add_widget(b)
-            layout.add_widget(CC)
-            layout.add_widget(c)        
-            layout.add_widget(d)
-            layout.add_widget(CCC)
-            layout.add_widget(f)
-            the_popup.content = layout
-            
-            the_popup.open()        
-            
+                # Section to prevent fault when data is missing
+                # from database.
+                # @TODO: Add course type and day to this section
+                if res['course_name'] is None:
+                    popup_string = "No Course Name In Database" + '\n'
+                else:
+                    popup_string = 'Course Name: ' + res['course_name'] + '\n'
+                if res['course_description'] is None:
+                    popup_string += "No Course Description In Database" + '\n'
+                else:
+                    popup_string += 'Course Description: ' + \
+                                     res['course_description'] + '\n'
+                if res['time'] is None:
+                    popup_string += "No Course Time In Database" + '\n'
+                else:
+                    popup_string += 'Course Time: ' + res['time'] + '\n'
+                if res['status'] is None:
+                    popup_string += "No Course Status/Availability In Database" + '\n'
+                else:
+                    popup_string += 'Course Status: ' + res['status']
+
+                a = Label(text=popup_string,
+                          color=(0, 0, 0, 1),
+                          size_hint_y=None,
+                          height=the_popup.height,
+                          text_size=(580, None),
+                          line_height=1.5,
+                          valign="top", halign="center")
+                the_popup.ids.scroll_popup.add_widget(a)
+                the_popup.content = the_popup.ids.box_popup
+                the_popup.open()
+            else:
+                HomeScreen.make_popup('Error',
+                                      Label('There was an error '
+                                            'contacting the database.\n'
+                                            'Please try again later.'))
+
         url_string = ('http://34.207.67.202:8080/'
                       'course_description/'
                       'get_course_description/'
@@ -263,8 +282,7 @@ class CoursesScreen(Screen):
         def populate_disp(req, result):
 
             if len(result) > 0 and req.error is None:
-                print(req.error)
-                if self.active_crs_state == 'avail':                
+                if self.active_crs_state == 'avail':
                     # Iterates over the results in the req object and
                     # creates a set of button and labels for each result.
                     # Adds these to the crs_disp_box display area.
@@ -276,9 +294,12 @@ class CoursesScreen(Screen):
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
                         c_name_label = Label(text=res["course_name"],
-                                             color=(0, 0, 0, 1))
-                        c_seats_label = Label(text=str(res['status']), 
+                                             text_size=(200, None),
+                                             color=(0, 0, 0, 1),
+                                             halign='center')
+                        c_seats_label = Label(text=str(res['status']),
                                               color=(0, 0, 0, 1))
+
                         self.ids.crs_disp_box.add_widget(c_id_btn)
                         self.ids.crs_disp_box.add_widget(c_name_label)
                         self.ids.crs_disp_box.add_widget(c_seats_label)
@@ -294,7 +315,9 @@ class CoursesScreen(Screen):
                                 background_color=(1.0, 0.0, 0.0, 1.0),
                                 size_hint_y=None, size=(80, 50))
                         c_name_label = Label(text=res["course_name"],
-                                             color=(0, 0, 0, 1))
+                                             text_size=(200, None),
+                                             color=(0, 0, 0, 1),
+                                             halign='center')
                         c_seats_label = Label(text=str(res['time']), 
                                               color=(0, 0, 0, 1))
                         self.ids.crs_disp_box.add_widget(c_id_btn)
@@ -318,11 +341,11 @@ class BuildingsScreen(Screen):
     pass
 
 
-class samainapp(App):
+class SAMainApp(App):
     def build(self):
         self.title = 'Student Assistant Application'
         pass
 
 
 if __name__ == '__main__':
-    samainapp().run()
+    SAMainApp().run()

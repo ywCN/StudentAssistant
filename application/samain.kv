@@ -23,13 +23,26 @@ ScreenManager:
 		manager: 'screen_manager'
 
 <CustomPopup>
-	size_hint: .7, .7
+	size: 650,500
+	size_hint: None,None
 	background: "BG_Popup.png"
-	auto_dismiss: True
+                   
 	title_align: 'center'
 	title_size: '18sp'
 	title_color: 128, 0, 0, 8
 	separator_color: 0, 0, 0, 0.7
+    BoxLayout:    
+        id: box_popup
+        orientation: 'vertical'
+        ScrollView:
+            id: scroll_popup
+        Button:
+            text: 'close'
+            size:(0.1,25)
+            size_hint_y:None
+            height: '40dp'
+            background_color : (1.0, 0.0, 0.0, 1.0)
+            on_press :root.dismiss()           
 
 <HomeScreen>
 	FloatLayout:
@@ -111,12 +124,12 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
             width: 5000    
-		Button:
-			text: "Home Page"
-			size_hint: 0.2,0.1
-			pos_hint: {'x': 0, 'top':0.97 }
-			on_press: app.root.current = "HomeScreen"
-			background_color: (1.0, 0.0, 0.0, 1.0)
+        Button:
+            text: "Home Page"
+            size_hint: 0.2,0.1
+            pos_hint: {'x': 0, 'top':0.97 }
+            on_press: app.root.current = "HomeScreen"
+            background_color: (1.0, 0.0, 0.0, 1.0)
 		BoxLayout:
             canvas:
                 Color:
@@ -170,10 +183,9 @@ ScreenManager:
                     id: crs1_box
                     Button:                        
                         text: "Course 1"
-                        background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        background_color: (1.0, 0.0, 0.0, 1.0) 
+                        on_press: root.toggle_taken(self.parent.children[1])
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]
@@ -182,9 +194,8 @@ ScreenManager:
                     Button:
                         text: "Course 2"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]
@@ -193,9 +204,8 @@ ScreenManager:
                     Button:
                         text: "Course 3"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -204,9 +214,8 @@ ScreenManager:
                     Button:
                         text: "Course 4"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -215,9 +224,8 @@ ScreenManager:
                     Button:
                         text: "Course 5"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -226,9 +234,8 @@ ScreenManager:
                     Button:
                         text: "Course 6"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                                 
@@ -237,9 +244,8 @@ ScreenManager:
                     Button:
                         text: "Course 7"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -248,9 +254,8 @@ ScreenManager:
                     Button:
                         text: "Course 8"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -259,9 +264,8 @@ ScreenManager:
                     Button:
                         text: "Course 9"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]                    
@@ -270,9 +274,8 @@ ScreenManager:
                     Button:
                         text: "Course 10"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         input_filter: lambda text, from_undo: text[:6 - len(self.text)]
@@ -281,10 +284,9 @@ ScreenManager:
                     Button:
                         text: "Course 11"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active 
@@ -294,10 +296,9 @@ ScreenManager:
                     Button:
                         text: "Course 12"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -308,9 +309,8 @@ ScreenManager:
                         text: "Course 13"
                         background_color: (1.0, 0.0, 0.0, 1.0)
                         disabled: not undergrad_checkbox.active                    
-                                 
-                    TextInput:
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -320,10 +320,9 @@ ScreenManager:
                     Button:
                         text: "Course 14"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active  
@@ -333,10 +332,9 @@ ScreenManager:
                     Button:
                         text: "Course 15"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active 
@@ -346,10 +344,9 @@ ScreenManager:
                     Button:
                         text: "Course 16"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -359,10 +356,9 @@ ScreenManager:
                     Button:
                         text: "Course 17"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -372,10 +368,9 @@ ScreenManager:
                     Button:
                         text: "Course 18"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -385,10 +380,9 @@ ScreenManager:
                     Button:
                         text: "Course 19"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -398,10 +392,9 @@ ScreenManager:
                     Button:
                         text: "Course 20"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active 
@@ -411,10 +404,9 @@ ScreenManager:
                     Button:
                         text: "Course 21"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -424,10 +416,9 @@ ScreenManager:
                     Button:
                         text: "Course 22"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -437,10 +428,9 @@ ScreenManager:
                     Button:
                         text: "Course 23"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -450,10 +440,9 @@ ScreenManager:
                     Button:
                         text: "Course 24"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -463,10 +452,9 @@ ScreenManager:
                     Button:
                         text: "Course 25"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -476,10 +464,9 @@ ScreenManager:
                     Button:
                         text: "Course 26"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -489,10 +476,9 @@ ScreenManager:
                     Button:
                         text: "Course 27"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -502,10 +488,9 @@ ScreenManager:
                     Button:
                         text: "Course 28"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -515,10 +500,9 @@ ScreenManager:
                     Button:
                         text: "Course 29"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                        size_hint_x: 4
+                        on_press: root.toggle_taken(self.parent.children[1])
                         disabled: not undergrad_checkbox.active                    
                     TextInput:
-                        size_hint_x: 4
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
@@ -528,14 +512,24 @@ ScreenManager:
                     Button:
                         text: "Course 30"
                         background_color: (1.0, 0.0, 0.0, 1.0)
-                                 
+                        on_press: root.toggle_taken(self.parent.children[1])                                 
                         disabled: not undergrad_checkbox.active                    
-                    TextInput:
-                                 
+                    TextInput:                                 
                         focus: True
                         multiline: False
                         disabled: not undergrad_checkbox.active
-                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]                                   
+                        input_filter: lambda text, from_undo: text[:6 - len(self.text)]
+		BoxLayout:
+			height: 30
+			size_hint_y: None
+			pos_hint: {'x': 0, 'top':0.15}
+			orientation: 'horizontal'                               
+            Label:
+                text: "Press a course's button to mark it as completed.\nGreen indicates that the course has been completed."
+                size_hint: 0.2,0.1
+                pos_hint: {'x': .8, 'top':0.97 }
+                color: (0,0,0,1)   
+                halign: 'center'
 		BoxLayout:
 			height: 30
 			size_hint_y: None
@@ -587,7 +581,7 @@ ScreenManager:
         Button:
             id: times_btn
             text: "Course Times"
-            size_hint: 0.2,0.1
+            size_hint: 0.3,0.1
             pos_hint: {'x': 0.7, 'top':0.97}
             background_color: (1.0, 0.0, 0.0, 1.0)
             on_press: root.set_course_times_state()            
@@ -656,8 +650,8 @@ ScreenManager:
                 GridLayout:
                     id: crs_disp_box
                     cols:3
-                    spacing: 55
-                    padding: [20,10]
+                    spacing: 20
+                    padding: [10,10]
                     size_hint_y:None
                     height: self.minimum_height  
                                           
