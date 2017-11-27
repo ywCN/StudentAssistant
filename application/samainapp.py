@@ -187,7 +187,6 @@ class CoursesScreen(Screen):
 
             if req.error is None:
                 res = result[0]
-
                 # Section to prevent fault when data is missing
                 # from database.
                 # @TODO: Add course type and day to this section
@@ -200,10 +199,22 @@ class CoursesScreen(Screen):
                 else:
                     popup_string += 'Course Description: ' + \
                                      res['course_description'] + '\n'
+                if res['semester'] is None:
+                    popup_string += "No Course Semester In Database" + '\n'
+                else:
+                    popup_string += 'Course Semester: ' + res['semester'] + '\n'
+                if res['day'] is None:
+                    popup_string += "No Course Day In Database" + '\n'
+                else:
+                    popup_string += 'Course Day: ' + res['day'] + '\n'
                 if res['time'] is None:
                     popup_string += "No Course Time In Database" + '\n'
                 else:
                     popup_string += 'Course Time: ' + res['time'] + '\n'
+                if res['campus'] is None:
+                    popup_string += "No Course Campus Type In Database" + '\n'
+                else:
+                    popup_string += 'Course Campus Type: ' + res['campus'] + '\n'
                 if res['status'] is None:
                     popup_string += "No Course Status/Availability In Database" + '\n'
                 else:
