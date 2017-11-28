@@ -160,7 +160,7 @@ class Parse:
         return status_seats_available, days_time_location, instructor, session_and_dates, credit
 
     @staticmethod
-    def pre_process_data(txt):
+    def is_valid_line(txt):
         """
         Get useful lines and save them into another file. This can be an optional process.
         Later this function can be changed to a function return boolean telling if this line is valid.
@@ -185,7 +185,7 @@ class Parse:
 
     def parse_file(self):
         for line in self.f:
-            if self.pre_process_data(line):
+            if self.is_valid_line(line):
                 self.count_valid_lines += 1
                 items = self.parse_line(line)
                 if len(items) != 7:
@@ -408,10 +408,13 @@ class CleanUpDatabase:
 class TestParser(unittest.TestCase):
 
     def test_parser(self):
+        """
+        Note: the length of the
+        :return:
+        """
         parser = Parse()
-        string1 = ''
-        string1_parsed = ()
-        self.assertEqual(parser.parse_line(string1), string1_parsed)
+        string1 = "sasda/asdad/"  # TODO: create some inputs
+        self.assertFalse(parser.is_valid_line(string1))
 
 
 def main():
