@@ -409,12 +409,30 @@ class TestParser(unittest.TestCase):
 
     def test_parser(self):
         """
-        Note: the length of the
+        Test the parser. See if it can handle bad inputs.
         :return:
         """
         parser = Parse()
-        string1 = "sasda/asdad/"  # TODO: create some inputs
-        self.assertFalse(parser.is_valid_line(string1))
+
+        str0 = ''
+        self.assertFalse(parser.is_valid_line(str0))
+
+        str1 = 'sasda/asdad/'
+        self.assertFalse(parser.is_valid_line(str1))
+
+        str2 = 'SectionTitle "Call Number" "StatusSeats Available" Activity "Days TimeLocation" Instructor "Session ' \
+               'and Dates" Credits '
+        self.assertFalse(parser.is_valid_line(str2))
+
+        str3 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
+               'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
+        self.assertTrue(parser.is_valid_line(str3))
+
+        str4 = ' "Add to cart"  lecture "R 12:00-12:50PM  Main Campus"   '
+        self.assertFalse(parser.is_valid_line(str4))
+
+        str5 = '"Activity corequisite required RCT"       '
+        self.assertFalse(parser.is_valid_line(str5))
 
 
 def main():
