@@ -406,7 +406,7 @@ class CleanUpDatabase:
 
 
 class TestParser(unittest.TestCase):
-
+    # TODO: add more test cases and use setUp and tearDown for this class
     def test_validation(self):
         """
         Test the validating function. See if it can handle bad inputs.
