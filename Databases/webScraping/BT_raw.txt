@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.01 //EN" "http://www.w3.org/TR/html4/strict.dtd"><!--acommhtm.htm--><html lang="en"><head>
+  <title>Course Sections</title>
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+  <meta content="en-US" http-equiv="Content-language">
+  <link rel="stylesheet" href="/css/web_app.css" type="text/css">
+  <link rel="stylesheet" href="/css/web_print.css" type="text/css" media="print">
+  <meta content="text/javascript" http-equiv="Content-Script-Type" name="Default_Script_Language">
+  <script type="text/javascript" src="/script/Student.js">
+  </script>
+  <script type="text/javascript" src="/script/Menu.js">
+  </script>
+  <script type="text/javascript" src="/script/MenuItems.js">
+  </script>
+  <script type="text/javascript">
+  <!-- Hide JavaScript from older browsers
+    loadStudentMenu("/ia-bin/tsrvweb.exe","HostZero","TipZero",
+    "and Electronic Payment", "mailto:ssc@stevens.edu", "http:/", "",
+    "");
+  //  End script hiding -->
+  </script>
+</head>
+<body>
+<div class="headerwrapperdiv">
+<div class="pageheaderdiv1">
+  <a href="#main_content" title="Go to Main Content" onmouseover="window.status=('Go to Main Content'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Go to Main Content'; return true" onblur="window.status=''; return true" class="skiplinks">
+     Go to Main Content</a>
+  <h1></h1>
+</div>
+<div class="headerlinksdiv">
+<span class="pageheaderlinks2">
+<map name="Module_Navigation_Links_H" title="Module Navigation Links">
+<div class="headerlinksdiv2">
+  <a name="top"></a>
+  <a href="#skip_Module_Navigation_Links_H" title="Skip Module Navigation Links" onmouseover="window.status=('Skip Module Navigation Links');return true" onmouseout="window.status=''; return true" onfocus="window.status='Skip Module Navigation Links'; return true" onblur="window.status=''; return true" class="skiplinks">Skip Module Navigation Links</a>
+</div>
+<table class="plaintable" summary="This table displays Menu Navigation Items." width="98%">
+  <tbody><tr>
+    <td colspan="2" class="plheadermenulinks">
+    <script type="text/javascript">
+    <!--
+      createMenus();
+    //-->
+    </script><div class="menuBar"><a onclick="menuHeadingMouseClick(event, 0); return false" onmouseout="menuHeadingMouseOut(0)" onmouseover="menuHeadingMouseOver(event, 0)" class="menuHeading" id="menuHeading0" title="Term">Term</a>&nbsp; &nbsp; &nbsp;<a onclick="menuHeadingMouseClick(event, 1); return false" onmouseout="menuHeadingMouseOut(1)" onmouseover="menuHeadingMouseOver(event, 1)" class="menuHeading" id="menuHeading1" title="Personal Info">Personal Info</a>&nbsp; &nbsp; &nbsp;<a onclick="menuHeadingMouseClick(event, 2); return false" onmouseout="menuHeadingMouseOut(2)" onmouseover="menuHeadingMouseOver(event, 2)" class="menuHeading" id="menuHeading2" title="Student Records">Student Records</a>&nbsp; &nbsp; &nbsp;<a onclick="menuHeadingMouseClick(event, 3); return false" onmouseout="menuHeadingMouseOut(3)" onmouseover="menuHeadingMouseOver(event, 3)" class="menuHeading" id="menuHeading3" title="Registration">Registration</a>&nbsp; &nbsp; &nbsp;<a onclick="menuHeadingMouseClick(event, 4); return false" onmouseout="menuHeadingMouseOut(4)" onmouseover="menuHeadingMouseOver(event, 4)" class="menuHeading" id="menuHeading4" title="Financial Aid">Financial Aid</a>&nbsp; &nbsp; &nbsp;<a onclick="menuHeadingMouseClick(event, 5); return false" onmouseout="menuHeadingMouseOut(5)" onmouseover="menuHeadingMouseOver(event, 5)" class="menuHeading" id="menuHeading5" title="Courses">Courses</a>&nbsp; &nbsp; &nbsp;</div><div class="menu" id="menu0" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(0)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;tserve_trans_config=aterm.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Select Term" onmouseover="window.status=('Select Term'); return true;" onmouseout="window.status=''; return true">Select Term</a></div><div class="menu" id="menu1" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(1)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=addrinq&amp;tserve_trans_config=addrinq.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Addresses including Emergency Contacts " onmouseover="window.status=('Addresses including Emergency Contacts '); return true;" onmouseout="window.status=''; return true">Addresses including Emergency Contacts </a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=aphoneupd&amp;tserve_trans_config=aphoneupd.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Personal Phone Numbers" onmouseover="window.status=('Personal Phone Numbers'); return true;" onmouseout="window.status=''; return true">Personal Phone Numbers</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=aemailupd&amp;tserve_trans_config=aemailupd.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="E-mail Addresses" onmouseover="window.status=('E-mail Addresses'); return true;" onmouseout="window.status=''; return true">E-mail Addresses</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=achgpin&amp;tserve_trans_config=achgpin.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Change PIN" onmouseover="window.status=('Change PIN'); return true;" onmouseout="window.status=''; return true">Change PIN</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=amstinq&amp;tserve_trans_config=amstinq.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="View Marital Status, Directory Release and Degree Release" onmouseover="window.status=('View Marital Status, Directory Release and Degree Release'); return true;" onmouseout="window.status=''; return true">View Marital Status, Directory Release and Degree Release</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=amstupdt&amp;tserve_trans_config=amstupdt.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Update Marital Status, Directory Release and Degree Release" onmouseover="window.status=('Update Marital Status, Directory Release and Degree Release'); return true;" onmouseout="window.status=''; return true">Update Marital Status, Directory Release and Degree Release</a></div><div class="menu" id="menu2" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(2)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rgrades&amp;tserve_trans_config=rgrades.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Grades" onmouseover="window.status=('Grades'); return true;" onmouseout="window.status=''; return true">Grades</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=billfee&amp;tserve_trans_config=billfee.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Account Summary and Electronic Payment" onmouseover="window.status=('Account Summary and Electronic Payment'); return true;" onmouseout="window.status=''; return true">Account Summary and Electronic Payment</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=astuhold&amp;tserve_trans_config=astuhold.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Holds" onmouseover="window.status=('Holds'); return true;" onmouseout="window.status=''; return true">Holds</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rtranscr&amp;CareerReqNum=1&amp;tserve_trans_config=rtranscr.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Unofficial Transcript" onmouseover="window.status=('Unofficial Transcript'); return true;" onmouseout="window.status=''; return true">Unofficial Transcript</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rinstcrd&amp;CareerReqNum=1&amp;tserve_trans_config=rinstcrd.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Institutional Coursework" onmouseover="window.status=('Institutional Coursework'); return true;" onmouseout="window.status=''; return true">Institutional Coursework</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rtrncrd&amp;CareerReqNum=1&amp;tserve_trans_config=rtrncrd.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Transfer Credit" onmouseover="window.status=('Transfer Credit'); return true;" onmouseout="window.status=''; return true">Transfer Credit</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=btxyr98t&amp;tserve_trans_config=btxyr98t.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="IRS Form 1098-T Information" onmouseover="window.status=('IRS Form 1098-T Information'); return true;" onmouseout="window.status=''; return true">IRS Form 1098-T Information</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=aadvisor&amp;tserve_trans_config=aadvisor.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Advisor" onmouseover="window.status=('Advisor'); return true;" onmouseout="window.status=''; return true">Advisor</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rgradinfo&amp;InpPgCd=1&amp;tserve_trans_config=acheckout.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Graduation Checkout" onmouseover="window.status=('Graduation Checkout'); return true;" onmouseout="window.status=''; return true">Graduation Checkout</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rotrdisrq&amp;tserve_trans_config=rprkinfo.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Parking Permit Request" onmouseover="window.status=('Parking Permit Request'); return true;" onmouseout="window.status=''; return true">Parking Permit Request</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rotrdisrq&amp;tserve_trans_config=amisinfo.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Graduate Student Campus Domain Account Request" onmouseover="window.status=('Graduate Student Campus Domain Account Request'); return true;" onmouseout="window.status=''; return true">Graduate Student Campus Domain Account Request</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rotrdisrq&amp;tserve_trans_config=rmisinfo.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Sece Status" onmouseover="window.status=('Sece Status'); return true;" onmouseout="window.status=''; return true">Sece Status</a></div><div class="menu" id="menu3" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(3)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rstureg&amp;tserve_trans_config=rstureg.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Drop and Add Classes" onmouseover="window.status=('Drop and Add Classes'); return true;" onmouseout="window.status=''; return true">Drop and Add Classes</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rcdareg&amp;tserve_trans_config=rcdareg.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Conditional Drop and Add" onmouseover="window.status=('Conditional Drop and Add'); return true;" onmouseout="window.status=''; return true">Conditional Drop and Add</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rchgreg&amp;tserve_trans_config=rchgreg.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Change Class Options" onmouseover="window.status=('Change Class Options'); return true;" onmouseout="window.status=''; return true">Change Class Options</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rstugrid&amp;tserve_trans_config=rstugrid.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Student Schedule" onmouseover="window.status=('Student Schedule'); return true;" onmouseout="window.status=''; return true">Student Schedule</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rstusch&amp;tserve_trans_config=rstusch.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Detailed Schedule" onmouseover="window.status=('Detailed Schedule'); return true;" onmouseout="window.status=''; return true">Detailed Schedule</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rsturgst&amp;tserve_trans_config=rsturgst.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Registration Status" onmouseover="window.status=('Registration Status'); return true;" onmouseout="window.status=''; return true">Registration Status</a></div><div class="menu" id="menu4" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(4)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=sfinsumm&amp;tserve_trans_config=sfinsumm.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Financial Aid Summary" onmouseover="window.status=('Financial Aid Summary'); return true;" onmouseout="window.status=''; return true">Financial Aid Summary</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=sfinawd&amp;tserve_trans_config=sfinawd.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Award Information by Year" onmouseover="window.status=('Award Information by Year'); return true;" onmouseout="window.status=''; return true">Award Information by Year</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=sfinawdh&amp;tserve_trans_config=sfinawdh.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Award History" onmouseover="window.status=('Award History'); return true;" onmouseout="window.status=''; return true">Award History</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=sfintrk&amp;tserve_trans_config=sfintrk.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Student Requirements" onmouseover="window.status=('Student Requirements'); return true;" onmouseout="window.status=''; return true">Student Requirements</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=scostatt&amp;tserve_trans_config=scostatt.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Cost of Attendance" onmouseover="window.status=('Cost of Attendance'); return true;" onmouseout="window.status=''; return true">Cost of Attendance</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=sprogpg&amp;tserve_trans_config=sprogpg.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Academic Progress" onmouseover="window.status=('Academic Progress'); return true;" onmouseout="window.status=''; return true">Academic Progress</a><a style="width: 180px" class="menuItem" href="mailto:ssc@stevens.edu" title="E-mail to Financial Aid Office" onmouseover="window.status=('E-mail to Financial Aid Office'); return true;" onmouseout="window.status=''; return true">E-mail to Financial Aid Office</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;tserve_trans_config=sawdyear.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Select Award Year" onmouseover="window.status=('Select Award Year'); return true;" onmouseout="window.status=''; return true">Select Award Year</a></div><div class="menu" id="menu5" onmouseover="clearTimeout(timeOut)" onmouseout="timeOut = setTimeout('menuHeadingDeactivate(); hideMenu(5)',500)"><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rcrssrch1&amp;ReqNum=1&amp;tserve_trans_config=rcrssrch1.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Course Section Search" onmouseover="window.status=('Course Section Search'); return true;" onmouseout="window.status=''; return true">Course Section Search</a><a style="width: 180px" class="menuItem" href="https://es.stevens.edu/ia-bin/tsrvweb.exe?tserve_tip_read_destroy&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|ConfigName&amp;ConfigName=rcrssect1&amp;ReqNum=1&amp;tserve_trans_config=rcrssect1.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Course Sections" onmouseover="window.status=('Course Sections'); return true;" onmouseout="window.status=''; return true">Course Sections</a></div></td>
+  </tr>
+</tbody></table>
+</map>
+</span>
+</div>
+<div class="headerlinksdiv2">
+<table class="plaintable" summary="This table displays Menu Items." width="98%">
+  <tbody><tr>
+    <td class="pldefault"><a name="skip_Module_Navigation_Links_H"></a>
+         &nbsp;</td>
+    <td class="pldefault"><p class="rightaligntext">
+      <span class="pageheaderlinks">
+      <a href="https://es.stevens.edu/ia-bin/tsrvweb.exe?&amp;tserve_tip_read_destroy&amp;ConfigName=asitemap&amp;tserve_tip_write=||WID|SID|PIN|Term|AwdYear|AdTyCode|Subject|CourseID|ConfigName&amp;tserve_trans_config=asitemap.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Site Map" onmouseover="window.status=('Site Map'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Site Map'; return true" onblur="window.status=''; return true" accesskey="2" class="submenulinktext2">SITE MAP</a>
+|
+     <a href="JavaScript:windowOpen('/help/mainhelp.htm')" accesskey="H" title="Get help with this page. This link will open a new window." onmouseover="window.status=
+     ('Get help with this page. This link will open a new window.');return true" onmouseout="window.status=''; return true" onfocus="window.status=
+      'Get help with this page. This link will open a new window.';return true" onblur="window.status=''; return true" class="submenulinktext2">HELP</a>
+|
+   <span class="display">
+     <a href="https://es.stevens.edu/ia-bin/tsrvweb.exe?&amp;tserve_tip_read_destroy&amp;tserve_trans_config=ahomepg.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Student Self-Service Home Page" onmouseover="window.status=('Student Self-Service Home Page'); return true;" onmouseout="window.status=''; return true;" onfocus="window.status='Student Self-Service Home Page'; return true" onblur="window.status=''; return true" class="submenulinktext2">HOME</a></span>
+|
+     <a href="javascript:print()" title="Printer-friendly Page" onmouseover="window.status=('Printer-friendly Page'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Printer-friendly Page'; return true" onblur="window.status=''; return true" class="submenulinktext2">PRINT</a>
+|
+     <a href="https://es.stevens.edu/ia-bin/tsrvweb.exe?&amp;tserve_tip_read_destroy&amp;tserve_trans_config=alogout.cfg&amp;tserve_host_code=HostZero&amp;tserve_tiphost_code=TipZero&amp;dt=1506223007000" title="Exit Student Self-Service" onmouseover="window.status=('Exit Student Self-Service'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Exit Student Self-Service'; return true" onblur="window.status=''; return true" accesskey="3" class="submenulinktext2">EXIT</a>
+   </span></p>
+  </td>
+ </tr>
+</tbody></table>
+</div>
+</div>
+<!-- Following Div added on 11/1/2011 
+     Adds a hidden Stevens Logo which will be shown only when printing -->
+<div id="StevensLogoImage">
+	<img src="https://es.stevens.edu/gifs/stevenslogo1.jpg" border="0">
+</div>
+<div class="pagetitlediv">
+  <h2>Course Sections</h2>
+  <hr class="pagetop">
+  <a name="main_content"></a>
+</div>
+<div class="pagebodydiv">
+<form method="post" action="/ia-bin/tsrvweb.exe" name="StuForm" onsubmit="onesubmit();">
+<div class="inputlistdiv">
+ <input type="hidden" name="tserve_tip_read_destroy">
+ <input type="hidden" name="tserve_host_code" value="HostZero">
+ <input type="hidden" name="tserve_tiphost_code" value="TipZero">
+ <input type="hidden" name="tserve_trans_config" value="rcrssect3.cfg">
+ <input type="hidden" name="tserve_tip_write" value="||WID|SID|PIN|Term|AwdYear|AdTyCode|Subject|CourseID|ConfigName">
+</div>
+  <!--atermtrn.htm-->
+<h4>2017 Fall</h4>
+<!-- rcrshdr.htm - Course Sections Course Table Header-->
+<p></p>
+<h4>Business and Technology</h4>
+<p>
+</p><table class="dataentrytable" summary="This table displays a list of courses.">
+  <tbody><tr>
+    <th class="deheader" colspan="2" scope="col" id="CourseID">
+      <span class="fieldlabeltext">Select Course</span></th>
+  </tr>  
+  <tr>
+    <td>&nbsp;&nbsp;</td>
+    <td class="dedefault" headers="CourseID">
+      <select class="optdefault" name="CourseID" size="10">
+        <!-- rcrsinf.htm - Course Sections object -->
+<option value="BT  -200">BT  -200 Financial Accounting
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -214">BT  -214 Marketing Analytics &amp; Research
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -221">BT  -221 Statistics
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -223">BT  -223 Applied Models &amp; Simulation
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -243">BT  -243 Macroeconomics
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -244">BT  -244 Microeconomics
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -290">BT  -290 Business Career Seminar
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -321">BT  -321 Corporate Finance
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -330">BT  -330 Social Psychology &amp; Org Behavior
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -344">BT  -344 Intermediate Microeconomics
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -350">BT  -350 Marketing
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -353">BT  -353 Project Management
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -360">BT  -360 International Business
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -401">BT  -401 Capital Struct. &amp; Strategy Audit
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -411">BT  -411 Senior Design I
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -421">BT  -421 Systems Analysis and Design
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -426">BT  -426 Equity Valuation
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -435">BT  -435 Social Media &amp; Network Analysis
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -440">BT  -440 Money,Banking &amp; Financial Inst
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -447">BT  -447 Creativity and Innovation
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -465">BT  -465 IntegratedMarketingCommunication
+<!-- rcrsinf.htm - Course Sections object -->
+</option><option value="BT  -499">BT  -499 Independent Study
+
+      </option></select>
+    </td>
+  </tr>  
+</tbody></table>
+<p>
+<input type="hidden" name="ReqNum" value="3">
+<input type="submit" value="Submit" name="submitbutton" onmouseover="window.status=('Submit'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Submit'; return true" onblur="window.status=''; return true" title="Submit">
+</p>
+
+</form>
+<p></p>
+<a href="#top" onmouseover="window.status=('Back to top of page'); return true" onmouseout="window.status=''; return true" title="Back to top of page" onfocus="window.status='Back to top of page'; return true" onblur="window.status=''; return true" class="toplinks">
+   Back to top</a>
+<p></p>
+<hr class="pageseparator">
+<script type="text/javascript">
+  <!--
+  expireLink();
+  //-->
+</script>
+</div>
+<div class="instfooterdiv">
+  <span class="instmsgtext">
+    <script type="text/javascript">
+    <!-- Hide JavaScript from older browsers
+      instMessage("Any problems or comments", "send an e-mail to", "mailto:",
+        "ssc@stevens.edu", "Stevens Institute");
+    //  End script hiding -->
+  </script>Any problems or comments&nbsp;send an e-mail to&nbsp;<a href="mailto:ssc@stevens.edu" title="Stevens Institute" onmouseover="window.status=('Stevens Institute'); return true" onmouseout="window.status=''; return true" onfocus="window.status='Stevens Institute'; return true" onblur="window.status=''; return true"> ssc@stevens.edu</a><br></span>
+  <span class="instmsgtext">
+    <script type="text/javascript">
+    <!-- Hide JavaScript from older browsers
+      instMessage("", "",
+        "mailto:","", "Stevens Institute");
+    //  End script hiding -->
+  </script></span>
+</div>
+<div class="pagefooterdiv">
+  <span class="releasetext">Release: 1.20</span>
+</div>
+<div class="poweredbydiv">
+  <img alt="Powered by SunGard Higher Education" name="web_powered_by" src="/gifs/web_powered_by.gif" height="38" width="170">
+</div>
+<div class="div1"></div>
+<div class="div2"></div>
+<div class="div3"></div>
+<div class="div4"></div>
+<div class="div5"></div>
+<div class="div6"></div>
+
+
+<!-- CGI version: S 2.20  Built Jan 21 2004 13:38:18 webss1 E:\IA-BIN 09/23/2017 23:16:44-->
+</body></html>
