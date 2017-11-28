@@ -407,32 +407,46 @@ class CleanUpDatabase:
 
 class TestParser(unittest.TestCase):
 
-    def test_parser(self):
+    def test_validation(self):
         """
-        Test the parser. See if it can handle bad inputs.
+        Test the validating function. See if it can handle bad inputs.
         :return:
         """
-        parser = Parse()
+        validator = Parse()
 
         str0 = ''
-        self.assertFalse(parser.is_valid_line(str0))
+        self.assertFalse(validator.is_valid_line(str0))
 
         str1 = 'sasda/asdad/'
-        self.assertFalse(parser.is_valid_line(str1))
+        self.assertFalse(validator.is_valid_line(str1))
 
         str2 = 'SectionTitle "Call Number" "StatusSeats Available" Activity "Days TimeLocation" Instructor "Session ' \
                'and Dates" Credits '
-        self.assertFalse(parser.is_valid_line(str2))
+        self.assertFalse(validator.is_valid_line(str2))
 
         str3 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
                'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
-        self.assertTrue(parser.is_valid_line(str3))
+        self.assertTrue(validator.is_valid_line(str3))
 
         str4 = ' "Add to cart"  lecture "R 12:00-12:50PM  Main Campus"   '
-        self.assertFalse(parser.is_valid_line(str4))
+        self.assertFalse(validator.is_valid_line(str4))
 
         str5 = '"Activity corequisite required RCT"       '
-        self.assertFalse(parser.is_valid_line(str5))
+        self.assertFalse(validator.is_valid_line(str5))
+
+        validator.finalize()
+
+    def test_parser(self):
+        """
+        Test the parse function. See if it can return expected result.
+        :return:
+        """
+        parser = Parse()
+        str0 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
+               'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
+        str0_parsed = ['BIO -201-A  Intro to Bio for Non-Sci/Eng Maj', '12363', 'Open - 12 of 30', 'MW 09:00-09:30AM  Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00']
+        self.assertEqual(list(parser.parse_line(str0)), str0_parsed)
+        parser.finalize()
 
 
 def main():
