@@ -1,6 +1,7 @@
 import re
 import os
 import sqlite3
+import unittest
 
 
 class Parse:
@@ -404,6 +405,15 @@ class CleanUpDatabase:
         os.remove(self.old_db)
 
 
+class TestParser(unittest.TestCase):
+
+    def test_parser(self):
+        parser = Parse()
+        string1 = ''
+        string1_parsed = ()
+        self.assertEqual(parser.parse_line(string1), string1_parsed)
+
+
 def main():
     demo1 = Parse()
     demo1.parse_file()  # create a initial version of the database
@@ -414,3 +424,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    unittest.main()
