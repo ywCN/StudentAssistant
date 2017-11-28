@@ -444,7 +444,8 @@ class TestParser(unittest.TestCase):
         parser = Parse()
         str0 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
                'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
-        str0_parsed = ['BIO -201-A  Intro to Bio for Non-Sci/Eng Maj', '12363', 'Open - 12 of 30', 'MW 09:00-09:30AM  Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00']
+        str0_parsed = ['BIO -201-A  Intro to Bio for Non-Sci/Eng Maj', '12363', 'Open - 12 of 30', 'MW 09:00-09:30AM  '
+                       'Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00']
         self.assertEqual(list(parser.parse_line(str0)), str0_parsed)
         parser.finalize()
 
