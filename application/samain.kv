@@ -608,7 +608,7 @@ ScreenManager:
             Label:
                 id: crs_srch_lbl
                 size_hint_x: 8
-                text: 'Department:'
+                text: 'Course ID or Dept:'
                 color: (0,0,0,1)
             TextInput:
                 id: crs_srch_txtin
@@ -627,7 +627,7 @@ ScreenManager:
                 text: "Reset"
                 size_hint_x: 8
                 background_color: (1.0, 0.0, 0.0, 1.0)
-                on_press: root.reset_crs_srch_box()
+                on_press: root.reset_crs_handler()
         BoxLayout:
             canvas:
                 Color:
