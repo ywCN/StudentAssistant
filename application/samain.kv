@@ -123,13 +123,34 @@ ScreenManager:
             size_hint: None, None
             pos_hint: {'center_x': 0.5, 'center_y': 0.99}
             height: 7
-            width: 5000    
+            width: 5000  
+            id: ffff
         Button:
             text: "Home Page"
             size_hint: 0.2,0.1
             pos_hint: {'x': 0, 'top':0.97 }
             on_press: app.root.current = "HomeScreen"
             background_color: (1.0, 0.0, 0.0, 1.0)
+        Spinner:
+            id: selected_file
+            text:'choose file'
+            values: root.load_page()
+            background_color: (1.0, 0.0, 0.0, 1.0)	
+            size_hint:(None, None)
+            size:(100, 44)
+            pos_hint:{'x': 0.3, 'top':0.97}
+        Label:
+            text: "File Name:"
+            color: 0, 0, 0, 1  
+            pos_hint:{'x': 0.5, 'top':0.97}
+            size_hint: 0.2,0.08
+        TextInput:
+            id: file_name
+            focus: True
+            size_hint: 0.2,0.08
+            multiline: False
+            pos_hint:{'x': 0.7, 'top':0.97}
+            input_filter: lambda text, from_undo: text[:6 - len(self.text)]
 		BoxLayout:
             canvas:
                 Color:

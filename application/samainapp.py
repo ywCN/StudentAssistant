@@ -10,6 +10,11 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from functools import partial
 import json
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import ObjectProperty
+import os
+
+from kivy.uix.spinner import Spinner
 
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
@@ -61,8 +66,16 @@ class MyTextInput(TextInput):
         return super(MyTextInput, self).insert_text(
             substring, from_undo=from_undo)
             
-
+    
 class StudyPlanScreen(Screen):
+    def load_page(self):   
+        files = os.listdir(os.getcwd())
+        #print(files)
+        fp = [file for file in files if (file.endswith('.txt') and file != '.txt')]
+        #print(fp)
+        return fp
+        #self.ids.selected_file.values = (fp)
+        
     """Backing class for the page for recording, saving, editing, and
     retrieving a degree course plan.
     """
@@ -72,7 +85,6 @@ class StudyPlanScreen(Screen):
     system.
     """
     def save_handler(self):
-
         courses_list = dict()
         courses_list['is_grad'] = self.ids.grad_checkbox.state
         courses_taken = dict()
@@ -85,7 +97,7 @@ class StudyPlanScreen(Screen):
                 courses_taken[x.children[1].text] = "no"
         study_plan = [courses_list, courses_taken]
         try:
-            with open('study_plan', 'w') as outfile:
+            with open((self.ids.file_name.text + '.txt'), 'w') as outfile:
                 json.dump(study_plan, outfile)      
         except (IOError, ValueError) as io_ex:
             ex_box = BoxLayout(orientation='vertical',
@@ -101,8 +113,9 @@ class StudyPlanScreen(Screen):
     saved study plan from the study_plan JSON object file.
     """
     def load_handler(self):
+        
         try:
-            with open('study_plan') as json_data:
+            with open(self.ids.selected_file.text) as json_data:
                 study_plan = json.load(json_data)
                 course_list = study_plan[0]
                 courses_taken = study_plan[1]
@@ -340,6 +353,7 @@ class BuildingsScreen(Screen):
 
 
 class SAMainApp(App):
+
     def build(self):
         self.title = 'Student Assistant Application'
         pass
