@@ -411,7 +411,7 @@ class TestParser(unittest.TestCase):
 
     def test_validation(self):
         """
-        Test the validating function. See if it can handle bad inputs.
+        Test the validating function of the Parse class. See if it can handle bad inputs.
         :return:
         """
 
@@ -437,7 +437,7 @@ class TestParser(unittest.TestCase):
 
     def test_parser(self):
         """
-        Test the parse function. See if it can return expected result.
+        Test the parse function of the Parse class. See if it can return expected result.
         Note the input must be valid because the original code will check line before parsing.
         :return:
         """
@@ -448,7 +448,7 @@ class TestParser(unittest.TestCase):
                        'Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00')
         self.assertEqual(self.demo.parse_line(str0), str0_parsed)
 
-        str1 = '"HAR -320-A  Video II" "12351 Add HAR -320-A to cart" "Open - 4 of 12" lecture "R 01:00-04:50PM  Main ' \
+        str1 = '"HAR -320-A  Video II" "12351 Add HAR -320-A to cart" "Open - 4 of 12" lecture "R 01:00-04:50PM  Main '\
                'Campus Morton Complex 201" "Manzione C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
         str1_parsed = ('HAR -320-A  Video II', '12351', 'Open - 4 of 12', 'R 01:00-04:50PM  Main Campus Morton '
                        'Complex 201', 'Manzione C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00')
