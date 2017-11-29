@@ -406,48 +406,56 @@ class CleanUpDatabase:
 
 
 class TestParser(unittest.TestCase):
-    # TODO: add more test cases and use setUp and tearDown for this class
+    def setUp(self):
+        self.demo = Parse()
+
     def test_validation(self):
         """
         Test the validating function. See if it can handle bad inputs.
         :return:
         """
-        validator = Parse()
 
         str0 = ''
-        self.assertFalse(validator.is_valid_line(str0))
+        self.assertFalse(self.demo.is_valid_line(str0))
 
         str1 = 'sasda/asdad/'
-        self.assertFalse(validator.is_valid_line(str1))
+        self.assertFalse(self.demo.is_valid_line(str1))
 
         str2 = 'SectionTitle "Call Number" "StatusSeats Available" Activity "Days TimeLocation" Instructor "Session ' \
                'and Dates" Credits '
-        self.assertFalse(validator.is_valid_line(str2))
+        self.assertFalse(self.demo.is_valid_line(str2))
 
         str3 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
                'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
-        self.assertTrue(validator.is_valid_line(str3))
+        self.assertTrue(self.demo.is_valid_line(str3))
 
         str4 = ' "Add to cart"  lecture "R 12:00-12:50PM  Main Campus"   '
-        self.assertFalse(validator.is_valid_line(str4))
+        self.assertFalse(self.demo.is_valid_line(str4))
 
         str5 = '"Activity corequisite required RCT"       '
-        self.assertFalse(validator.is_valid_line(str5))
-
-        validator.finalize()
+        self.assertFalse(self.demo.is_valid_line(str5))
 
     def test_parser(self):
         """
         Test the parse function. See if it can return expected result.
+        Note the input must be valid because the original code will check line before parsing.
         :return:
         """
-        parser = Parse()
+
         str0 = '"BIO -201-A  Intro to Bio for Non-Sci/Eng Maj" "12363 Add BIO -201-A to cart" "Open - 12 of 30" ' \
                'lecture "MW 09:00-09:30AM  Main Campus" "Agresti C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
-        str0_parsed = ['BIO -201-A  Intro to Bio for Non-Sci/Eng Maj', '12363', 'Open - 12 of 30', 'MW 09:00-09:30AM  '
-                       'Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00']
-        self.assertEqual(list(parser.parse_line(str0)), str0_parsed)
-        parser.finalize()
+        str0_parsed = ('BIO -201-A  Intro to Bio for Non-Sci/Eng Maj', '12363', 'Open - 12 of 30', 'MW 09:00-09:30AM  '
+                       'Main Campus', 'Agresti C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00')
+        self.assertEqual(self.demo.parse_line(str0), str0_parsed)
+
+        str1 = '"HAR -320-A  Video II" "12351 Add HAR -320-A to cart" "Open - 4 of 12" lecture "R 01:00-04:50PM  Main ' \
+               'Campus Morton Complex 201" "Manzione C" "Normal Academic Term01-17-18 to 05-16-18" 3.00 '
+        str1_parsed = ('HAR -320-A  Video II', '12351', 'Open - 4 of 12', 'R 01:00-04:50PM  Main Campus Morton '
+                       'Complex 201', 'Manzione C', 'Normal Academic Term01-17-18 to 05-16-18', '3.00')
+        self.assertEqual(self.demo.parse_line(str1), str1_parsed)
+
+    def tearDown(self):
+        self.demo.finalize()
 
 
 def main():
