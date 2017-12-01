@@ -130,6 +130,26 @@ ScreenManager:
             pos_hint: {'x': 0, 'top':0.97 }
             on_press: app.root.current = "HomeScreen"
             background_color: (1.0, 0.0, 0.0, 1.0)
+        Spinner:
+            id: stdpln_file_spinner
+            text:'Choose Study Plan'
+            values: root.get_stdpln_file_names()
+            background_color: (1.0, 0.0, 0.0, 1.0)	
+            size_hint:(None, None)
+            size:(140, 44)
+            pos_hint:{'x': 0.23, 'top':0.97}
+            on_text: root.stdpln_spn_cls_hndlr()
+        Label:
+            text: "File Name:"
+            color: 0, 0, 0, 1  
+            pos_hint:{'x': 0.46, 'top':0.99}
+            size_hint: 0.2,0.08
+        TextInput:
+            id: stdpln_file_txtin
+            focus: True
+            size_hint: 0.3,0.04
+            multiline: False
+            pos_hint:{'x': 0.65, 'top':0.97}    
 		BoxLayout:
             canvas:
                 Color:
@@ -536,10 +556,11 @@ ScreenManager:
 			pos_hint: {'x': 0, 'top':0.05}
 			orientation: 'horizontal'
 			Button:
-				text: "Save"
+				id: stdpln_save_btn
+                text: "Save"
 				size_hint_x: 3
 				background_color: (1.0, 0.0, 0.0, 1.0)
-                on_press: root.save_handler()
+                on_press:root.save_handler()
 			Button:
 				text: "Load"
 				size_hint_x: 3

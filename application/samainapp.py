@@ -8,8 +8,10 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import ObjectProperty
 from functools import partial
 import json
+import os
 
 # Base application for the SWAARJA Student Assistant Application
 # Authors: Dan Jackson, Alla Alharazi, Eileen Roberson
@@ -67,6 +69,15 @@ class StudyPlanScreen(Screen):
     retrieving a degree course plan.
     """
 
+    @staticmethod
+    def get_stdpln_file_names():
+        file_list = os.listdir(os.getcwd())
+        fp = [file for file in file_list if (file.endswith('.sp') and file != '.sp')]
+        return fp
+
+    def stdpln_spn_cls_hndlr(self):
+        self.ids.stdpln_file_txtin.text = self.ids.stdpln_file_spinner.text
+
     """ Save Button handler that stores the currently entered 
     study plan info as a JSON object and file on the local file 
     system.
@@ -85,7 +96,11 @@ class StudyPlanScreen(Screen):
                 courses_taken[x.children[1].text] = "no"
         study_plan = [courses_list, courses_taken]
         try:
-            with open('study_plan', 'w') as outfile:
+            file_name = self.ids.stdpln_file_txtin.text
+            if file_name.endswith('.sp'):
+                file_name += '.sp'
+                self.ids.stdpln_file_txtin.text = file_name
+            with open(file_name, 'w') as outfile:
                 json.dump(study_plan, outfile)      
         except (IOError, ValueError) as io_ex:
             ex_box = BoxLayout(orientation='vertical',
@@ -96,13 +111,14 @@ class StudyPlanScreen(Screen):
             ex_box.add_widget(ex_label)
             HomeScreen.make_popup('StudyPlan file save error: ',
                                   ex_box)
+        self.ids.stdpln_file_spinner.values = StudyPlanScreen.get_stdpln_file_names()
 
     """ Load button handler that retrieves the user's previously
     saved study plan from the study_plan JSON object file.
     """
     def load_handler(self):
         try:
-            with open('study_plan') as json_data:
+            with open(self.ids.stdpln_file_spinner.text) as json_data:
                 study_plan = json.load(json_data)
                 course_list = study_plan[0]
                 courses_taken = study_plan[1]
@@ -124,8 +140,13 @@ class StudyPlanScreen(Screen):
             ex_box = BoxLayout(orientation='vertical',
                                spacing=2, height=500,
                                width=500)
-            ex_label = Label(text=str(io_ex),
-                             color=(0, 0, 0, 1))
+            if str(io_ex) == "[Errno 2] No such file or directory: 'Choose Study Plan'":
+                ex_label = Label(text="Please choose a study plan\nfile to load.",
+                                 color=(0, 0, 0, 1),
+                                 halign='center')
+            else:
+                ex_label = Label(text=str(io_ex),
+                                 color=(0, 0, 0, 1))
             ex_box.add_widget(ex_label)
             HomeScreen.make_popup('StudyPlan file load error: ',
                                   ex_box)
@@ -135,7 +156,8 @@ class StudyPlanScreen(Screen):
             x.children[0].text = ''
             x.children[1].background_color = active_btn_color
 
-    def toggle_taken(self,crs_button):
+    @staticmethod
+    def toggle_taken(crs_button):
         if crs_button.background_color == active_btn_color:
             crs_button.background_color = taken_btn_color
         else:
@@ -312,21 +334,15 @@ class CoursesScreen(Screen):
         # set the url string for the URLRequest
         if state == 'avail':
             rpc = ('available/'
-                   'get_available_course/')
-            if len(srch_id) > 0 and srch_id != 'ex. SSW':
-                rpc = rpc + '?search_dept_id='
-                search = srch_id
-        elif state == 'desc':
-            rpc = ('course_description/'
-                   'get_course_description/')
+                   'get_available_course/'
+                   '?search_dept_id=')
             if len(srch_id) > 0 and srch_id != 'ex. SSW555':
-                rpc = rpc + '?search_id='
                 search = srch_id
         elif state == 'times':
             rpc = ('course_description/'
-                   'get_course_description/')
+                   'get_course_description/'
+                   '?search_id=')
             if len(srch_id) > 0 and srch_id != 'ex. SSW555':
-                rpc = rpc + '?search_id='
                 search = srch_id
         return server+rpc+search
 
