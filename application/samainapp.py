@@ -97,7 +97,7 @@ class StudyPlanScreen(Screen):
         study_plan = [courses_list, courses_taken]
         try:
             file_name = self.ids.stdpln_file_txtin.text
-            if file_name.endswith('.sp'):
+            if file_name.endswith('.sp') != True:
                 file_name += '.sp'
                 self.ids.stdpln_file_txtin.text = file_name
             with open(file_name, 'w') as outfile:
@@ -134,8 +134,11 @@ class StudyPlanScreen(Screen):
                             x.children[0].text = value
                 for key, value in courses_taken.items():
                     for x in self.ids.stdypln_box.children:
-                        if x.children[1].text == key and value == 'yes':
-                            x.children[1].background_color = taken_btn_color
+                        if x.children[1].text == key:
+                            if value == 'yes':
+                                x.children[1].background_color = taken_btn_color
+                            else:
+                                x.children[1].background_color = active_btn_color
         except (IOError, ValueError) as io_ex:
             ex_box = BoxLayout(orientation='vertical',
                                spacing=2, height=500,
