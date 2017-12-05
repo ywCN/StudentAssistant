@@ -1,9 +1,11 @@
 Stevens Institute SSW690
 StudentAssistant Application
 A mobile-ready client, server, and database to assist students in viewing and registering for courses.
-4Dec17
+Version: 5Dec17
 
 Notes:
+Development plan: https://drive.google.com/open?id=1PISZar_Pg-bIX6qKEs1LMovKkDu0nOnrseG1CWx4AQk
+
 Database:
 
 Server:
