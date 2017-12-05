@@ -9,6 +9,8 @@ Development plan: https://drive.google.com/open?id=1PISZar_Pg-bIX6qKEs1LMovKkDu0
 Database:
 
 Server:
+Install/Developer Notes: https://github.com/ywCN/StudentAssistant/wiki/Server-Development-Notes
+
 
 Client Application:
 Install and usage: https://github.com/ywCN/StudentAssistant/wiki/App-User's-Guide
